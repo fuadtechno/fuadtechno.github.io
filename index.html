@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetDesignPro | The Ultimate IT Study Architect</title>
+    <title>NetDesignPro v2.0 | Advanced IT Architect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -11,288 +11,405 @@
         
         :root {
             --brand-blue: #3b82f6;
+            --brand-purple: #8b5cf6;
             --brand-dark: #0f172a;
+            --emerald-glow: #10b981;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #f8fafc;
             color: #1e293b;
+            overflow-x: hidden;
         }
 
         .code-font { font-family: 'Fira Code', monospace; }
-
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-        }
-
-        .sidebar-link {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .sidebar-link.active {
-            background: white;
-            color: var(--brand-blue);
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-            transform: translateX(5px);
-        }
-
-        .chapter-card {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .chapter-card:hover {
-            border-color: var(--brand-blue);
-        }
-
-        .cli-window {
-            background: #1e1e1e;
-            border-radius: 0.75rem;
-            color: #d4d4d4;
-            padding: 1.5rem;
-            font-size: 0.85rem;
-            border: 1px solid #333;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2);
-        }
-
-        .quiz-option:hover {
-            background-color: #eff6ff;
-            border-color: #3b82f6;
-        }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        /* Sidebar Styling */
+        .sidebar-link {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .sidebar-link.active {
+            background: #eff6ff;
+            color: var(--brand-blue);
+            transform: translateX(8px);
+        }
+
+        .sidebar-link.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 25%;
+            height: 50%;
+            width: 4px;
+            background: var(--brand-blue);
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Chapter Cards & Interactive Elements */
+        .chapter-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 2rem;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .chapter-card:hover {
+            border-color: var(--brand-blue);
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+        }
+
+        .cli-window {
+            background: #0f172a;
+            border-radius: 1.25rem;
+            color: #94a3b8;
+            padding: 2rem;
+            font-size: 0.875rem;
+            border: 1px solid #1e293b;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+        }
+
+        .lab-badge {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        /* Animation Keyframes */
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .scanning::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(59, 130, 246, 0.1), transparent);
+            animation: scanline 3s linear infinite;
+            pointer-events: none;
+        }
+
+        .node-pulse {
+            animation: node-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes node-ping {
+            75%, 100% { transform: scale(2); opacity: 0; }
+        }
+
+        .stats-card {
+            background: linear-gradient(145deg, #ffffff, #f1f5f9);
+        }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased selection:bg-blue-100 selection:text-blue-700">
 
-    <nav class="glass-nav sticky top-0 z-50 w-full">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-blue-200">
-                    <i class="fas fa-microchip text-xl"></i>
+    <nav class="glass-nav sticky top-0 z-50 w-full transition-all duration-300" id="main-nav">
+        <div class="max-w-[1440px] mx-auto px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-5">
+                <div class="group relative w-12 h-12">
+                    <div class="absolute inset-0 bg-blue-600 rounded-2xl rotate-6 group-hover:rotate-0 transition-transform duration-300 opacity-20"></div>
+                    <div class="relative w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-blue-200">
+                        <i class="fas fa-layer-group text-xl"></i>
+                    </div>
                 </div>
                 <div>
-                    <h1 class="text-xl font-extrabold tracking-tight">NetDesign<span class="text-blue-600">Pro</span></h1>
-                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none">v2.0 Academic Edition</p>
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-2xl font-black tracking-tighter text-slate-900">NetDesign<span class="text-blue-600">Pro</span></h1>
+                        <span class="bg-slate-100 text-slate-500 text-[10px] px-2 py-0.5 rounded font-bold">V2.4</span>
+                    </div>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] leading-none">Global Infrastructure Framework</p>
                 </div>
             </div>
 
-            <div class="hidden lg:flex items-center gap-6">
-                <div class="relative">
-                    <input type="text" id="glossarySearch" placeholder="Search networking terms..." 
-                           class="bg-slate-100 border-none rounded-full px-5 py-2 text-sm w-64 focus:ring-2 focus:ring-blue-500 transition">
-                    <i class="fas fa-search absolute right-4 top-3 text-slate-400"></i>
+            <div class="hidden xl:flex items-center gap-8">
+                <div class="flex items-center gap-6 text-sm font-bold text-slate-500">
+                    <a href="#" class="hover:text-blue-600 transition">Design Specs</a>
+                    <a href="#" class="hover:text-blue-600 transition">Compliance</a>
+                    <a href="#" class="hover:text-blue-600 transition">Topology Visualizer</a>
                 </div>
-                <button onclick="toggleQuiz()" class="bg-slate-900 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-blue-600 transition shadow-lg">
-                    Launch Exam Prep
+                <div class="h-6 w-[1px] bg-slate-200"></div>
+                <div class="relative group">
+                    <input type="text" placeholder="Lookup CLI Commands..." 
+                           class="bg-slate-100 border-2 border-transparent rounded-2xl px-6 py-2.5 text-sm w-80 focus:bg-white focus:border-blue-500 focus:ring-0 transition-all outline-none">
+                    <kbd class="absolute right-4 top-3 text-[10px] font-bold text-slate-400 bg-white px-1.5 py-0.5 rounded border border-slate-200 shadow-sm transition-opacity group-focus-within:opacity-0">CTRL + K</kbd>
+                </div>
+                <button class="bg-slate-900 text-white px-7 py-3 rounded-2xl text-sm font-extrabold hover:bg-blue-600 hover:-translate-y-0.5 active:translate-y-0 transition-all shadow-lg shadow-slate-200 flex items-center gap-2">
+                    <i class="fas fa-certificate text-blue-400"></i>
+                    Get Certified
                 </button>
             </div>
         </div>
     </nav>
 
-    <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-12 py-12">
+    <div class="max-w-[1440px] mx-auto px-8 flex flex-col lg:flex-row gap-16 py-16">
         
         <aside class="w-full lg:w-80 flex-shrink-0">
-            <div class="sticky top-32 space-y-8">
-                <div class="bg-white/50 border border-slate-200 p-6 rounded-[2rem] backdrop-blur-sm">
-                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-6 px-2">Course Outline</h3>
-                    <nav class="space-y-2">
-                        <a href="#ch1" class="sidebar-link active flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-white transition">
-                            <i class="fas fa-layer-group w-5"></i> 1. Fundamentals
+            <div class="sticky top-36 space-y-8">
+                
+                <div class="bg-white p-6 rounded-[2.5rem] border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest">Active Nodes</h4>
+                        <span class="flex h-2 w-2 rounded-full bg-emerald-500 relative">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        </span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="stats-card p-4 rounded-3xl border border-slate-50">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase">Core</p>
+                            <p class="text-xl font-black text-slate-900">124</p>
+                        </div>
+                        <div class="stats-card p-4 rounded-3xl border border-slate-50">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase">Edge</p>
+                            <p class="text-xl font-black text-slate-900">892</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 p-8 rounded-[2.5rem] shadow-sm">
+                    <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-8 px-2">Architectural Modules</h3>
+                    <nav class="space-y-2" id="sidebar-nav">
+                        <a href="#ch1" class="sidebar-link active flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold text-slate-600 hover:bg-slate-50 transition-all">
+                            <i class="fas fa-drafting-compass w-5 text-blue-500"></i> Design Lifecycle
                         </a>
-                        <a href="#ch2" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-white transition">
-                            <i class="fas fa-random w-5"></i> 2. LAN & Switching
+                        <a href="#ch2" class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold text-slate-600 hover:bg-slate-50 transition-all">
+                            <i class="fas fa-server w-5 text-emerald-500"></i> Switching Fabric
                         </a>
-                        <a href="#ch3" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-white transition">
-                            <i class="fas fa-route w-5"></i> 3. IP & Routing
+                        <a href="#ch3" class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold text-slate-600 hover:bg-slate-50 transition-all">
+                            <i class="fas fa-route w-5 text-orange-500"></i> Advanced Routing
                         </a>
-                        <a href="#ch4" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-white transition">
-                            <i class="fas fa-shield-virus w-5"></i> 4. Network Security
+                        <a href="#ch4" class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold text-slate-600 hover:bg-slate-50 transition-all">
+                            <i class="fas fa-user-shield w-5 text-red-500"></i> Cybersecurity Zero
                         </a>
-                        <a href="#ch5" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-white transition">
-                            <i class="fas fa-wifi w-5"></i> 5. Wireless Design
+                        <a href="#ch5" class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold text-slate-600 hover:bg-slate-50 transition-all">
+                            <i class="fas fa-satellite-dish w-5 text-purple-500"></i> Wireless & Mobility
+                        </a>
+                        <a href="#ch6" class="sidebar-link flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold text-slate-600 hover:bg-slate-50 transition-all">
+                            <i class="fas fa-code-branch w-5 text-cyan-500"></i> Programmable SDN
                         </a>
                     </nav>
                 </div>
 
-                <div class="bg-gradient-to-br from-blue-600 to-indigo-700 p-8 rounded-[2rem] text-white shadow-2xl shadow-blue-200">
-                    <div class="flex justify-between items-end mb-4">
-                        <h4 class="font-bold">Semester Goal</h4>
-                        <span class="text-2xl font-black">85%</span>
+                <div class="bg-slate-900 p-8 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden">
+                    <div class="absolute -right-4 -top-4 w-24 h-24 bg-blue-500/10 blur-3xl"></div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                        <h4 class="font-bold text-xs tracking-tight">System.log</h4>
                     </div>
-                    <div class="w-full bg-white/20 h-2 rounded-full overflow-hidden mb-6">
-                        <div class="bg-white h-full w-[85%]"></div>
+                    <div class="space-y-3 code-font text-[11px]">
+                        <p class="text-blue-400"># Initializing BGP...</p>
+                        <p class="text-emerald-400">UP: neighbor 10.0.0.1</p>
+                        <p class="text-slate-500">Converged in 0.4s</p>
                     </div>
-                    <p class="text-xs text-blue-100 leading-relaxed italic">"Success is the sum of small efforts, repeated day-in and day-out."</p>
                 </div>
             </div>
         </aside>
 
-        <main class="flex-grow max-w-4xl space-y-32 pb-32">
+        <main class="flex-grow max-w-5xl space-y-32 pb-64">
 
-            <section id="ch1" class="scroll-mt-32">
-                <div class="mb-12">
-                    <span class="bg-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full mb-6 inline-block">Chapter 01</span>
-                    <h2 class="text-5xl font-extrabold text-slate-900 leading-tight mb-6">The Architecture of Connectivity</h2>
-                    <p class="text-lg text-slate-500 leading-relaxed">Designing a network is about balancing <strong>Business Goals</strong> with <strong>Technical Constraints</strong>. It begins with understanding the lifecycle of a project.</p>
+            <section id="ch1" class="scroll-mt-36">
+                <div class="max-w-3xl mb-16">
+                    <span class="bg-blue-100 text-blue-600 text-[11px] font-black uppercase tracking-[0.25em] px-4 py-1.5 rounded-full mb-8 inline-block shadow-sm shadow-blue-50">Module 01</span>
+                    <h2 class="text-6xl font-black text-slate-900 leading-[1.1] mb-8 tracking-tighter">Strategic Design Frameworks</h2>
+                    <p class="text-xl text-slate-500 leading-relaxed font-medium">Enterprise network success is built on the PPDIOO lifecycle. We move beyond "connectivity" into high-availability architecture.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                    <div class="chapter-card p-10">
-                        <h3 class="text-xl font-bold mb-4 flex items-center gap-3">
-                            <i class="fas fa-clipboard-check text-blue-500"></i> Design Goals
-                        </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="chapter-card p-12 group">
+                        <div class="w-16 h-16 bg-blue-50 rounded-3xl flex items-center justify-center text-blue-600 mb-8 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                            <i class="fas fa-chess-king text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-slate-900">Hierarchical Design</h3>
+                        <p class="text-slate-500 leading-relaxed mb-8">Utilizing the Core, Distribution, and Access layers to localize failures and scale throughput. Essential for 400G spine-leaf transitions.</p>
                         <ul class="space-y-4">
-                            <li class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 shrink-0"></div>
-                                <p class="text-sm text-slate-600"><strong>Scalability:</strong> Supporting growth without redesigning the core.</p>
+                            <li class="flex items-center gap-3 text-sm font-bold text-slate-700">
+                                <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-[10px]"><i class="fas fa-check"></i></span> High Redundancy
                             </li>
-                            <li class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 shrink-0"></div>
-                                <p class="text-sm text-slate-600"><strong>Availability:</strong> Achieving "Five Nines" (99.999%) uptime.</p>
-                            </li>
-                            <li class="flex items-start gap-4">
-                                <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 shrink-0"></div>
-                                <p class="text-sm text-slate-600"><strong>Manageability:</strong> Simplifying O&M with SDN and automation.</p>
+                            <li class="flex items-center gap-3 text-sm font-bold text-slate-700">
+                                <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-[10px]"><i class="fas fa-check"></i></span> Deterministic Traffic
                             </li>
                         </ul>
                     </div>
 
-                    <div class="chapter-card p-10 bg-slate-900 text-white border-none shadow-2xl">
-                        <h3 class="text-xl font-bold mb-4">PPDIOO Methodology</h3>
-                        <div class="space-y-3 text-xs text-slate-400">
-                            <p><b class="text-blue-400">Prepare:</b> High-level strategy & vision.</p>
-                            <p><b class="text-blue-400">Plan:</b> Auditing existing infrastructure.</p>
-                            <p><b class="text-blue-400">Design:</b> Logical & Physical diagrams.</p>
-                            <p><b class="text-blue-400">Implement:</b> Deployment of new assets.</p>
-                            <p><b class="text-blue-400">Operate:</b> Day-to-day network health.</p>
-                            <p><b class="text-blue-400">Optimize:</b> Proactive performance tuning.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="ch2" class="scroll-mt-32">
-                <div class="mb-12">
-                    <span class="bg-emerald-100 text-emerald-600 text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full mb-6 inline-block">Chapter 02</span>
-                    <h2 class="text-5xl font-extrabold text-slate-900 leading-tight mb-6">Switching Intelligence</h2>
-                    <p class="text-lg text-slate-500 leading-relaxed">Modern LAN design focuses on Layer 2 loop prevention and broadcast domain segmentation.</p>
-                </div>
-
-                <div class="mb-12">
-                    <h4 class="text-sm font-bold text-slate-400 mb-4 uppercase tracking-widest">Cisco CLI: VLAN Implementation</h4>
-                    <div class="cli-window code-font">
-                        <div class="flex gap-2 mb-4">
-                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-amber-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
-                        </div>
-                        <p class="text-blue-400">! Defining Campus VLANs</p>
-                        <p>Switch(config)# <span class="text-white">vlan 10</span></p>
-                        <p>Switch(config-vlan)# <span class="text-white">name HR_Department</span></p>
-                        <p>Switch(config-vlan)# <span class="text-white">exit</span></p>
-                        <p class="text-blue-400">! Applying to Access Port</p>
-                        <p>Switch(config)# <span class="text-white">interface fa0/1</span></p>
-                        <p>Switch(config-if)# <span class="text-white">switchport mode access</span></p>
-                        <p>Switch(config-if)# <span class="text-white">switchport access vlan 10</span></p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="p-6 rounded-3xl bg-white border border-slate-200">
-                        <i class="fas fa-shield-alt text-emerald-500 text-2xl mb-4"></i>
-                        <h4 class="font-bold mb-2">STP (802.1D)</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">Prevents Layer 2 loops by blocking redundant paths until needed.</p>
-                    </div>
-                    <div class="p-6 rounded-3xl bg-white border border-slate-200">
-                        <i class="fas fa-bolt text-amber-500 text-2xl mb-4"></i>
-                        <h4 class="font-bold mb-2">EtherChannel</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">Aggregates multiple physical links into one logical high-bandwidth trunk.</p>
-                    </div>
-                    <div class="p-6 rounded-3xl bg-white border border-slate-200">
-                        <i class="fas fa-tags text-indigo-500 text-2xl mb-4"></i>
-                        <h4 class="font-bold mb-2">VTP</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">VLAN Trunking Protocol manages VLAN additions across the fabric.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="ch3" class="scroll-mt-32">
-                <div class="mb-12">
-                    <span class="bg-indigo-100 text-indigo-600 text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full mb-6 inline-block">Chapter 03</span>
-                    <h2 class="text-5xl font-extrabold text-slate-900 leading-tight mb-6">Routing the Enterprise</h2>
-                    <p class="text-lg text-slate-500 leading-relaxed">The move from IPv4 exhaustion to IPv6 adoption requires a solid understanding of dual-stacking and VLSM.</p>
-                </div>
-
-                <div class="bg-white rounded-[2.5rem] border border-slate-200 overflow-hidden shadow-sm mb-12">
-                    <table class="w-full text-left">
-                        <thead class="bg-slate-50 border-b border-slate-100">
-                            <tr>
-                                <th class="px-8 py-5 text-xs font-black text-slate-400 uppercase">Protocol</th>
-                                <th class="px-8 py-5 text-xs font-black text-slate-400 uppercase">Type</th>
-                                <th class="px-8 py-5 text-xs font-black text-slate-400 uppercase">Metric</th>
-                                <th class="px-8 py-5 text-xs font-black text-slate-400 uppercase">AD</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-100">
-                            <tr class="hover:bg-slate-50 transition">
-                                <td class="px-8 py-6 font-bold">OSPF</td>
-                                <td class="px-8 py-6 text-sm">Link-State</td>
-                                <td class="px-8 py-6 text-sm">Cost (BW)</td>
-                                <td class="px-8 py-6 font-bold text-blue-600">110</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50 transition">
-                                <td class="px-8 py-6 font-bold">EIGRP</td>
-                                <td class="px-8 py-6 text-sm">Advanced D-V</td>
-                                <td class="px-8 py-6 text-sm">Composite</td>
-                                <td class="px-8 py-6 font-bold text-blue-600">90</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50 transition">
-                                <td class="px-8 py-6 font-bold">Static</td>
-                                <td class="px-8 py-6 text-sm">Manual</td>
-                                <td class="px-8 py-6 text-sm">None</td>
-                                <td class="px-8 py-6 font-bold text-blue-600">1</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <section id="ch4" class="scroll-mt-32">
-                <div class="mb-12">
-                    <span class="bg-red-100 text-red-600 text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full mb-6 inline-block">Chapter 04</span>
-                    <h2 class="text-5xl font-extrabold text-slate-900 leading-tight mb-6">Security & Resilience</h2>
-                </div>
-
-                <div class="bg-slate-900 rounded-[3rem] p-12 text-white relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-8">
-                        <i class="fas fa-user-shield text-6xl text-white/5"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-8">Defensive Layers</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <div>
-                            <h4 class="text-blue-400 font-bold mb-4 flex items-center gap-2">
-                                <i class="fas fa-lock text-sm"></i> Access Control Lists (ACL)
-                            </h4>
-                            <p class="text-xs text-slate-400 leading-relaxed mb-4">Standard ACLs (1-99) filter by Source IP only. Extended ACLs (100-199) filter by Source/Dest IP and Port numbers.</p>
-                            <div class="p-4 bg-white/5 rounded-xl border border-white/10 text-[10px] code-font text-emerald-400">
-                                access-list 101 permit tcp 192.168.1.0 0.0.0.255 any eq 80
+                    <div class="chapter-card p-12 border-blue-100 bg-blue-50/20 relative overflow-hidden">
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-6 text-blue-900">The PPDIOO Loop</h3>
+                            <div class="space-y-6">
+                                <div class="flex gap-4">
+                                    <span class="font-black text-blue-300">01</span>
+                                    <div>
+                                        <p class="font-bold text-slate-900">Prepare & Plan</p>
+                                        <p class="text-xs text-slate-500">Business audit and GAP analysis.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4">
+                                    <span class="font-black text-blue-300">02</span>
+                                    <div>
+                                        <p class="font-bold text-slate-900">Design & Build</p>
+                                        <p class="text-xs text-slate-500">HLD/LLD documentation and pilot testing.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4">
+                                    <span class="font-black text-blue-300">03</span>
+                                    <div>
+                                        <p class="font-bold text-slate-900">Optimize</p>
+                                        <p class="text-xs text-slate-500">Continuous tuning through AI analytics.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            <h4 class="text-emerald-400 font-bold mb-4 flex items-center gap-2">
-                                <i class="fas fa-fingerprint text-sm"></i> Port Security
-                            </h4>
-                            <p class="text-xs text-slate-400 leading-relaxed">Limits the number of MAC addresses on a switch port to prevent CAM Table overflows.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ch2" class="scroll-mt-36">
+                <div class="max-w-3xl mb-16">
+                    <span class="bg-emerald-100 text-emerald-600 text-[11px] font-black uppercase tracking-[0.25em] px-4 py-1.5 rounded-full mb-8 inline-block shadow-sm">Module 02</span>
+                    <h2 class="text-6xl font-black text-slate-900 leading-[1.1] mb-8 tracking-tighter">High-Speed Fabric</h2>
+                    <p class="text-xl text-slate-500 leading-relaxed font-medium">Deep dive into Virtual Switching Systems (VSS), StackWise-1T, and Layer 2 loop prevention mechanisms like MSTP and VXLAN.</p>
+                </div>
+
+                <div class="bg-white rounded-[3rem] border border-slate-200 overflow-hidden">
+                    <div class="p-12 border-b border-slate-100">
+                        <h3 class="text-2xl font-bold mb-4">StackWise Architecture</h3>
+                        <p class="text-slate-500 mb-8 max-w-2xl">Modern campus access requires stacking for simplified management and high bandwidth backplanes up to 1Tbps.</p>
+                        
+                        <div class="flex flex-wrap gap-4">
+                            <span class="px-5 py-2 bg-slate-50 rounded-2xl text-xs font-black text-slate-600 border border-slate-200">SD-Access Ready</span>
+                            <span class="px-5 py-2 bg-slate-50 rounded-2xl text-xs font-black text-slate-600 border border-slate-200">PoE++ Support</span>
+                            <span class="px-5 py-2 bg-slate-50 rounded-2xl text-xs font-black text-slate-600 border border-slate-200">Multigigabit</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-3">
+                        <div class="p-12 border-r border-slate-100">
+                            <i class="fas fa-microchip text-emerald-500 text-xl mb-4"></i>
+                            <h4 class="font-bold mb-2">ASIC Performance</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">Hardware-based forwarding for wire-speed performance across all ports simultaneously.</p>
+                        </div>
+                        <div class="p-12 border-r border-slate-100">
+                            <i class="fas fa-shield-alt text-emerald-500 text-xl mb-4"></i>
+                            <h4 class="font-bold mb-2">Port Security</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">Dynamic ARP Inspection and DHCP Snooping to prevent man-in-the-middle attacks.</p>
+                        </div>
+                        <div class="p-12">
+                            <i class="fas fa-project-diagram text-emerald-500 text-xl mb-4"></i>
+                            <h4 class="font-bold mb-2">VLAN Trunking</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">IEEE 802.1Q encapsulation with Native VLAN tagging for security and traffic isolation.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ch3" class="scroll-mt-36">
+                <div class="mb-16">
+                    <span class="bg-orange-100 text-orange-600 text-[11px] font-black uppercase tracking-[0.25em] px-4 py-1.5 rounded-full mb-8 inline-block shadow-sm">Module 03</span>
+                    <h2 class="text-6xl font-black text-slate-900 leading-[1.1] mb-8 tracking-tighter">IP Routing Logic</h2>
+                </div>
+
+                <div class="flex flex-col xl:flex-row gap-12">
+                    <div class="flex-grow space-y-8">
+                        <div class="p-10 bg-slate-900 rounded-[2.5rem] text-white">
+                            <h3 class="text-2xl font-bold mb-6 text-orange-400">BGP Path Selection</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-10">The Border Gateway Protocol determines the best path based on attributes rather than simple metrics. Mastering Weight, Local Pref, and AS-PATH is critical for ISP multi-homing.</p>
+                            
+                            <div class="space-y-4 code-font text-[13px] bg-slate-950 p-6 rounded-2xl border border-slate-800">
+                                <p class="text-emerald-400">router bgp 65001</p>
+                                <p class="pl-4">neighbor 1.1.1.1 remote-as 65002</p>
+                                <p class="pl-4">neighbor 1.1.1.1 route-map PREPEND out</p>
+                                <p class="text-slate-500 mt-2">! Manipulating Path to ISP A</p>
+                                <p class="text-orange-400">route-map PREPEND permit 10</p>
+                                <p class="pl-4">set as-path prepend 65001 65001</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="p-8 bg-white border border-slate-200 rounded-[2rem]">
+                                <h4 class="font-black text-slate-900 mb-4 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-orange-500"></span> OSPFv3 Areas
+                                </h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">Multi-area design for IPv6 scalability and LSA flooding reduction. Implementation of Backbone (0) and Stub areas.</p>
+                            </div>
+                            <div class="p-8 bg-white border border-slate-200 rounded-[2rem]">
+                                <h4 class="font-black text-slate-900 mb-4 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-orange-500"></span> EIGRP Metrics
+                                </h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">DUAL algorithm for instantaneous loop-free convergence using Bandwidth, Delay, Reliability, and Load.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ch6" class="scroll-mt-36">
+                <div class="mb-16">
+                    <span class="bg-cyan-100 text-cyan-600 text-[11px] font-black uppercase tracking-[0.25em] px-4 py-1.5 rounded-full mb-8 inline-block">Module 06</span>
+                    <h2 class="text-6xl font-black text-slate-900 leading-[1.1] mb-8 tracking-tighter">SDN Orchestration</h2>
+                </div>
+
+                <div class="bg-slate-900 rounded-[3.5rem] p-16 text-white overflow-hidden relative">
+                    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:20px_20px]"></div>
+                    
+                    <div class="flex flex-col xl:flex-row gap-16 relative z-10">
+                        <div class="xl:w-1/3">
+                            <h3 class="text-3xl font-bold mb-8 text-cyan-400">RESTCONF & YANG</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-10">Decoupling the control plane from the data plane allows for programmatic network management. We use JSON payloads to push massive configuration changes in seconds.</p>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4 p-4 bg-slate-800/50 rounded-2xl border border-slate-700/50">
+                                    <div class="w-10 h-10 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400">
+                                        <i class="fab fa-python"></i>
+                                    </div>
+                                    <span class="text-sm font-bold">Python Automation</span>
+                                </div>
+                                <div class="flex items-center gap-4 p-4 bg-slate-800/50 rounded-2xl border border-slate-700/50">
+                                    <div class="w-10 h-10 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400">
+                                        <i class="fas fa-exchange-alt"></i>
+                                    </div>
+                                    <span class="text-sm font-bold">RESTful API CRUD</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="xl:w-2/3">
+                            <div class="cli-window border-cyan-500/20 shadow-2xl code-font">
+                                <div class="flex justify-between items-center mb-6 border-b border-slate-800 pb-4">
+                                    <div class="flex gap-2">
+                                        <span class="w-3 h-3 rounded-full bg-red-500/20"></span>
+                                        <span class="w-3 h-3 rounded-full bg-amber-500/20"></span>
+                                        <span class="w-3 h-3 rounded-full bg-emerald-500/20"></span>
+                                    </div>
+                                    <span class="text-[10px] font-black uppercase text-slate-500 tracking-widest">provision_fabric.py</span>
+                                </div>
+                                <p class="text-purple-400">import <span class="text-white">json</span>, <span class="text-white">requests</span></p>
+                                <p class="text-slate-600 mt-4"># Set Payload for New VLAN 100</p>
+                                <p class="text-emerald-400">vlan_config = {<br>
+                                    &nbsp;&nbsp;<span class="text-cyan-400">"vlan-id"</span>: <span class="text-amber-200">100</span>,<br>
+                                    &nbsp;&nbsp;<span class="text-cyan-400">"name"</span>: <span class="text-amber-200">"PROD_SERVER_ZONE"</span><br>
+                                }</p>
+                                <p class="mt-4">response = requests.post(url, data=json.dumps(vlan_config))</p>
+                                <p class="text-blue-400">if <span class="text-white">response.status_code == 201:</span></p>
+                                <p class="pl-4 text-emerald-500">print("Network Fabric Updated Successfully")</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -301,85 +418,75 @@
         </main>
     </div>
 
-    <div id="quizOverlay" class="fixed inset-0 bg-slate-900/90 backdrop-blur-xl z-[100] hidden flex items-center justify-center p-6">
-        <div class="bg-white w-full max-w-2xl rounded-[3rem] p-12 relative overflow-hidden">
-            <button onclick="toggleQuiz()" class="absolute top-8 right-8 text-slate-400 hover:text-slate-900 transition">
-                <i class="fas fa-times text-2xl"></i>
-            </button>
-            
-            <div id="quizContent">
-                <span class="text-[10px] font-black text-blue-600 uppercase tracking-widest block mb-4">Quick Assessment</span>
-                <h2 id="questionText" class="text-3xl font-extrabold text-slate-900 mb-8 leading-tight">Which layer of the Cisco model is responsible for routing between VLANs?</h2>
-                
-                <div class="space-y-4 mb-10">
-                    <button class="quiz-option w-full text-left p-6 rounded-2xl border border-slate-100 font-bold text-slate-600 transition" onclick="checkAnswer(false)">A) Core Layer</button>
-                    <button class="quiz-option w-full text-left p-6 rounded-2xl border border-slate-100 font-bold text-slate-600 transition" onclick="checkAnswer(true)">B) Distribution Layer</button>
-                    <button class="quiz-option w-full text-left p-6 rounded-2xl border border-slate-100 font-bold text-slate-600 transition" onclick="checkAnswer(false)">C) Access Layer</button>
+    <footer class="bg-white border-t border-slate-100 py-32 mt-32">
+        <div class="max-w-[1440px] mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-16">
+                <div class="max-w-md">
+                    <h2 class="text-3xl font-black text-slate-900 mb-6 tracking-tighter">NetDesign<span class="text-blue-600">Pro</span></h2>
+                    <p class="text-slate-500 text-sm leading-relaxed font-medium">Empowering the next generation of Network Architects with standardized, high-performance infrastructure templates and automation logic.</p>
                 </div>
-                
-                <p id="feedback" class="hidden font-bold text-center p-4 rounded-xl"></p>
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-12 text-sm font-bold">
+                    <div class="flex flex-col gap-4">
+                        <p class="text-slate-400 text-[10px] uppercase tracking-widest mb-2">Technical Resources</p>
+                        <a href="#" class="hover:text-blue-600 transition">Design Guides</a>
+                        <a href="#" class="hover:text-blue-600 transition">API Documentation</a>
+                        <a href="#" class="hover:text-blue-600 transition">CLI Cheat Sheet</a>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <p class="text-slate-400 text-[10px] uppercase tracking-widest mb-2">Platform Support</p>
+                        <a href="#" class="hover:text-blue-600 transition">Cisco DNA Center</a>
+                        <a href="#" class="hover:text-blue-600 transition">Arista CloudVision</a>
+                        <a href="#" class="hover:text-blue-600 transition">Juniper Apstra</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <footer class="bg-white border-t border-slate-100 py-20">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="flex justify-center gap-6 mb-8 text-slate-300">
-                <a href="#" class="hover:text-blue-600 transition"><i class="fab fa-github text-2xl"></i></a>
-                <a href="#" class="hover:text-blue-600 transition"><i class="fab fa-linkedin text-2xl"></i></a>
-                <a href="#" class="hover:text-blue-600 transition"><i class="fab fa-youtube text-2xl"></i></a>
+            <div class="mt-32 pt-12 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-[11px] text-slate-400 font-bold uppercase tracking-widest leading-none">© 2026 Fuad Aliyi Mume | Faculty of IT | Dire Dawa University</p>
+                <div class="flex gap-8">
+                    <a href="#" class="text-slate-400 hover:text-blue-600 transition"><i class="fab fa-github text-xl"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-blue-600 transition"><i class="fab fa-linkedin text-xl"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-blue-600 transition"><i class="fab fa-youtube text-xl"></i></a>
+                </div>
             </div>
-            <p class="text-xs text-slate-400 uppercase font-black tracking-widest">Architected for Fuad Mume | IT Semester 2026</p>
         </div>
     </footer>
 
     <script>
-        // SIDEBAR ACTIVE STATE
+        // 1. Smooth Scroll Observer for Sidebar
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.sidebar-link');
+
         window.addEventListener('scroll', () => {
             let current = "";
-            const sections = document.querySelectorAll("section");
-            const navLinks = document.querySelectorAll(".sidebar-link");
-
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 150) {
-                    current = section.getAttribute("id");
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
                 }
             });
 
             navLinks.forEach(link => {
-                link.classList.remove("active");
-                if (link.getAttribute("href").includes(current)) {
-                    link.classList.add("active");
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
                 }
             });
         });
 
-        // QUIZ LOGIC
-        function toggleQuiz() {
-            const overlay = document.getElementById('quizOverlay');
-            overlay.classList.toggle('hidden');
-            document.getElementById('feedback').classList.add('hidden');
-        }
-
-        function checkAnswer(isCorrect) {
-            const feedback = document.getElementById('feedback');
-            feedback.classList.remove('hidden', 'bg-green-100', 'text-green-600', 'bg-red-100', 'text-red-600');
-            
-            if (isCorrect) {
-                feedback.innerText = "Correct! Distribution layer is the policy-making boundary.";
-                feedback.classList.add('bg-green-100', 'text-green-600');
+        // 2. Navigation Blur effect on scroll
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 50) {
+                nav.classList.add('py-4', 'shadow-xl', 'shadow-slate-100/50');
+                nav.classList.remove('py-0');
             } else {
-                feedback.innerText = "Try again! Think about where routing policies live.";
-                feedback.classList.add('bg-red-100', 'text-red-600');
+                nav.classList.remove('py-4', 'shadow-xl', 'shadow-slate-100/50');
             }
-        }
+        });
 
-        // SEARCH FILTER (LOGIC ONLY - CAN BE EXPANDED)
-        document.getElementById('glossarySearch').addEventListener('input', function(e) {
-            const term = e.target.value.toLowerCase();
-            console.log("Searching for:", term);
-            // This can be used to hide/show specific chapter cards
+        // 3. Simple Search Simulation (Visual Only)
+        document.querySelector('input[type="text"]').addEventListener('focus', () => {
+            console.log("Entering Design Search Mode...");
         });
     </script>
 </body>
