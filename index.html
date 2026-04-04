@@ -4,68 +4,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fuad Techno | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --accent-color: #58a6ff;
+            --text-main: #c9d1d9;
+            --text-dim: #8b949e;
+            --success: #238636;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0d1117;
-            color: #c9d1d9;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            line-height: 1.6;
         }
-        .container {
+
+        header {
             text-align: center;
-            background-color: #161b22;
-            padding: 50px;
-            border-radius: 15px;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+        }
+
+        h1 { color: var(--accent-color); font-size: 3rem; margin: 0; }
+        .subtitle { font-size: 1.2rem; color: var(--text-dim); margin-top: 10px; }
+
+        .container { max-width: 1000px; margin: auto; padding: 40px 20px; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
             border: 1px solid #30363d;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: 0.3s ease;
         }
-        h1 { color: #58a6ff; font-size: 2.5rem; margin-bottom: 10px; }
-        p { font-size: 1.2rem; color: #8b949e; }
-        .skills { margin-top: 20px; }
+
+        .card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .card h3 { color: var(--accent-color); margin-top: 0; }
+
         .badge {
-            background-color: #238636;
-            color: white;
-            padding: 5px 12px;
+            background: #21262d;
+            color: var(--accent-color);
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.9rem;
-            margin: 5px;
-            display: inline-block;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            border: 1px solid #30363d;
         }
+
         .btn {
             display: inline-block;
-            background-color: #21262d;
-            color: #58a6ff;
-            padding: 12px 24px;
+            background-color: var(--success);
+            color: white;
+            padding: 12px 28px;
             text-decoration: none;
             border-radius: 6px;
-            border: 1px solid #30363d;
-            margin-top: 25px;
             font-weight: bold;
-            transition: 0.3s;
+            margin-top: 30px;
+            transition: 0.2s;
         }
-        .btn:hover {
-            background-color: #58a6ff;
-            color: white;
-            border-color: #58a6ff;
+
+        .btn:hover { background-color: #2ea043; }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            color: var(--text-dim);
+            border-top: 1px solid #30363d;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Fuad Aliyi Mume</h1>
-        <p>Software Developer | IT Student at Dire Dawa University</p>
-        <div class="skills">
-            <span class="badge">Java</span>
-            <span class="badge">PHP</span>
-            <span class="badge">Kotlin</span>
-            <span class="badge">Full-Stack Web</span>
-        </div>
-        <p>Baga gara portfolio koo nagaatti dhuftan!</p>
-        <a href="https://github.com/fuadtechno" class="btn">Projektoota Koo Ilaali</a>
+
+<header>
+    <h1>Fuad Aliyi Mume</h1>
+    <p class="subtitle">Software Developer | IT Student at Dire Dawa University</p>
+    <div style="margin-top: 20px;">
+        <span class="badge">Java</span>
+        <span class="badge">PHP</span>
+        <span class="badge">Kotlin</span>
+        <span class="badge">Full-Stack</span>
     </div>
+    <a href="mailto:fuad@example.com" class="btn">Na Quunnami</a>
+</header>
+
+<div class="container">
+    <h2>Hojiiwwan Koo (Projects)</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Student Registration System</h3>
+            <p>Java Swing fi MySQL fayyadamuun sirna galmeessa barattootaa ammayyaa kan qophaa'e.</p>
+            <span class="badge">Desktop App</span>
+        </div>
+        <div class="card">
+            <h3>Multilingual ChatBot</h3>
+            <p>Sirna odeeffannoo afaan adda addaan deebii kennu kan database irratti hundaa'e.</p>
+            <span class="badge">Database</span>
+        </div>
+        <div class="card">
+            <h3>Smart Attendance Dashboard</h3>
+            <p>Hordoffii barattootaa fi hoggansa daataa yunivarsiitii kan of keessaa qabu.</p>
+            <span class="badge">MVC Architecture</span>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Fuad Techno. All rights reserved.</p>
+    <p><a href="https://github.com/fuadtechno" style="color: var(--accent-color); text-decoration: none;">GitHub Profile</a></p>
+</footer>
+
 </body>
 </html>
