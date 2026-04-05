@@ -16,6 +16,11 @@
             transition: all 0.4s ease;
         }
         
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+        
         .news-container {
             min-height: 800px;
             background: #ffffff;
@@ -41,9 +46,9 @@
     <nav class="bg-white/80 backdrop-blur-md border-b sticky top-0 z-50">
         <div class="container mx-auto px-6 py-5 flex justify-between items-center">
             <div class="text-2xl font-extrabold tracking-tighter text-blue-600">
-                Fuad<span class="text-slate-900">Tech</span>
+                FUAD<span class="text-slate-900">TECH</span>
             </div>
-            <ul class="flex gap-10 font-bold text-xs uppercase tracking-[0.2em] text-slate-500">
+            <ul class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-[0.2em] text-slate-500">
                 <li><a href="index.html" class="hover:text-blue-600 transition">Home</a></li>
                 <li><a href="course.html" class="hover:text-blue-600 transition">Courses</a></li>
                 <li><a href="news.html" class="text-blue-600 border-b-2 border-blue-600 pb-1">News</a></li>
@@ -79,14 +84,14 @@
                     <span class="text-[10px] font-black text-blue-600 uppercase tracking-widest">Education</span>
                     <h3 class="text-2xl font-bold mt-4 mb-4">DDU IT Batch 2026 Projects</h3>
                     <p class="text-slate-500 text-sm leading-relaxed mb-6">FuadTech is proud to support the upcoming senior project exhibition at Dire Dawa University.</p>
-                    <a href="#" class="text-blue-600 font-bold text-sm">Read more →</a>
+                    <a href="#" class="text-blue-600 font-bold text-sm hover:underline">Read more →</a>
                 </article>
                 
                 <article class="glass-card p-10 rounded-[2.5rem]">
                     <span class="text-[10px] font-black text-emerald-600 uppercase tracking-widest">Workshop</span>
                     <h3 class="text-2xl font-bold mt-4 mb-4">Java JDBC Masterclass</h3>
                     <p class="text-slate-500 text-sm leading-relaxed mb-6">A new series of tutorials for database integration in Java Swing applications is now live.</p>
-                    <a href="course.html" class="text-emerald-600 font-bold text-sm">Join Course →</a>
+                    <a href="course.html" class="text-emerald-600 font-bold text-sm hover:underline">Join Course →</a>
                 </article>
             </div>
         </div>
