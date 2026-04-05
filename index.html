@@ -3,51 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FuadTech | Smart Education</title>
-    <link rel="stylesheet" href="style.css">
+    <title>FuadTech | Professional Edu-Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="bg-gray-50 text-gray-900 transition-colors duration-500" id="body">
 
-    <header class="fixed w-full z-50 bg-white/80 backdrop-blur-md shadow-sm">
+    <header class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm border-b">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-blue-600">Fuad<span class="text-gray-700">Tech</span></div>
-            <ul class="hidden md:flex space-x-8 font-medium">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#courses" class="nav-link">Courses</a></li>
-                <li><a href="#videos" class="nav-link">Videos</a></li>
-                <li><a href="#news" class="nav-link">News</a></li>
+            <div class="text-2xl font-black text-blue-600 tracking-tighter">Fuad<span class="text-gray-800" id="logoText">Tech</span></div>
+            
+            <ul class="hidden md:flex space-x-8 font-semibold text-sm uppercase tracking-wide">
+                <li><a href="#home" class="hover:text-blue-600 transition">Home</a></li>
+                <li><a href="#courses" class="hover:text-blue-600 transition">Courses</a></li>
+                <li><a href="#videos" class="hover:text-blue-600 transition">Videos</a></li>
+                <li><a href="#news" class="hover:text-blue-600 transition">News</a></li>
             </ul>
-            <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Login</button>
+
+            <div class="flex items-center gap-4">
+                <button id="themeToggle" class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition">
+                    🌙
+                </button>
+                <button class="bg-blue-600 text-white px-6 py-2 rounded-full font-bold hover:bg-blue-700 shadow-lg shadow-blue-200 transition">Login</button>
+            </div>
         </nav>
     </header>
 
-    <section id="home" class="h-screen flex items-center justify-center bg-blue-50">
-        <div class="text-center">
-            <h1 class="text-5xl font-black mb-4">Empowering IT Students</h1>
-            <p class="text-xl text-gray-600">Dynamic learning for the next generation of developers.</p>
+    <section id="home" class="pt-32 pb-20 px-6 text-center bg-gradient-to-b from-blue-50 to-white">
+        <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">Master IT Skills <br><span class="text-blue-600">Faster & Smarter</span></h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-10">University-level education and industry-standard certifications for Ethiopian developers.</p>
+        
+        <div class="max-w-xl mx-auto relative">
+            <input type="text" id="courseSearch" placeholder="What do you want to learn today?" 
+                   class="w-full px-8 py-5 rounded-full shadow-2xl border-none outline-none focus:ring-4 focus:ring-blue-200 text-lg">
+            <button class="absolute right-3 top-3 bg-blue-600 text-white p-3 rounded-full hover:rotate-12 transition">🔍</button>
         </div>
     </section>
 
     <section id="courses" class="py-20 container mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-8">Available Courses</h2>
-        <div id="course-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="flex justify-between items-end mb-12">
+            <div>
+                <h2 class="text-4xl font-black">Featured Courses</h2>
+                <div class="h-1.5 w-20 bg-blue-600 mt-2 rounded-full"></div>
             </div>
-    </section>
-
-    <section id="videos" class="py-20 bg-gray-900 text-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-8">Latest Lessons</h2>
-            <div id="video-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                </div>
         </div>
-    </section>
-
-    <section id="news" class="py-20 container mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-8">Tech News</h2>
-        <div id="news-container" class="space-y-4">
+        <div id="course-container" class="grid grid-cols-1 md:grid-cols-3 gap-10">
             </div>
     </section>
+
+    <footer class="bg-gray-900 text-white py-16 mt-20">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-800 pb-12">
+            <div>
+                <h3 class="text-2xl font-bold mb-4 text-blue-400">FuadTech</h3>
+                <p class="text-gray-400">Leading the digital education revolution in Dire Dawa and beyond.</p>
+            </div>
+            <div class="flex gap-10">
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Curriculum</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-right">
+                <h4 class="font-bold mb-4">Contact</h4>
+                <p class="text-gray-400">info@fuadtech.com</p>
+                <div class="mt-4 flex justify-end gap-4 text-2xl">
+                    <span>🌐</span> <span>📂</span> <span>▶️</span>
+                </div>
+            </div>
+        </div>
+        <p class="text-center mt-10 text-gray-600">© 2026 Fuad Aliyi Mume. All rights reserved.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
