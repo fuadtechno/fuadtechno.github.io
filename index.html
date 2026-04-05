@@ -5,129 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FuadTech | Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <style>
-        /* Custom CSS - PhD Level Styling */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        
-        body { font-family: 'Inter', sans-serif; transition: background-color 0.5s ease; }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        }
-
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: #3b82f6;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Dark Mode Transitions */
-        .dark-mode {
-            background-color: #0f172a !important;
-            color: #f8fafc !important;
-        }
-
-        .dark-mode nav {
-            background-color: #1e293b !important;
-            border-color: #334155 !important;
-        }
-
-        .dark-mode .text-slate-800 { color: #f8fafc !important; }
-    </style>
 </head>
-<body class="bg-slate-50 text-slate-900" id="body">
-
-    <nav class="bg-white border-b sticky top-0 z-50 transition-all duration-500">
+<body class="bg-slate-50 text-slate-900 font-sans">
+    <nav class="bg-white border-b sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-black text-blue-600 tracking-tighter">
-                Fuad<span class="text-slate-800">Tech</span>
-            </div>
-            
-            <ul class="flex gap-8 font-bold text-sm uppercase tracking-wide items-center">
-                <li><a href="index.html" class="nav-link text-blue-600">Home</a></li>
-                <li><a href="course.html" class="nav-link hover:text-blue-600 transition">Courses</a></li>
-                <li><a href="news.html" class="nav-link hover:text-blue-600 transition">News</a></li>
-                <li>
-                    <button id="themeBtn" class="p-2 bg-slate-100 dark:bg-slate-800 rounded-full hover:scale-110 transition shadow-sm">
-                        🌙
-                    </button>
-                </li>
+            <div class="text-2xl font-black text-blue-600">Fuad<span class="text-slate-800">Tech</span></div>
+            <ul class="flex gap-8 font-bold text-sm uppercase tracking-wide">
+                <li><a href="index.html" class="text-blue-600 border-b-2 border-blue-600">Home</a></li>
+                <li><a href="course.html" class="hover:text-blue-600 transition">Courses</a></li>
+                <li><a href="news.html" class="hover:text-blue-600 transition">News</a></li>
             </ul>
         </div>
     </nav>
 
     <section class="py-20 md:py-32 container mx-auto px-6">
-        <div class="hero-gradient rounded-[2.5rem] p-12 md:p-24 text-white relative overflow-hidden shadow-2xl">
-            <div class="relative z-10 max-w-2xl animate-fade-in">
-                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
-                    Master IT Skills <br>with <span class="text-blue-500">FuadTech</span>
-                </h1>
-                <p class="text-slate-400 text-lg mb-10 leading-relaxed">
-                    University-level education and industry certifications for Ethiopian developers. 
-                    Build your future at Dire Dawa University.
-                </p>
+        <div class="bg-slate-900 rounded-[2.5rem] p-12 md:p-24 text-white relative overflow-hidden shadow-2xl">
+            <div class="relative z-10 max-w-2xl">
+                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">Master IT Skills <br>with <span class="text-blue-500">FuadTech</span></h1>
+                <p class="text-slate-400 text-lg mb-10">University-level education and industry certifications for Ethiopian developers.</p>
                 <div class="flex gap-4">
-                    <a href="course.html" class="bg-blue-600 px-10 py-4 rounded-xl font-bold hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/30 transition-all transform hover:-translate-y-1">
-                        Explore Courses
-                    </a>
+                    <a href="course.html" class="bg-blue-600 px-10 py-4 rounded-xl font-bold hover:bg-blue-700 transition">Explore Courses</a>
                 </div>
             </div>
-            
-            <div class="absolute -right-10 -bottom-10 opacity-5 text-[15rem] font-black italic uppercase select-none">
-                DDU
-            </div>
+            <div class="absolute -right-10 -bottom-10 opacity-10 text-[15rem] font-black italic uppercase">DDU</div>
         </div>
     </section>
-
-    <footer class="text-center py-10 text-slate-400 text-xs font-bold uppercase tracking-widest">
-        © 2026 Fuad Aliyi • Full-Stack Developer
-    </footer>
-
-    <script>
-        const themeBtn = document.getElementById('themeBtn');
-        const body = document.getElementById('body');
-
-        // Dark Mode Logic
-        themeBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            
-            // Icon jijjiiruuf
-            if (body.classList.contains('dark-mode')) {
-                themeBtn.innerText = '☀️';
-                themeBtn.classList.replace('bg-slate-100', 'bg-slate-700');
-            } else {
-                themeBtn.innerText = '🌙';
-                themeBtn.classList.replace('bg-slate-700', 'bg-slate-100');
-            }
-        });
-
-        // Animation on scroll simple logic
-        window.addEventListener('load', () => {
-            const heroText = document.querySelector('.animate-fade-in');
-            heroText.style.opacity = '0';
-            heroText.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                heroText.style.transition = 'all 1s ease-out';
-                heroText.style.opacity = '1';
-                heroText.style.transform = 'translateY(0)';
-            }, 300);
-        });
-    </script>
 </body>
 </html>
