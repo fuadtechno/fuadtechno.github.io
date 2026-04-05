@@ -1,55 +1,55 @@
-
-// Dynamic Data Objects
 const appData = {
     courses: [
-        { title: "Java Swing & MySQL", level: "Intermediate", icon: "☕" },
-        { title: "Full-Stack Web Dev", level: "Advanced", icon: "🌐" },
-        { title: "Mobile App Design", level: "Beginner", icon: "📱" }
-    ],
-    videos: [
-        { title: "Intro to AJAX", duration: "12:05", thumbnail: "https://via.placeholder.com/400x225" },
-        { title: "Node.js Setup", duration: "15:30", thumbnail: "https://via.placeholder.com/400x225" }
-    ],
-    news: [
-        { date: "April 5", headline: "Dire Dawa IT Summit Announced", tag: "Local" },
-        { date: "April 3", headline: "New AI Frameworks in 2026", tag: "Global" }
+        { title: "Java Swing & JDBC", level: "Expert", icon: "☕", color: "blue" },
+        { title: "Full-Stack Node.js", level: "Advanced", icon: "🚀", color: "green" },
+        { title: "GIS & Spatial Data", level: "Intermediate", icon: "🌍", color: "orange" },
+        { title: "React.js Framework", level: "Professional", icon: "⚛️", color: "cyan" },
+        { title: "Android with Kotlin", level: "Advanced", icon: "📱", color: "purple" }
     ]
 };
 
-// Functions to Render Content Dynamically
-function renderApp() {
-    // 1. Render Courses
-    const courseHTML = appData.courses.map(c => `
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition-all border-t-4 border-blue-600">
-            <span class="text-4xl">${c.icon}</span>
-            <h3 class="text-xl font-bold mt-2">${c.title}</h3>
-            <p class="text-blue-500 font-medium">${c.level}</p>
-        </div>
-    `).join('');
-    document.getElementById('course-container').innerHTML = courseHTML;
-
-    // 2. Render Videos
-    const videoHTML = appData.videos.map(v => `
-        <div class="bg-gray-800 rounded-xl overflow-hidden group cursor-pointer">
-            <img src="${v.thumbnail}" class="w-full group-hover:opacity-80 transition">
-            <div class="p-4">
-                <h4 class="font-bold">${v.title}</h4>
-                <span class="text-sm text-gray-400">${v.duration}</span>
+// Render Function with PhD Level Styling
+function displayCourses(filtered) {
+    const container = document.getElementById('course-container');
+    container.innerHTML = filtered.map(c => `
+        <div class="group bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 border border-gray-100 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl font-black">${c.icon}</div>
+            <div class="relative z-10">
+                <div class="text-4xl mb-4">${c.icon}</div>
+                <h3 class="text-2xl font-extrabold text-gray-800 mb-2">${c.title}</h3>
+                <span class="inline-block px-3 py-1 bg-${c.color}-100 text-${c.color}-600 rounded-full text-xs font-bold uppercase">${c.level}</span>
+                <p class="mt-4 text-gray-500 text-sm">Professional curriculum designed for real-world project development.</p>
+                <button class="mt-8 w-full py-3 bg-gray-900 text-white rounded-xl font-bold group-hover:bg-blue-600 transition">Enroll Now</button>
             </div>
         </div>
     `).join('');
-    document.getElementById('video-container').innerHTML = videoHTML;
-
-    // 3. Render News
-    const newsHTML = appData.news.map(n => `
-        <div class="flex items-center gap-4 p-4 bg-white rounded border-l-4 border-green-500">
-            <div class="text-sm font-bold text-gray-400">${n.date}</div>
-            <div class="font-semibold text-gray-800">${n.headline}</div>
-            <span class="ml-auto text-xs bg-gray-100 px-2 py-1 rounded">${n.tag}</span>
-        </div>
-    `).join('');
-    document.getElementById('news-container').innerHTML = newsHTML;
 }
 
-// Initialize the app
-document.addEventListener('DOMContentLoaded', renderApp);
+// Search Logic
+document.getElementById('courseSearch').addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    const result = appData.courses.filter(c => c.title.toLowerCase().includes(term));
+    displayCourses(result);
+});
+
+// Dark Mode Toggle Logic
+const themeBtn = document.getElementById('themeToggle');
+const body = document.getElementById('body');
+const logoText = document.getElementById('logoText');
+
+themeBtn.addEventListener('click', () => {
+    body.classList.toggle('bg-gray-900');
+    body.classList.toggle('text-white');
+    
+    if (body.classList.contains('bg-gray-900')) {
+        themeBtn.innerText = '☀️';
+        logoText.style.color = 'white';
+        // Add more dark mode styling logic here
+    } else {
+        themeBtn.innerText = '🌙';
+        logoText.style.color = '#374151';
+    }
+});
+
+// Initial Load
+displayCourses(appData.courses);
