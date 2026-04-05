@@ -1,53 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="om">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses - Fuad Portfolio</title>
+    <title>FuadTech - Baga Nagaan Dhuftan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f8fafc;
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; }
+        
+        /* Hero Background with Animated Gradient */
+        .hero-bg {
+            background: linear-gradient(-45deg, #eff6ff, #ffffff, #f0f9ff, #e0f2fe);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* Modern Card Styling */
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .course-card {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
         }
 
         .course-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
-            border-color: rgba(59, 130, 246, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1);
         }
 
-        /* Shimmer Effect for Progress Bars */
-        .progress-shimmer {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-shimmer::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            animation: shimmer 2.5s infinite;
-        }
-
-        @keyframes shimmer {
-            100% { left: 100%; }
-        }
-
-        /* Custom Glassmorphism for Navbar */
         .nav-glass {
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(12px);
@@ -59,180 +46,105 @@
 
     <nav class="nav-glass sticky top-0 z-50 px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-extrabold tracking-tighter text-blue-600">FUAD<span class="text-slate-900">COD</span></a>
-            <div class="hidden md:flex space-x-8 font-semibold text-sm">
-                <a href="index.html" class="hover:text-blue-600 transition">Home</a>
-                <a href="course.html" class="text-blue-600">Courses</a>
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl font-black tracking-tighter text-blue-600">FUAD<span class="text-slate-900">COD</span></span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-bold text-sm uppercase">
+                <a href="#" class="hover:text-blue-600 transition">Home</a>
+                <a href="#" class="text-blue-600 border-b-2 border-blue-600">Courses</a>
                 <a href="#" class="hover:text-blue-600 transition">Projects</a>
                 <a href="#" class="hover:text-blue-600 transition">Contact</a>
             </div>
-            <a href="https://github.com/fuadcod" target="_blank" class="bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-blue-600 transition">GitHub</a>
+            <a href="https://github.com/fuadcod" target="_blank" class="bg-slate-900 text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-blue-600 transition">GitHub</a>
         </div>
     </nav>
 
-    <header class="py-16 px-6 bg-white">
-        <div class="max-w-7xl mx-auto text-center">
-            <span class="text-blue-600 font-bold tracking-widest uppercase text-xs">Learning Journey</span>
-            <h1 class="text-4xl md:text-6xl font-extrabold mt-4 mb-6 tracking-tight">Technical Skills & <span class="text-blue-600">Courses</span></h1>
-            <p class="text-slate-500 max-w-2xl mx-auto text-lg">Tracks my academic progress at Dire Dawa University and professional certifications from Udacity.</p>
+    <header class="hero-bg py-24 px-6 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <span class="inline-block bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-6">
+                Baga Nagaan Dhuftan!
+            </span>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight leading-tight">
+                Ashamaa, Gara Website <br>
+                <span class="text-blue-600 italic">Fuad Aliyi Mume</span> Nagaan Dhuftan
+            </h1>
+            <p class="text-slate-600 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+                Asirratti dandeettiiwwan koo kutaalee teknoolojii adda addaa irratti qabu (Technical Skills) fi kourseewwan ani hordofaa jiru ni argattu.
+            </p>
         </div>
+        
+        <div class="absolute top-[-10%] left-[-5%] w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute bottom-[-10%] right-[-5%] w-64 h-64 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-12">
+    <main class="max-w-7xl mx-auto px-6 py-20">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-16 space-y-4 md:space-y-0">
+            <div>
+                <h2 class="text-3xl font-extrabold text-slate-900">Technical Skills & Courses</h2>
+                <p class="text-slate-500 mt-2">Dandeettiiwwan proogiraamiingii fi barnoota koo hordofaa jiru.</p>
+            </div>
+            <div class="flex items-center space-x-2 bg-white p-2 rounded-2xl shadow-sm border border-slate-100">
+                <span class="text-xs font-bold text-slate-400 px-4 uppercase tracking-tighter">Academic Progress</span>
+            </div>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             
-            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm group">
+            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm group opacity-100 transform-none">
                 <div class="w-full h-2 bg-blue-600 mb-8 rounded-full"></div>
                 <span class="text-[10px] font-black bg-blue-50 text-blue-600 px-3 py-1 rounded-full uppercase">Expert</span>
                 <h3 class="text-2xl font-bold mt-4 mb-2">Java Swing & JDBC</h3>
-                <p class="text-slate-500 text-sm mb-4">Master desktop apps with MySQL integration.</p>
-                <div class="mb-6">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1 italic"><span>PROGRESS</span><span>85%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="progress-shimmer bg-blue-600 h-full w-[85%]"></div></div>
+                <p class="text-slate-500 text-sm mb-6">Desktop application development with MySQL integration.</p>
+                <div class="space-y-4">
+                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>SYLLABUS PROGRESS</span><span>85%</span></div>
+                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-blue-600 h-full w-[85%]"></div></div>
+                    <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-blue-600 transition">Continue Learning</button>
                 </div>
-                <a href="https://www.youtube.com/results?search_query=java+swing+jdbc+project" target="_blank" class="block text-center w-full py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-blue-600 transition">Continue Learning</a>
             </div>
 
-            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm group">
+            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm group opacity-100 transform-none">
                 <div class="w-full h-2 bg-emerald-500 mb-8 rounded-full"></div>
                 <span class="text-[10px] font-black bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full uppercase">Advanced</span>
                 <h3 class="text-2xl font-bold mt-4 mb-2">Full-Stack Node.js</h3>
-                <p class="text-slate-500 text-sm mb-4">Build scalable web apps with modern JS frameworks.</p>
-                <div class="mb-6">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1 italic"><span>PROGRESS</span><span>60%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="progress-shimmer bg-emerald-500 h-full w-[60%]"></div></div>
+                <p class="text-slate-500 text-sm mb-6">Building scalable web apps with modern JavaScript frameworks.</p>
+                <div class="space-y-4">
+                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>SYLLABUS PROGRESS</span><span>60%</span></div>
+                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-emerald-500 h-full w-[60%]"></div></div>
+                    <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-emerald-600 transition">View Curriculum</button>
                 </div>
-                <a href="https://www.freecodecamp.org/learn/back-end-development-and-apis/" target="_blank" class="block text-center w-full py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-emerald-600 transition">View Curriculum</a>
             </div>
 
-            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm group">
+            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm group opacity-100 transform-none">
                 <div class="w-full h-2 bg-orange-500 mb-8 rounded-full"></div>
                 <span class="text-[10px] font-black bg-orange-50 text-orange-600 px-3 py-1 rounded-full uppercase">Academic</span>
                 <h3 class="text-2xl font-bold mt-4 mb-2">GIS & Remote Sensing</h3>
-                <p class="text-slate-500 text-sm mb-4">Spatial analysis for 4th year IT students.</p>
-                <div class="mb-6">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1 italic"><span>PROGRESS</span><span>40%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="progress-shimmer bg-orange-500 h-full w-[40%]"></div></div>
+                <p class="text-slate-500 text-sm mb-6">Spatial analysis and mapping for 4th year IT students.</p>
+                <div class="space-y-4">
+                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>SYLLABUS PROGRESS</span><span>40%</span></div>
+                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-orange-500 h-full w-[40%]"></div></div>
+                    <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-orange-600 transition">Start Course</button>
                 </div>
-                <a href="https://www.esri.com/training/" target="_blank" class="block text-center w-full py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-orange-600 transition">Start Course</a>
-            </div>
-
-            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm group">
-                <div class="w-full h-2 bg-purple-600 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-purple-50 text-purple-600 px-3 py-1 rounded-full uppercase">Future Tech</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">Artificial Intelligence</h3>
-                <p class="text-slate-500 text-sm mb-4">Neural networks and machine learning logic.</p>
-                <div class="mb-6">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1 italic"><span>PROGRESS</span><span>75%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="progress-shimmer bg-purple-600 h-full w-[75%]"></div></div>
-                </div>
-                <a href="https://www.udacity.com/course/ai-programming-with-python-nanodegree--nd898" target="_blank" class="block text-center w-full py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-purple-600 transition">Explore AI</a>
-            </div>
-
-            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm group">
-                <div class="w-full h-2 bg-pink-500 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-pink-50 text-pink-600 px-3 py-1 rounded-full uppercase">Mobile</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">Android & iOS Dev</h3>
-                <p class="text-slate-500 text-sm mb-4">Build native apps with Kotlin and Flutter.</p>
-                <div class="mb-6">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1 italic"><span>PROGRESS</span><span>50%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="progress-shimmer bg-pink-500 h-full w-[50%]"></div></div>
-                </div>
-                <a href="https://www.udacity.com/course/android-kotlin-developer-nanodegree--nd940" target="_blank" class="block text-center w-full py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-pink-600 transition">Start Learning</a>
-            </div>
-
-            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm group">
-                <div class="w-full h-2 bg-indigo-600 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full uppercase">Systems</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">C++ Programming</h3>
-                <p class="text-slate-500 text-sm mb-4">Memory management and high-performance OOP.</p>
-                <div class="mb-6">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1 italic"><span>PROGRESS</span><span>30%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="progress-shimmer bg-indigo-600 h-full w-[30%]"></div></div>
-                </div>
-                <a href="https://www.learncpp.com/" target="_blank" class="block text-center w-full py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-indigo-600 transition">Start Coding</a>
-            </div>
-
-            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm group">
-                <div class="w-full h-2 bg-cyan-500 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-cyan-50 text-cyan-600 px-3 py-1 rounded-full uppercase">Network</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">Wireless Tech</h3>
-                <p class="text-slate-500 text-sm mb-4">Understand Wi-Fi, 5G and wireless security.</p>
-                <div class="mb-6">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1 italic"><span>PROGRESS</span><span>20%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="progress-shimmer bg-cyan-500 h-full w-[20%]"></div></div>
-                </div>
-                <a href="https://www.youtube.com/results?search_query=wireless+networking+full+course" target="_blank" class="block text-center w-full py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-cyan-600 transition">Explore</a>
-            </div>
-
-            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm group">
-                <div class="w-full h-2 bg-red-600 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-red-50 text-red-600 px-3 py-1 rounded-full uppercase">Architecture</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">Network Design</h3>
-                <p class="text-slate-500 text-sm mb-4">Cisco-based enterprise network planning.</p>
-                <div class="mb-6">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1 italic"><span>PROGRESS</span><span>15%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="progress-shimmer bg-red-600 h-full w-[15%]"></div></div>
-                </div>
-                <a href="https://www.cisco.com/c/en/us/solutions/design-fundamentals.html" target="_blank" class="block text-center w-full py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-red-600 transition">Learn Design</a>
-            </div>
-
-            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm group">
-                <div class="w-full h-2 bg-slate-800 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-slate-100 text-slate-800 px-3 py-1 rounded-full uppercase">Security</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">Cyber Security</h3>
-                <p class="text-slate-500 text-sm mb-4">Ethical hacking and data protection basics.</p>
-                <div class="mb-6">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1 italic"><span>PROGRESS</span><span>10%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="progress-shimmer bg-slate-800 h-full w-[10%]"></div></div>
-                </div>
-                <a href="https://www.youtube.com/results?search_query=cyber+security+full+course" target="_blank" class="block text-center w-full py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-700 transition">Secure Now</a>
-            </div>
-
-            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm group">
-                <div class="w-full h-2 bg-yellow-500 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-yellow-50 text-yellow-700 px-3 py-1 rounded-full uppercase">Freelance</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">Digital Marketing</h3>
-                <p class="text-slate-500 text-sm mb-4">SEO and social media for tech professionals.</p>
-                <div class="mb-6">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1 italic"><span>PROGRESS</span><span>5%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="progress-shimmer bg-yellow-500 h-full w-[5%]"></div></div>
-                </div>
-                <a href="https://www.youtube.com/results?search_query=digital+marketing+for+beginners" target="_blank" class="block text-center w-full py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-yellow-600 transition">Learn More</a>
             </div>
 
         </div>
     </main>
 
-    <footer class="bg-white border-t border-slate-100 py-12 mt-12">
+    <footer class="bg-white border-t border-slate-100 py-12">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <p class="text-slate-400 text-sm">© 2026 Fuad Aliyi Mume. Built with Passion & Code.</p>
+            <p class="text-slate-400 text-sm">© 2026 Fuad Aliyi Mume. Built with ❤️ and Code.</p>
         </div>
     </footer>
 
     <script>
+        // Entrance Animation
         document.addEventListener('DOMContentLoaded', () => {
             const cards = document.querySelectorAll('.course-card');
-            
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        const index = Array.from(cards).indexOf(entry.target);
-                        setTimeout(() => {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                        }, (index % 3) * 120);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            cards.forEach(card => observer.observe(card));
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 200 * index);
+            });
         });
     </script>
 </body>
