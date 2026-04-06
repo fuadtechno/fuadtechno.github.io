@@ -3,52 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FuadTech - Baga Nagaan Dhuftan</title>
+    <title>FuadTech - Professional Curriculum</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; }
-        
-        /* Hero Background with Animated Gradient */
         .hero-bg {
             background: linear-gradient(-45deg, #eff6ff, #ffffff, #f0f9ff, #e0f2fe);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
         .course-card {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             opacity: 0;
             transform: translateY(20px);
         }
-
         .course-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1);
         }
-
         .nav-glass {
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
-
-        @keyframes blob {
-            0% { transform: translate(0px, 0px) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-            100% { transform: translate(0px, 0px) scale(1); }
-        }
+        @keyframes blob { 0% { transform: translate(0px, 0px) scale(1); } 33% { transform: translate(30px, -50px) scale(1.1); } 66% { transform: translate(-20px, 20px) scale(0.9); } 100% { transform: translate(0px, 0px) scale(1); } }
         .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
     </style>
 </head>
 <body class="text-slate-900">
@@ -56,235 +40,158 @@
     <nav class="nav-glass sticky top-0 z-50 px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <span class="text-2xl font-black tracking-tighter text-blue-600">FUAD<span class="text-slate-900">COD</span></span>
+                <span class="text-2xl font-black tracking-tighter text-blue-600">FUAD<span class="text-slate-900">TECH</span></span>
             </div>
             <div class="hidden md:flex space-x-8 font-bold text-sm uppercase">
-                <a href="index.html#home" class="hover:text-blue-600 transition">Home</a>
-                <a href="#" class="text-blue-600 border-b-2 border-blue-600">Courses</a>
-                <a href="index.html#projects" class="hover:text-blue-600 transition">Projects</a>
-                <a href="index.html#footer" class="hover:text-blue-600 transition">Contact</a>
+                <a href="index.html#home" class="hover:text-blue-600 transition">Mulu'ata</a>
+                <a href="#" class="text-blue-600 border-b-2 border-blue-600">Kourseewwan</a>
+                <a href="index.html#projects" class="hover:text-blue-600 transition">Hojiiwwan</a>
             </div>
-            <a href="https://github.com/fuadcod" target="_blank" class="bg-slate-900 text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-blue-600 transition">GitHub</a>
+            <div class="flex items-center space-x-4">
+                <span class="hidden lg:block text-[10px] font-black bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full uppercase">20 Courses Live</span>
+                <a href="https://github.com/fuadcod" target="_blank" class="bg-slate-900 text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-blue-600 transition">GitHub</a>
+            </div>
         </div>
     </nav>
 
-    <header class="hero-bg py-24 px-6 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto text-center relative z-10">
-            <span class="inline-block bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-6">
-                Baga Nagaan Dhuftan!
-            </span>
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight leading-tight">
-                Ashamaa, Gara Website <br>
-                <span class="text-blue-600 italic">Fuad Aliyi Mume</span> Nagaan Dhuftan
-            </h1>
-            <p class="text-slate-600 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-                Asirratti dandeettiiwwan koo kutaalee teknoolojii adda addaa irratti qabu (Technical Skills) fi kourseewwan ani hordofaa jiru kurnanii fi lamaan (12) ni argattu.
+    <header class="hero-bg py-24 px-6 relative overflow-hidden text-center">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight">Kourseewwan <span class="text-blue-600">2026</span></h1>
+            <p class="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed italic">
+                "Barumsi furtuu gara fuulduraati." - Akkaataa ammayyaatiin kourseewwan 20 asitti qindaa'aniiru.
             </p>
         </div>
-        
-        <div class="absolute top-[-10%] left-[-5%] w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div class="absolute bottom-[-10%] right-[-5%] w-64 h-64 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute top-[-10%] left-[-5%] w-64 h-64 bg-blue-200 rounded-full filter blur-3xl opacity-30 animate-blob"></div>
     </header>
 
     <main class="max-w-7xl mx-auto px-6 py-20">
-        <div class="flex flex-col md:flex-row justify-between items-center mb-16 space-y-4 md:space-y-0">
-            <div>
-                <h2 class="text-3xl font-extrabold text-slate-900">Technical Skills & Courses</h2>
-                <p class="text-slate-500 mt-2">Dandeettiiwwan proogiraamiingii fi barnoota koo hordofaa jiru hundi.</p>
-            </div>
-            <div class="flex items-center space-x-2 bg-white p-2 rounded-2xl shadow-sm border border-slate-100">
-                <span class="text-xs font-bold text-slate-400 px-4 uppercase tracking-tighter">Academic Progress: 12 Courses</span>
-            </div>
-        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            
             <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+                <div class="w-full h-2 bg-purple-600 mb-8 rounded-full"></div>
+                <span class="text-[10px] font-black bg-purple-50 text-purple-600 px-3 py-1 rounded-full uppercase">AI & Data</span>
+                <h3 class="text-xl font-bold mt-4 mb-2">Machine Learning</h3>
+                <p class="text-slate-500 text-xs mb-6">Neural networks & predictive modeling using Python.</p>
+                <div class="space-y-4">
+                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>30%</span></div>
+                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-purple-600 h-full w-[30%]"></div></div>
+                    <button class="w-full py-3 bg-slate-900 text-white rounded-xl font-bold text-xs hover:bg-purple-600 transition">Continue</button>
+                </div>
+            </div>
+
+            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+                <div class="w-full h-2 bg-rose-600 mb-8 rounded-full"></div>
+                <span class="text-[10px] font-black bg-rose-50 text-rose-600 px-3 py-1 rounded-full uppercase">Security</span>
+                <h3 class="text-xl font-bold mt-4 mb-2">Cyber Security</h3>
+                <p class="text-slate-500 text-xs mb-6">Ethical hacking & network infrastructure protection.</p>
+                <div class="space-y-4">
+                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>15%</span></div>
+                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-rose-600 h-full w-[15%]"></div></div>
+                    <button class="w-full py-3 bg-slate-900 text-white rounded-xl font-bold text-xs hover:bg-rose-600 transition">Start Lab</button>
+                </div>
+            </div>
+
+            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-blue-100 shadow-sm bg-blue-50/10">
                 <div class="w-full h-2 bg-blue-600 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-blue-50 text-blue-600 px-3 py-1 rounded-full uppercase">Expert</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">Java Swing & JDBC</h3>
-                <p class="text-slate-500 text-sm mb-6">Desktop application development with MySQL integration.</p>
+                <span class="text-[10px] font-black bg-blue-100 text-blue-600 px-3 py-1 rounded-full uppercase">Expert</span>
+                <h3 class="text-xl font-bold mt-4 mb-2">Java Swing & JDBC</h3>
+                <p class="text-slate-500 text-xs mb-6">Building desktop ERP systems with MySQL.</p>
                 <div class="space-y-4">
                     <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>85%</span></div>
                     <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-blue-600 h-full w-[85%]"></div></div>
-                    <a href="https://www.nesoacademy.org/java-swing" target="_blank" rel="noopener noreferrer">
-                        <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-blue-600 transition">Continue</button>
-                    </a>
+                    <button class="w-full py-3 bg-blue-600 text-white rounded-xl font-bold text-xs hover:shadow-lg transition">Resume</button>
                 </div>
             </div>
 
             <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
                 <div class="w-full h-2 bg-emerald-500 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full uppercase">Advanced</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">Full-Stack Node.js</h3>
-                <p class="text-slate-500 text-sm mb-6">Building scalable web apps with modern JS frameworks.</p>
+                <span class="text-[10px] font-black bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full uppercase">Web</span>
+                <h3 class="text-xl font-bold mt-4 mb-2">Full-Stack Node.js</h3>
+                <p class="text-slate-500 text-xs mb-6">Server-side logic and RESTful API design.</p>
                 <div class="space-y-4">
                     <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>60%</span></div>
                     <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-emerald-500 h-full w-[60%]"></div></div>
-                    <a href="https://www.youtube.com/playlist?list=PLu0W_9lII9agic78byqeBW24586Gsre8Y" target="_blank" rel="noopener noreferrer">
-                        <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-emerald-600 transition">View Curriculum</button>
-                    </a>
-                </div>
-            </div>
-
-            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
-                <div class="w-full h-2 bg-orange-500 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-orange-50 text-orange-600 px-3 py-1 rounded-full uppercase">Academic</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">GIS & Remote Sensing</h3>
-                <p class="text-slate-500 text-sm mb-6">Spatial analysis and mapping for 4th year students.</p>
-                <div class="space-y-4">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>40%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-orange-500 h-full w-[40%]"></div></div>
-                    <a href="https://www.youtube.com/results?search_query=gis+and+remote+sensing+tutorial" target="_blank" rel="noopener noreferrer">
-                        <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-orange-600 transition">Start Course</button>
-                    </a>
-                </div>
-            </div>
-
-            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
-                <div class="w-full h-2 bg-purple-600 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-purple-50 text-purple-600 px-3 py-1 rounded-full uppercase">Intelligence</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">Artificial Intelligence</h3>
-                <p class="text-slate-500 text-sm mb-6">Neural networks and machine learning fundamentals.</p>
-                <div class="space-y-4">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>75%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-purple-600 h-full w-[75%]"></div></div>
-                    <a href="https://www.udacity.com/course/intro-to-artificial-intelligence--cs271" target="_blank" rel="noopener noreferrer">
-                        <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-purple-600 transition">Explore</button>
-                    </a>
-                </div>
-            </div>
-
-            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
-                <div class="w-full h-2 bg-pink-500 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-pink-50 text-pink-600 px-3 py-1 rounded-full uppercase">Mobile</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">Android (Kotlin)</h3>
-                <p class="text-slate-500 text-sm mb-6">Native mobile application development.</p>
-                <div class="space-y-4">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>50%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-pink-500 h-full w-[50%]"></div></div>
-                    <a href="https://developer.android.com/courses" target="_blank" rel="noopener noreferrer">
-                        <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-pink-600 transition">Learn More</button>
-                    </a>
+                    <button class="w-full py-3 bg-slate-900 text-white rounded-xl font-bold text-xs hover:bg-emerald-600 transition">View Repo</button>
                 </div>
             </div>
 
             <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
                 <div class="w-full h-2 bg-indigo-600 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full uppercase">Systems</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">C++ Programming</h3>
-                <p class="text-slate-500 text-sm mb-6">OOP and low-level system development.</p>
+                <span class="text-[10px] font-black bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full uppercase">Mobile</span>
+                <h3 class="text-xl font-bold mt-4 mb-2">Android (Kotlin)</h3>
+                <p class="text-slate-500 text-xs mb-6">Native mobile development for Android devices.</p>
                 <div class="space-y-4">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>30%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-indigo-600 h-full w-[30%]"></div></div>
-                    <a href="https://www.nesoacademy.org/cpp" target="_blank" rel="noopener noreferrer">
-                        <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-indigo-600 transition">Start</button>
-                    </a>
-                </div>
-            </div>
-
-            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
-                <div class="w-full h-2 bg-red-600 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-red-50 text-red-600 px-3 py-1 rounded-full uppercase">Network</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">Network Design</h3>
-                <p class="text-slate-500 text-sm mb-6">Enterprise network planning and management.</p>
-                <div class="space-y-4">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>25%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-red-600 h-full w-[25%]"></div></div>
-                    <a href="https://www.cisco.com/c/en/us/training-events/training-certifications.html" target="_blank" rel="noopener noreferrer">
-                        <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-red-600 transition">Explore</button>
-                    </a>
-                </div>
-            </div>
-
-            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
-                <div class="w-full h-2 bg-slate-800 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-slate-100 text-slate-800 px-3 py-1 rounded-full uppercase">Security</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">Cyber Security</h3>
-                <p class="text-slate-500 text-sm mb-6">Ethical hacking and data protection fundamentals.</p>
-                <div class="space-y-4">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>10%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-slate-800 h-full w-[10%]"></div></div>
-                    <a href="https://www.cybrary.it/" target="_blank" rel="noopener noreferrer">
-                        <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-700 transition">Secure</button>
-                    </a>
+                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>50%</span></div>
+                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-indigo-600 h-full w-[50%]"></div></div>
+                    <button class="w-full py-3 bg-slate-900 text-white rounded-xl font-bold text-xs hover:bg-indigo-600 transition">Open Lab</button>
                 </div>
             </div>
 
             <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
                 <div class="w-full h-2 bg-cyan-500 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-cyan-50 text-cyan-600 px-3 py-1 rounded-full uppercase">Wireless</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">Wireless Tech</h3>
-                <p class="text-slate-500 text-sm mb-6">Understanding 5G, Wi-Fi, and mobile networks.</p>
+                <span class="text-[10px] font-black bg-cyan-50 text-cyan-600 px-3 py-1 rounded-full uppercase">Cloud</span>
+                <h3 class="text-xl font-bold mt-4 mb-2">Cloud Computing</h3>
+                <p class="text-slate-500 text-xs mb-6">Deployment architectures on AWS & Google Cloud.</p>
                 <div class="space-y-4">
                     <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>20%</span></div>
                     <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-cyan-500 h-full w-[20%]"></div></div>
-                    <a href="https://www.youtube.com/results?search_query=wireless+communication+tutorial" target="_blank" rel="noopener noreferrer">
-                        <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-cyan-600 transition">Explore</button>
-                    </a>
+                    <button class="w-full py-3 bg-slate-900 text-white rounded-xl font-bold text-xs hover:bg-cyan-600 transition">Explore</button>
+                </div>
+            </div>
+
+            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+                <div class="w-full h-2 bg-orange-500 mb-8 rounded-full"></div>
+                <span class="text-[10px] font-black bg-orange-50 text-orange-600 px-3 py-1 rounded-full uppercase">Spatial</span>
+                <h3 class="text-xl font-bold mt-4 mb-2">GIS & Remote Sensing</h3>
+                <p class="text-slate-500 text-xs mb-6">Spatial data analysis and digital mapping.</p>
+                <div class="space-y-4">
+                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>40%</span></div>
+                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-orange-500 h-full w-[40%]"></div></div>
+                    <button class="w-full py-3 bg-slate-900 text-white rounded-xl font-bold text-xs hover:bg-orange-600 transition">Analyze</button>
                 </div>
             </div>
 
             <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
                 <div class="w-full h-2 bg-yellow-500 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-yellow-50 text-yellow-700 px-3 py-1 rounded-full uppercase">Marketing</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">Digital Marketing</h3>
-                <p class="text-slate-500 text-sm mb-6">SEO and freelancing on Upwork/Fiverr.</p>
+                <span class="text-[10px] font-black bg-yellow-50 text-yellow-700 px-3 py-1 rounded-full uppercase">DevOps</span>
+                <h3 class="text-xl font-bold mt-4 mb-2">DevOps Foundation</h3>
+                <p class="text-slate-500 text-xs mb-6">CI/CD pipelines, Docker, and automation.</p>
                 <div class="space-y-4">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>15%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-yellow-500 h-full w-[15%]"></div></div>
-                    <a href="https://www.google.com/search?q=upwork+fiverr+freelancing+guide" target="_blank" rel="noopener noreferrer">
-                        <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-yellow-600 transition">View</button>
-                    </a>
+                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>25%</span></div>
+                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-yellow-500 h-full w-[25%]"></div></div>
+                    <button class="w-full py-3 bg-slate-900 text-white rounded-xl font-bold text-xs hover:bg-yellow-600 transition">Start CI/CD</button>
                 </div>
             </div>
 
             <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
                 <div class="w-full h-2 bg-teal-500 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-teal-50 text-teal-600 px-3 py-1 rounded-full uppercase">Data</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">Python for DS</h3>
-                <p class="text-slate-500 text-sm mb-6">Data analysis using Pandas and NumPy.</p>
+                <span class="text-[10px] font-black bg-teal-50 text-teal-600 px-3 py-1 rounded-full uppercase">Database</span>
+                <h3 class="text-xl font-bold mt-4 mb-2">Advanced SQL</h3>
+                <p class="text-slate-500 text-xs mb-6">Complex queries and database optimization.</p>
                 <div class="space-y-4">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>35%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-teal-500 h-full w-[35%]"></div></div>
-                    <a href="https://www.kaggle.com/learn/python" target="_blank" rel="noopener noreferrer">
-                        <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-teal-600 transition">Start</button>
-                    </a>
+                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>70%</span></div>
+                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-teal-500 h-full w-[70%]"></div></div>
+                    <button class="w-full py-3 bg-slate-900 text-white rounded-xl font-bold text-xs hover:bg-teal-600 transition">Query</button>
                 </div>
             </div>
 
-            <div class="course-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
-                <div class="w-full h-2 bg-rose-500 mb-8 rounded-full"></div>
-                <span class="text-[10px] font-black bg-rose-50 text-rose-600 px-3 py-1 rounded-full uppercase">Design</span>
-                <h3 class="text-2xl font-bold mt-4 mb-2">UI/UX Design</h3>
-                <p class="text-slate-500 text-sm mb-6">Creating professional interfaces using Figma.</p>
-                <div class="space-y-4">
-                    <div class="flex justify-between text-[10px] font-bold text-slate-400"><span>PROGRESS</span><span>45%</span></div>
-                    <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="bg-rose-500 h-full w-[45%]"></div></div>
-                    <a href="https://www.figma.com/resource-library/design-basics/" target="_blank" rel="noopener noreferrer">
-                        <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-rose-600 transition">View Designs</button>
-                    </a>
-                </div>
             </div>
-
-        </div>
     </main>
 
     <footer class="bg-white border-t border-slate-100 py-12">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <p class="text-slate-400 text-sm">© 2026 Fuad Aliyi Mume. Built with ❤️ and Code.</p>
+            <p class="text-slate-400 text-sm">© 2026 Fuad Aliyi Mume • FuadTech Professional Curriculum.</p>
         </div>
     </footer>
 
     <script>
-        // Entrance Animation
         document.addEventListener('DOMContentLoaded', () => {
             const cards = document.querySelectorAll('.course-card');
             cards.forEach((card, index) => {
                 setTimeout(() => {
                     card.style.opacity = '1';
                     card.style.transform = 'translateY(0)';
-                }, 100 * index); // Fast stagger effect
+                }, 100 * index);
             });
         });
     </script>
