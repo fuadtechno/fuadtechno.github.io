@@ -3,148 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FuadTech | Oduu Teknoolojii Addunyaa</title>
+    <title>FuadTech | Global Tech Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-        
-        .news-wrapper {
-            background: #ffffff;
-            border-radius: 3rem;
-            box-shadow: 0 40px 100px -20px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.03);
-            overflow: hidden;
-        }
-
-        .live-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #fef2f2;
-            color: #ef4444;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.7rem;
-            font-weight: 900;
-            letter-spacing: 0.1em;
-            border: 1px solid #fee2e2;
-        }
-
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        .gradient-bg {
-            background: radial-gradient(circle at top right, #eff6ff, transparent),
-                        radial-gradient(circle at bottom left, #f5f3ff, transparent);
-        }
-
-        iframe { border-radius: 2rem; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fcfdfe; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .bento-news { background: white; border-radius: 3rem; padding: 3rem; border: 1px solid #f1f5f9; transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1); }
+        .bento-news:hover { transform: translateY(-10px); border-color: #dbeafe; box-shadow: 0 40px 80px -20px rgba(37, 99, 235, 0.1); }
     </style>
 </head>
-<body class="bg-[#fcfdfe] text-slate-900 selection:bg-blue-100 selection:text-blue-700">
-
-    <nav class="glass-nav fixed top-0 w-full z-[100] px-6 md:px-16 py-5 flex justify-between items-center">
-        <div class="text-2xl font-black tracking-tighter">FUAD<span class="text-blue-600">TECH</span></div>
-        
-        <div class="hidden md:flex space-x-10 font-bold text-[11px] uppercase tracking-[0.2em] text-slate-500">
-            <a href="index.html" class="hover:text-blue-600 transition">Mulu'ata</a>
-            <a href="course.html" class="hover:text-blue-600 transition">Kourseewwan</a>
-            <a href="news.html" class="text-blue-600 border-b-2 border-blue-600 pb-1">Oduu</a>
-        </div>
-
-        <a href="https://github.com/fuadcod" target="_blank" class="bg-slate-900 text-white px-6 py-2.5 rounded-full font-bold text-xs hover:bg-blue-600 transition shadow-lg shadow-slate-200">GitHub</a>
-    </nav>
-
-    <header class="pt-40 pb-20 px-8 gradient-bg">
-        <div class="max-w-5xl mx-auto text-center reveal">
-            <div class="live-tag mb-6 mx-auto">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                </span>
-                LIVE UPDATES
-            </div>
-            <h1 class="text-5xl md:text-7xl font-[800] tracking-tighter mb-6 leading-tight">
-                Oduu <span class="text-blue-600 italic">Teknoolojii</span> <br>Addunyaa
-            </h1>
-            <p class="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                Breakthroughs haaraa AI, Software Development, fi GIS irratti addunyaa guutuu irraa walitti qabame.
-            </p>
-        </div>
+<body class="pt-40 px-6 pb-20">
+    <header class="max-w-7xl mx-auto mb-20 text-center">
+        <h1 class="text-6xl font-black tracking-tighter mb-6">World <span class="text-blue-600">Reports.</span></h1>
+        <p class="text-slate-500 max-w-xl mx-auto text-lg">Curated technology breakthroughs and campus updates from Dire Dawa University.</p>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 pb-32">
-        <div class="news-wrapper reveal p-4 md:p-8">
-            <iframe 
-                width="100%" 
-                height="1000" 
-                src="https://rss.app/embed/v1/wall/t5XW6Z8N8Y8Z8X8Z" 
-                frameborder="0"
-                class="bg-white">
-            </iframe>
-        </div>
+    <main class="max-w-7xl mx-auto space-y-32">
+        <section class="bg-white rounded-[4rem] p-4 shadow-2xl border border-slate-50 overflow-hidden">
+            <iframe width="100%" height="800" src="https://rss.app/embed/v1/wall/t5XW6Z8N8Y8Z8X8Z" frameborder="0"></iframe>
+        </section>
 
-        <div class="mt-32">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
-                <div>
-                    <h2 class="text-4xl font-black tracking-tight mb-4">Campus Spotlight</h2>
-                    <p class="text-slate-500 font-medium italic">Gabaasaalee Yuunivarsiitii Dire Dawaa fi FuadTech.</p>
+        <section>
+            <div class="flex justify-between items-end mb-16">
+                <h2 class="text-4xl font-black italic tracking-tighter">Campus Spotlight</h2>
+                <div class="h-px flex-grow mx-10 bg-slate-100 hidden md:block"></div>
+            </div>
+
+            <div class="news-grid">
+                <div class="bento-news">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black">26</div>
+                        <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Project Expo • DDU</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Smart Attendance Architecture</h3>
+                    <p class="text-slate-500 leading-relaxed mb-8">Deploying an SOA-based dashboard for real-time student tracking. A deep dive into JDBC and MySQL integration.</p>
+                    <a href="#" class="text-blue-600 font-black text-xs uppercase tracking-widest flex items-center gap-2 hover:gap-4 transition-all">Read Documentation <span>→</span></a>
                 </div>
-                <div class="h-[1px] flex-grow mx-10 bg-slate-100 hidden md:block mb-4"></div>
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <article class="reveal group bg-white p-10 rounded-[3.5rem] border border-slate-100 hover:border-blue-100 transition duration-500 shadow-sm hover:shadow-2xl">
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 font-black">DDU</div>
-                        <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Academic News • 2026</span>
+                <div class="bento-news">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center text-white font-black">AI</div>
+                        <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Research • GIS</span>
                     </div>
-                    <h3 class="text-2xl font-bold mb-5 group-hover:text-blue-600 transition">IT Batch 2026 Senior Project Expo</h3>
-                    <p class="text-slate-500 leading-relaxed mb-8">FuadTech is preparing to showcase innovative Smart Attendance and GIS systems at the upcoming DDU engineering week.</p>
-                    <a href="#" class="inline-flex items-center font-bold text-sm text-blue-600 gap-2 hover:gap-4 transition-all">
-                        Dubbisi <span>→</span>
-                    </a>
-                </article>
-
-                <article class="reveal group bg-white p-10 rounded-[3.5rem] border border-slate-100 hover:border-emerald-100 transition duration-500 shadow-sm hover:shadow-2xl">
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 font-black">JAVA</div>
-                        <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Workshop • Live</span>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-5 group-hover:text-emerald-600 transition">New Java Swing & JDBC Tutorials</h3>
-                    <p class="text-slate-500 leading-relaxed mb-8">Learn how to connect MySQL databases with modern Desktop GUIs. New documentation added to the course section.</p>
-                    <a href="course.html" class="inline-flex items-center font-bold text-sm text-emerald-600 gap-2 hover:gap-4 transition-all">
-                        Kourseetti seeni <span>→</span>
-                    </a>
-                </article>
+                    <h3 class="text-2xl font-bold mb-4">Spatial Data Analysis</h3>
+                    <p class="text-slate-500 leading-relaxed mb-8">Leveraging Remote Sensing to predict urban growth patterns in Eastern Ethiopia. New raster analysis results.</p>
+                    <a href="#" class="text-emerald-600 font-black text-xs uppercase tracking-widest flex items-center gap-2 hover:gap-4 transition-all">Explore Data <span>→</span></a>
+                </div>
             </div>
-        </div>
+        </section>
     </main>
-
-    <footer class="bg-white border-t border-slate-100 py-16">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-xl font-black tracking-tighter uppercase">FUAD<span class="text-blue-600">TECH</span></div>
-            <p class="text-slate-400 text-[10px] font-black tracking-[0.4em] uppercase">© 2026 Fuad Aliyi Mume • Dire Dawa, Ethiopia</p>
-            <div class="flex gap-6">
-                <a href="#" class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center hover:bg-blue-600 hover:text-white transition">𝕏</a>
-                <a href="#" class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center hover:bg-blue-600 hover:text-white transition">in</a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Simple Reveal Animation
-        const revealCallback = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        };
-        const observer = new IntersectionObserver(revealCallback, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
 </body>
 </html>
