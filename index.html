@@ -1,45 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FuadWeb | Advanced Learning Ecosystem</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root { --primary-dark: #0f172a; --accent-blue: #3b82f6; }
-        .glass-effect { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); }
-        .hero-gradient { background: radial-gradient(circle at top right, #1e293b, #0f172a); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FuadSoft | Dynamic Footer</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-<body class="bg-slate-50 text-slate-900 selection:bg-blue-200">
+<body class="bg-gray-100 flex flex-col min-h-screen">
 
-    <nav class="fixed w-full z-50 glass-effect border-b border-slate-800 bg-slate-900/90 text-white px-6 py-4 flex justify-between items-center">
-        <div class="text-2xl font-black tracking-tighter italic">FUAD<span class="text-blue-500">WEB</span></div>
-        <div class="hidden md:flex space-x-8 font-medium">
-            <a href="index.html" class="hover:text-blue-400 transition">Home</a>
-            <a href="course.html" class="hover:text-blue-400 transition">Academy</a>
-            <a href="about.html" class="hover:text-blue-400 transition">About</a>
-        </div>
-        <button class="md:hidden text-2xl"><i class="fas fa-bars"></i></button>
-    </nav>
+<div class="flex-grow"></div> <!-- Main content placeholder -->
 
-    <header class="hero-gradient min-h-screen flex items-center pt-20 px-6">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-                <span class="text-blue-400 font-mono tracking-widest uppercase text-sm">Next-Gen Tech Education</span>
-                <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight">Empowering Global <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Innovators.</span></h1>
-                <p class="text-slate-400 text-lg md:text-xl max-w-lg">Advanced curriculum bridging the gap between academic theory and industry-grade full-stack engineering.</p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="course.html" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-blue-500/20 transition-all">Explore Academy</a>
-                    <a href="#vision" class="border border-slate-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-slate-800 transition">Our Vision</a>
-                </div>
-            </div>
-            <div class="hidden md:block relative">
-                <div class="absolute -inset-4 bg-blue-500/20 blur-3xl rounded-full"></div>
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Coding" class="relative rounded-2xl border border-slate-700 shadow-2xl">
-            </div>
-        </div>
-    </header>
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-300 py-12">
+  <div id="footer-sections" class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-6 gap-8"></div>
+
+  <!-- Bottom -->
+  <div class="mt-12 border-t border-gray-700 pt-6 flex flex-col md:flex-row items-center justify-between px-4 max-w-7xl mx-auto space-y-4 md:space-y-0">
+    <!-- Logo & Copyright -->
+    <div class="flex items-center space-x-2">
+      <img src="logo.png" alt="FuadSoft Logo" class="h-6">
+      <span class="text-gray-400">© 2026 FuadSoft</span>
+    </div>
+
+    <!-- Social & Contact -->
+    <div id="footer-social" class="flex items-center space-x-4"></div>
+
+    <!-- Language & Currency -->
+    <div class="flex items-center space-x-4">
+      <!-- Language Dropdown -->
+      <div class="relative">
+        <select id="language-select" class="bg-gray-800 text-white px-3 py-1 rounded focus:outline-none">
+        </select>
+      </div>
+
+      <!-- Currency Dropdown -->
+      <div class="relative">
+        <select id="currency-select" class="bg-gray-800 text-white px-3 py-1 rounded focus:outline-none">
+        </select>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Footer data
+  const footerData = {
+    sections: [
+      {
+        title: "About FuadSoft",
+        links: [
+          { text: "About Us", url: "#" },
+          { text: "Careers", url: "#" },
+          { text: "Contact Us", url: "#" },
+          { text: "Blog", url: "#" },
+          { text: "Legal", url: "#" }
+        ]
+      },
+      {
+        title: "Support",
+        links: [
+          { text: "Help Center", url: "#" },
+          { text: "Report Issue", url: "#" },
+          { text: "Resources", url: "#" }
+        ]
+      },
+      {
+        title: "Resources",
+        links: [
+          { text: "Web Tools", url: "#" },
+          { text: "API Docs", url: "#" },
+          { text: "Business Name Generator", url: "#" }
+        ]
+      },
+      {
+        title: "Partner Programs",
+        links: [
+          { text: "Affiliates", url: "#" },
+          { text: "Resellers", url: "#" },
+          { text: "FuadSoft Pro", url: "#" }
+        ]
+      },
+      {
+        title: "Account",
+        links: [
+          { text: "Sign In", url: "#" },
+          { text: "Create Account", url: "#" },
+          { text: "Billing", url: "#" }
+        ]
+      },
+      {
+        title: "Products",
+        links: [
+          { text: "Domains", url: "#" },
+          { text: "Hosting", url: "#" },
+          { text: "Email Services", url: "#" },
+          { text: "Logo Generator", url: "#" }
+        ]
+      }
+    ],
+    social: [
+      { icon: "fab fa-facebook-f", url: "#" },
+      { icon: "fab fa-instagram", url: "#" },
+      { icon: "fab fa-twitter", url: "#" },
+      { icon: "contact", text: "Contact Us", url: "#" }
+    ],
+    languages: [
+      { code: "en", name: "English" },
+      { code: "es", name: "Español" },
+      { code: "fr", name: "Français" },
+      { code: "de", name: "Deutsch" }
+    ],
+    currencies: [
+      { code: "USD", symbol: "$" },
+      { code: "EUR", symbol: "€" },
+      { code: "GBP", symbol: "£" },
+      { code: "JPY", symbol: "¥" }
+    ]
+  };
+
+  // Generate footer sections
+  const footerSections = document.getElementById("footer-sections");
+  footerData.sections.forEach(section => {
+    const sectionDiv = document.createElement("div");
+    const title = document.createElement("h3");
+    title.textContent = section.title;
+    title.className = "text-white font-semibold mb-4";
+    sectionDiv.appendChild(title);
+
+    const ul = document.createElement("ul");
+    ul.className = "space-y-2 text-sm";
+    section.links.forEach(link => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.textContent = link.text;
+      a.href = link.url;
+      a.className = "hover:text-white";
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+
+    sectionDiv.appendChild(ul);
+    footerSections.appendChild(sectionDiv);
+  });
+
+  // Generate social icons
+  const footerSocial = document.getElementById("footer-social");
+  footerData.social.forEach(s => {
+    if(s.icon === "contact") {
+      const btn = document.createElement("button");
+      btn.className = "bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded flex items-center space-x-2";
+      btn.textContent = s.text;
+      btn.onclick = () => window.location.href = s.url;
+      footerSocial.appendChild(btn);
+    } else {
+      const a = document.createElement("a");
+      a.href = s.url;
+      a.className = "hover:text-white";
+      a.innerHTML = `<i class="${s.icon}"></i>`;
+      footerSocial.appendChild(a);
+    }
+  });
+
+  // Generate language dropdown
+  const langSelect = document.getElementById("language-select");
+  footerData.languages.forEach(l => {
+    const option = document.createElement("option");
+    option.value = l.code;
+    option.textContent = l.name;
+    langSelect.appendChild(option);
+  });
+
+  langSelect.addEventListener("change", (e) => {
+    alert("Language changed to: " + e.target.value);
+    // Here you can implement actual language change logic
+  });
+
+  // Generate currency dropdown
+  const currencySelect = document.getElementById("currency-select");
+  footerData.currencies.forEach(c => {
+    const option = document.createElement("option");
+    option.value = c.code;
+    option.textContent = `${c.code} (${c.symbol})`;
+    currencySelect.appendChild(option);
+  });
+
+  currencySelect.addEventListener("change", (e) => {
+    alert("Currency changed to: " + e.target.value);
+    // Here you can implement actual currency change logic
+  });
+</script>
+
 </body>
 </html>
