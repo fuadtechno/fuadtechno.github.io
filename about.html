@@ -2,83 +2,184 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fuadsoft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fuadsoft | Innovation Reimagined</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      background: #0b1220;
-      color: white;
+    :root {
+      /* Pro Color Palette */
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.3);
+      --bg-deep: #020617;
+      --card-glass: rgba(15, 23, 42, 0.8);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --text-primary: #f1f5f9;
+      --text-dim: #94a3b8;
     }
 
-    /* NAVBAR */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth; /* Smooth navigation */
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-deep);
+      background-image: 
+        radial-gradient(at 0% 0%, hsla(217, 100%, 10%, 1) 0, transparent 50%), 
+        radial-gradient(at 100% 100%, hsla(200, 100%, 10%, 1) 0, transparent 50%);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* GLASS NAVIGATION */
     .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
       display: flex;
       justify-content: space-between;
-      padding: 15px 20px;
-      background: #020617;
+      align-items: center;
+      padding: 1rem 10%;
+      background: rgba(2, 6, 23, 0.7);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border-glass);
+      z-index: 1000;
     }
 
     .logo {
-      font-weight: bold;
-      font-size: 20px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: -1px;
+      background: linear-gradient(to right, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .menu {
+      display: flex;
+      gap: 2rem;
     }
 
     .menu a {
-      margin: 0 10px;
-      color: #94a3b8;
+      color: var(--text-dim);
       text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .menu a:hover {
-      color: #38bdf8;
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent-glow);
     }
 
-    /* CONTENT */
-    .container {
-      padding: 30px;
+    /* SECTIONING */
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 10%;
     }
 
-    .box {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 10px;
+    /* ULTRA PRO CARDS */
+    .hero-box, .about-box {
+      background: var(--card-glass);
+      border: 1px solid var(--border-glass);
+      padding: 4rem;
+      border-radius: 32px;
+      max-width: 900px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
     }
 
-    a {
-      color: #38bdf8;
+    /* About Us section specifically */
+    #about {
+      background: transparent;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+
+    .accent-text {
+      color: var(--accent);
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+
+    /* PRO BUTTON */
+    .btn-cta {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--accent);
+      color: var(--bg-deep);
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: 0.3s;
+      box-shadow: 0 10px 20px var(--accent-glow);
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px var(--accent-glow);
+      filter: brightness(1.1);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .menu { display: none; }
+      h1 { font-size: 2.5rem; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="logo">
-      <a href="index.html" style="color:white;text-decoration:none;">Fuadsoft</a>
-    </div>
-
+  <nav class="navbar">
+    <div class="logo">FUADSOFT</div>
     <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="analytics.html">Analytics</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
+      <a href="#home">Home</a>
+      <a href="#about">About Us</a> <a href="#">Services</a>
+      <a href="#">Contact</a>
     </div>
-  </div>
+  </nav>
 
-  <!-- CONTENT -->
-  <div class="container">
-    <div class="box">
-      <h1>About Us</h1>
-      <p>This is About Us page</p>
-
-      <a href="index.html">⬅ Back Home</a>
+  <section id="home">
+    <div class="hero-box">
+      <h1>Future-Proof <br><span class="accent-text">Software Solutions</span></h1>
+      <p>We craft high-end digital experiences using the latest architectural standards in software engineering.</p>
+      <a href="#about" class="btn-cta">Explore Our Vision</a>
     </div>
-  </div>
+  </section>
+
+  <section id="about">
+    <div class="about-box">
+      <span style="text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 700;">Our Legacy</span>
+      <h1 style="font-size: 2.8rem; margin-top: 0.5rem;">PhD Level Engineering</h1>
+      <p>Fuadsoft isn't just a company; it's a hub of innovation where complex problems meet elegant, simplified solutions. Our methodology is rooted in academic precision and industry-leading performance.</p>
+      
+      <div style="display: flex; gap: 20px;">
+         <a href="#home" style="color: var(--text-dim); text-decoration: none; font-weight: 600;">&larr; Back to Hero</a>
+      </div>
+    </div>
+  </section>
 
 </body>
 </html>
