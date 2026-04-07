@@ -10,55 +10,42 @@
   <style>
     :root {
       --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.2);
       --bg-deep: #020617;
       --sidebar-bg: #0f172a;
-      --card-glass: rgba(30, 41, 59, 0.4);
+      --card-glass: rgba(15, 23, 42, 0.7);
       --border-glass: rgba(255, 255, 255, 0.08);
       --text-primary: #f1f5f9;
       --text-dim: #94a3b8;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-deep);
-      /* Futuristic Grid Background */
+      /* PhD-Level Grid System */
       background-image: 
-        linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
+        linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
       color: var(--text-primary);
       display: flex;
       min-height: 100vh;
+      overflow: hidden;
     }
 
-    /* --- SIDEBAR BASE STYLES --- */
+    /* --- SIDEBAR BASE --- */
     .sidebar {
       width: 280px;
       background: var(--sidebar-bg);
       border-right: 1px solid var(--border-glass);
-      display: flex;
-      flex-direction: column;
       position: fixed;
       height: 100vh;
-      overflow-y: auto;
-      padding: 1.5rem;
+      padding: 2rem 1.5rem;
       z-index: 1000;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(15px);
     }
-
-    /* Styles for sidebar.js injected content */
-    .logo-area { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; padding-bottom: 2rem; color: var(--accent); letter-spacing: -1px; }
-    .nav-group { margin-bottom: 1.5rem; }
-    .nav-label { font-size: 0.7rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 0.5rem; display: block; }
-    .nav-link { display: flex; align-items: center; padding: 0.75rem 1rem; color: var(--text-dim); text-decoration: none; font-size: 0.9rem; border-radius: 10px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-    .nav-link:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); padding-left: 1.25rem; }
-    .nav-link.active { background: var(--accent); color: var(--bg-deep); font-weight: 600; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4); }
 
     /* --- MAIN HERO CONTENT --- */
     .main-content {
@@ -71,99 +58,125 @@
       position: relative;
     }
 
-    /* Glow effect behind content */
+    /* Central Ambient Glow */
     .main-content::before {
       content: "";
       position: absolute;
-      width: 400px;
-      height: 400px;
+      width: 600px; height: 600px;
       background: var(--accent);
-      filter: blur(150px);
-      opacity: 0.05;
+      filter: blur(180px);
+      opacity: 0.08;
       z-index: -1;
+      animation: pulseGlow 8s infinite alternate;
     }
 
     .hero-card {
       background: var(--card-glass);
-      backdrop-filter: blur(25px);
+      backdrop-filter: blur(30px);
       border: 1px solid var(--border-glass);
-      padding: 5rem;
-      border-radius: 40px;
-      max-width: 1000px;
+      padding: 6rem 5rem;
+      border-radius: 48px;
+      max-width: 1100px;
       width: 100%;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      box-shadow: 0 40px 120px rgba(0,0,0,0.8);
       text-align: center;
-      animation: slideUp 1s ease-out;
+      position: relative;
+      animation: heroEnter 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    /* Top glowing badge */
+    .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent);
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      letter-spacing: 2px;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
     }
 
     h1 {
       font-family: 'Outfit', sans-serif;
-      font-size: 4rem;
-      margin-bottom: 1.5rem;
-      line-height: 1;
-      background: linear-gradient(to bottom, #fff 40%, #94a3b8);
+      font-size: 5rem;
+      margin-bottom: 2rem;
+      line-height: 0.95;
+      letter-spacing: -3px;
+      background: linear-gradient(to bottom, #fff 40%, #64748b);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .tagline {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       color: var(--text-dim);
-      margin-bottom: 3rem;
-      max-width: 700px;
+      margin-bottom: 4rem;
+      max-width: 800px;
       margin-left: auto;
       margin-right: auto;
+      line-height: 1.6;
     }
 
     .cta-group {
       display: flex;
-      gap: 1.5rem;
+      gap: 2rem;
       justify-content: center;
     }
 
     .btn-primary {
       background: var(--accent);
       color: var(--bg-deep);
-      padding: 1rem 2.5rem;
-      border-radius: 15px;
+      padding: 1.2rem 3rem;
+      border-radius: 20px;
       text-decoration: none;
-      font-weight: 700;
-      font-size: 1rem;
-      transition: 0.3s;
-      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
+      font-weight: 800;
+      font-size: 1.1rem;
+      transition: 0.4s;
+      box-shadow: 0 15px 40px rgba(56, 189, 248, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .btn-primary:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(56, 189, 248, 0.5);
-      filter: brightness(1.1);
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 20px 50px rgba(56, 189, 248, 0.6);
     }
 
     .btn-secondary {
       border: 1px solid var(--border-glass);
       color: var(--text-primary);
-      padding: 1rem 2.5rem;
-      border-radius: 15px;
+      padding: 1.2rem 3rem;
+      border-radius: 20px;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
       transition: 0.3s;
+      backdrop-filter: blur(5px);
     }
 
     .btn-secondary:hover {
       background: rgba(255, 255, 255, 0.05);
-      border-color: var(--text-dim);
+      border-color: var(--accent);
     }
 
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* --- ANIMATIONS --- */
+    @keyframes heroEnter {
+      from { opacity: 0; transform: translateY(60px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes pulseGlow {
+      from { transform: scale(1); opacity: 0.08; }
+      to { transform: scale(1.2); opacity: 0.15; }
     }
 
     @media (max-width: 1024px) {
-      .sidebar { width: 80px; padding: 1.5rem 0.5rem; }
-      .nav-label, .nav-link span { display: none; }
-      .main-content { margin-left: 80px; padding: 2rem; }
-      h1 { font-size: 2.8rem; }
+      .sidebar { width: 85px; padding: 1.5rem 0.5rem; }
+      .main-content { margin-left: 85px; padding: 1.5rem; }
+      h1 { font-size: 3.2rem; }
+      .hero-card { padding: 4rem 2rem; }
     }
   </style>
 </head>
@@ -173,22 +186,18 @@
 
   <main class="main-content">
     <div class="hero-card">
-      <div style="margin-bottom: 1.5rem;">
-        <span style="background: rgba(56, 189, 248, 0.1); color: var(--accent); padding: 8px 16px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(56, 189, 248, 0.2);">
-          VERSION 3.0 ULTRA PRO
-        </span>
-      </div>
+      <div class="badge">Ecosystem Version 3.0</div>
       
-      <h1>Fuadsoft <br>Global Platform</h1>
+      <h1>Engineering <br> the Future.</h1>
       
       <p class="tagline">
-        The ultimate ecosystem for developers, businesses, and innovators. 
-        Engineered with PhD-level precision to deliver high-performance digital experiences.
+        The definitive global platform for breakthrough innovation. 
+        Engineered with PhD-level structural integrity to empower the next generation of digital architects.
       </p>
 
       <div class="cta-group">
-        <a href="dashboard.html" class="btn-primary">Get Started</a>
-        <a href="about.html" class="btn-secondary">Learn More</a>
+        <a href="dashboard.html" class="btn-primary">Launch Console</a>
+        <a href="about.html" class="btn-secondary">Technical Specs</a>
       </div>
     </div>
   </main>
