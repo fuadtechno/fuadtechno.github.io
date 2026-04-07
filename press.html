@@ -10,9 +10,10 @@
   <style>
     :root {
       --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.2);
       --bg-deep: #020617;
       --sidebar-bg: #0f172a;
-      --card-glass: rgba(30, 41, 59, 0.4);
+      --card-glass: rgba(15, 23, 42, 0.6);
       --border-glass: rgba(255, 255, 255, 0.08);
       --text-primary: #f1f5f9;
       --text-dim: #94a3b8;
@@ -23,6 +24,9 @@
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-deep);
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.05), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(129, 140, 248, 0.05), transparent 40%);
       color: var(--text-primary);
       display: flex;
       min-height: 100vh;
@@ -35,79 +39,151 @@
       border-right: 1px solid var(--border-glass);
       position: fixed;
       height: 100vh;
-      padding: 1.5rem;
+      padding: 2rem 1.5rem;
       z-index: 1000;
+      backdrop-filter: blur(15px);
     }
 
-    /* --- TEAM CONTENT --- */
+    /* --- MAIN CONTENT --- */
     .main-content {
       margin-left: 280px;
       flex: 1;
-      padding: 4rem;
+      padding: 5rem 4rem;
+      max-width: 1400px;
+      animation: fadeIn 0.8s ease-out;
     }
 
-    .header-section { margin-bottom: 3.5rem; }
-    .header-section h1 { font-family: 'Outfit', sans-serif; font-size: 2.8rem; }
-    .header-section p { color: var(--text-dim); font-size: 1.1rem; }
+    .header-section { margin-bottom: 5rem; text-align: left; }
+    
+    .header-section h1 { 
+      font-family: 'Outfit', sans-serif; 
+      font-size: 3.5rem; 
+      letter-spacing: -2px;
+      background: linear-gradient(to bottom, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
+    .header-section p { 
+      color: var(--text-dim); 
+      font-size: 1.2rem; 
+      margin-top: 10px;
+    }
+
+    /* --- TEAM GRID --- */
     .team-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2.5rem;
     }
 
     .member-card {
       background: var(--card-glass);
       border: 1px solid var(--border-glass);
-      border-radius: 30px;
-      padding: 2.5rem;
+      border-radius: 40px;
+      padding: 4rem 2.5rem;
       text-align: center;
-      transition: 0.4s ease;
-      backdrop-filter: blur(10px);
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
     }
 
     .member-card:hover {
       border-color: var(--accent);
-      transform: translateY(-10px);
-      background: rgba(30, 41, 59, 0.7);
+      transform: translateY(-15px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+      background: rgba(30, 41, 59, 0.8);
     }
 
+    /* Glowing circle behind avatar on hover */
+    .member-card::before {
+      content: "";
+      position: absolute;
+      top: 20%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 150px; height: 150px;
+      background: var(--accent);
+      filter: blur(80px);
+      opacity: 0;
+      transition: 0.5s;
+      z-index: 0;
+    }
+
+    .member-card:hover::before { opacity: 0.15; }
+
     .avatar {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       background: linear-gradient(135deg, var(--accent), #818cf8);
-      border-radius: 50%;
-      margin: 0 auto 1.5rem;
+      border-radius: 35px; /* Squircle shape */
+      margin: 0 auto 2rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      font-size: 2.5rem;
       font-weight: 800;
       color: var(--bg-deep);
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
     }
 
-    .member-name { font-family: 'Outfit', sans-serif; font-size: 1.3rem; margin-bottom: 5px; }
-    .member-role { color: var(--accent); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+    .member-name { 
+      font-family: 'Outfit', sans-serif; 
+      font-size: 1.6rem; 
+      margin-bottom: 8px; 
+      color: #fff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .member-role { 
+      color: var(--accent); 
+      font-size: 0.9rem; 
+      font-weight: 700; 
+      text-transform: uppercase; 
+      letter-spacing: 2px;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
     
     .social-links {
-      margin-top: 1.5rem;
+      margin-top: 1rem;
       display: flex;
       justify-content: center;
-      gap: 15px;
+      gap: 20px;
+      position: relative;
+      z-index: 1;
     }
 
     .social-links a {
       color: var(--text-dim);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border-glass);
       transition: 0.3s;
     }
 
-    .social-links a:hover { color: var(--accent); }
+    .social-links a:hover { 
+      color: var(--accent); 
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.05);
+    }
 
-    @media (max-width: 900px) {
-      .sidebar { width: 70px; padding: 1rem 0.5rem; }
-      .main-content { margin-left: 70px; padding: 2rem; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar { width: 85px; padding: 1.5rem 0.5rem; }
+      .main-content { margin-left: 85px; padding: 2.5rem; }
+      h1 { font-size: 2.8rem; }
     }
   </style>
 </head>
@@ -117,8 +193,8 @@
 
   <main class="main-content">
     <div class="header-section">
-      <h1>The Core Team</h1>
-      <p>Fuadsoft R&D - Engineering the future of intelligent systems.</p>
+      <h1>The Core Council</h1>
+      <p>Fuadsoft R&D - High-performance engineering for distributed systems.</p>
     </div>
 
     <div class="team-grid">
@@ -135,7 +211,7 @@
       <div class="member-card">
         <div class="avatar">JS</div>
         <h3 class="member-name">James Sterling</h3>
-        <p class="member-role">Senior Systems Architect</p>
+        <p class="member-role">Senior Systems Lead</p>
         <div class="social-links">
           <a href="#">Portfolio</a>
           <a href="#">Twitter</a>
@@ -145,7 +221,7 @@
       <div class="member-card">
         <div class="avatar">LY</div>
         <h3 class="member-name">Lina Yang</h3>
-        <p class="member-role">Data Science Lead</p>
+        <p class="member-role">AI Research Lead</p>
         <div class="social-links">
           <a href="#">LinkedIn</a>
           <a href="#">Papers</a>
