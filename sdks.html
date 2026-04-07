@@ -1,85 +1,182 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fuadsoft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDKs | Fuadsoft Developer Tools</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --accent: #38bdf8;
+      --bg-deep: #020617;
+      --sidebar-bg: #0f172a;
+      --card-glass: rgba(30, 41, 59, 0.4);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --text-primary: #f1f5f9;
+      --text-dim: #94a3b8;
+      --code-bg: #0b1220;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      margin: 0;
-      font-family: Arial;
-      background: #0b1220;
-      color: white;
-    }
-
-    /* NAVBAR */
-    .navbar {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-deep);
+      color: var(--text-primary);
       display: flex;
-      justify-content: space-between;
-      padding: 15px 20px;
-      background: #020617;
+      min-height: 100vh;
     }
 
-    .logo {
-      font-weight: bold;
-      font-size: 20px;
+    /* --- SIDEBAR --- */
+    .sidebar {
+      width: 280px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border-glass);
+      position: fixed;
+      height: 100vh;
+      padding: 1.5rem;
+      z-index: 1000;
     }
 
-    .menu a {
-      margin: 0 10px;
-      color: #94a3b8;
-      text-decoration: none;
+    /* --- SDK CONTENT --- */
+    .main-content {
+      margin-left: 280px;
+      flex: 1;
+      padding: 4rem;
     }
 
-    .menu a:hover {
+    .sdk-header { margin-bottom: 3rem; }
+    .sdk-header h1 { font-family: 'Outfit', sans-serif; font-size: 2.8rem; margin-bottom: 10px; }
+    .sdk-header p { color: var(--text-dim); }
+
+    .sdk-card {
+      background: var(--card-glass);
+      border: 1px solid var(--border-glass);
+      padding: 2.5rem;
+      border-radius: 30px;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .sdk-title { 
+      font-family: 'Outfit', sans-serif; 
+      font-size: 1.5rem; 
+      display: flex; 
+      align-items: center; 
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .version-tag {
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .code-block {
+      background: var(--code-bg);
+      padding: 1.2rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-glass);
+      font-family: 'Courier New', monospace;
       color: #38bdf8;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+      position: relative;
     }
 
-    /* CONTENT */
-    .container {
-      padding: 30px;
+    .copy-btn {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      font-size: 0.8rem;
     }
 
-    .box {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 10px;
+    .sdk-features {
+      margin-top: 1.5rem;
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
 
-    a {
-      color: #38bdf8;
+    .sdk-features li {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sdk-features li::before { content: "✓"; color: var(--accent); font-weight: bold; }
+
+    @media (max-width: 900px) {
+      .sidebar { width: 70px; padding: 1rem 0.5rem; }
+      .main-content { margin-left: 70px; padding: 2rem; }
+      .sdk-features { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="logo">
-      <a href="index.html" style="color:white;text-decoration:none;">Fuadsoft</a>
+  <aside id="sidebar-container" class="sidebar"></aside>
+
+  <main class="main-content">
+    <div class="sdk-header">
+      <h1>Software Development Kits</h1>
+      <p>Powerful libraries to integrate Fuadsoft PhD-Core into your own research applications.</p>
     </div>
 
-    <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="analytics.html">Analytics</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
+    <div class="sdk-card">
+      <div class="sdk-title">
+        📦 Python SDK <span class="version-tag">v2.4.1</span>
+      </div>
+      <p style="color: var(--text-dim); margin-bottom: 1.5rem;">The official Python library for high-speed research data processing and AI model integration.</p>
+      
+      <div class="code-block">
+        pip install fuadsoft-core-py
+        <button class="copy-btn">Copy</button>
+      </div>
 
-  <!-- CONTENT -->
-  <div class="container">
-    <div class="box">
-      <h1>SDKs</h1>
-<p>This is SDKs page</p>
-
-      <a href="index.html">⬅ Back Home</a>
+      <ul class="sdk-features">
+        <li>Real-time Data Streaming</li>
+        <li>PhD-Core API Support</li>
+        <li>Async Processing</li>
+        <li>End-to-End Encryption</li>
+      </ul>
     </div>
-  </div>
+
+    <div class="sdk-card">
+      <div class="sdk-title">
+        🚀 Node.js SDK <span class="version-tag">v1.8.0</span>
+      </div>
+      <p style="color: var(--text-dim); margin-bottom: 1.5rem;">Build dynamic dashboards and interactive research tools with our official JavaScript client.</p>
+      
+      <div class="code-block">
+        npm install @fuadsoft/nexus-js
+        <button class="copy-btn">Copy</button>
+      </div>
+
+      <ul class="sdk-features">
+        <li>Websocket Integration</li>
+        <li>Lightweight Bundle</li>
+        <li>TypeScript Ready</li>
+        <li>Modern UI Hooks</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <script src="sidebar.js"></script>
 
 </body>
 </html>
