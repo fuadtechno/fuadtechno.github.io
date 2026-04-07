@@ -1,85 +1,177 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fuadsoft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Center | Fuadsoft Documentation</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --accent: #38bdf8;
+      --bg-deep: #020617;
+      --sidebar-bg: #0f172a;
+      --card-glass: rgba(30, 41, 59, 0.4);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --text-primary: #f1f5f9;
+      --text-dim: #94a3b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      margin: 0;
-      font-family: Arial;
-      background: #0b1220;
-      color: white;
-    }
-
-    /* NAVBAR */
-    .navbar {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-deep);
+      color: var(--text-primary);
       display: flex;
-      justify-content: space-between;
-      padding: 15px 20px;
-      background: #020617;
+      min-height: 100vh;
     }
 
-    .logo {
-      font-weight: bold;
-      font-size: 20px;
+    /* --- SIDEBAR --- */
+    .sidebar {
+      width: 280px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border-glass);
+      position: fixed;
+      height: 100vh;
+      padding: 1.5rem;
+      z-index: 1000;
     }
 
-    .menu a {
-      margin: 0 10px;
-      color: #94a3b8;
+    /* --- HELP CONTENT --- */
+    .main-content {
+      margin-left: 280px;
+      flex: 1;
+      padding: 4rem;
+    }
+
+    .help-hero {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .help-hero h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .search-box {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 1.2rem 1.5rem;
+      background: var(--card-glass);
+      border: 1px solid var(--border-glass);
+      border-radius: 15px;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+      backdrop-filter: blur(10px);
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent);
+    }
+
+    /* HELP TOPICS */
+    .help-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .help-card {
+      background: var(--card-glass);
+      border: 1px solid var(--border-glass);
+      padding: 2.5rem;
+      border-radius: 25px;
+      transition: 0.3s;
       text-decoration: none;
+      color: inherit;
     }
 
-    .menu a:hover {
-      color: #38bdf8;
+    .help-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-5px);
+      background: rgba(30, 41, 59, 0.6);
     }
 
-    /* CONTENT */
-    .container {
-      padding: 30px;
+    .icon-circle {
+      width: 50px;
+      height: 50px;
+      background: rgba(56, 189, 248, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      font-size: 1.5rem;
     }
 
-    .box {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 10px;
+    .help-card h3 {
+      font-family: 'Outfit', sans-serif;
+      margin-bottom: 0.8rem;
     }
 
-    a {
-      color: #38bdf8;
+    .help-card p {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar { width: 70px; padding: 1rem 0.5rem; }
+      .main-content { margin-left: 70px; padding: 2rem; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="logo">
-      <a href="index.html" style="color:white;text-decoration:none;">Fuadsoft</a>
+  <aside id="sidebar-container" class="sidebar"></aside>
+
+  <main class="main-content">
+    <div class="help-hero">
+      <h1>How can we help?</h1>
+      <div class="search-box">
+        <input type="text" placeholder="Search for documentation, guides, and more...">
+      </div>
     </div>
 
-    <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="analytics.html">Analytics</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
+    <div class="help-grid">
+      <a href="#" class="help-card">
+        <div class="icon-circle">📖</div>
+        <h3>Documentation</h3>
+        <p>In-depth guides on PhD-level software architecture and API integration.</p>
+      </a>
 
-  <!-- CONTENT -->
-  <div class="container">
-    <div class="box">
-      <h1>Help</h1>
-      <p>This is PAGE NAME page</p>
+      <a href="#" class="help-card">
+        <div class="icon-circle">⚡</div>
+        <h3>Quick Start</h3>
+        <p>Get your Fuadsoft environment up and running in under 5 minutes.</p>
+      </a>
 
-      <a href="index.html">⬅ Back Home</a>
+      <a href="#" class="help-card">
+        <div class="icon-circle">🛠️</div>
+        <h3>Troubleshooting</h3>
+        <p>Solutions for common technical issues and system debugging.</p>
+      </a>
+
+      <a href="#" class="help-card">
+        <div class="icon-circle">💬</div>
+        <h3>Community Support</h3>
+        <p>Connect with other researchers and developers in our forum.</p>
+      </a>
     </div>
-  </div>
+  </main>
+
+  <script src="sidebar.js"></script>
 
 </body>
 </html>
