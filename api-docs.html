@@ -10,104 +10,143 @@
   <style>
     :root {
       --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.15);
       --bg-deep: #020617;
       --sidebar-bg: #0f172a;
-      --card-glass: rgba(30, 41, 59, 0.4);
+      --card-glass: rgba(15, 23, 42, 0.6);
       --border-glass: rgba(255, 255, 255, 0.08);
       --text-primary: #f1f5f9;
       --text-dim: #94a3b8;
       --code-bg: #010409;
+      --method-get: #10b981;
+      --method-post: #a855f7;
     }
 
+    /* --- GLOBAL & SIDEBAR BASE --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-deep);
+      background-image: radial-gradient(at 0% 0%, #0f172a 0, transparent 40%);
       color: var(--text-primary);
       display: flex;
       min-height: 100vh;
     }
 
-    /* --- SIDEBAR BASE --- */
     .sidebar {
       width: 280px;
       background: var(--sidebar-bg);
       border-right: 1px solid var(--border-glass);
-      display: flex;
-      flex-direction: column;
       position: fixed;
       height: 100vh;
       overflow-y: auto;
-      padding: 1.5rem;
+      padding: 2rem 1.5rem;
       z-index: 1000;
+      backdrop-filter: blur(10px);
     }
 
-    /* sidebar.js Styles */
-    .logo-area { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; padding-bottom: 2rem; color: var(--accent); }
-    .nav-group { margin-bottom: 1.5rem; }
-    .nav-label { font-size: 0.7rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
-    .nav-link { display: flex; align-items: center; padding: 0.7rem 1rem; color: var(--text-dim); text-decoration: none; font-size: 0.9rem; border-radius: 10px; transition: 0.3s; }
-    .nav-link:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); }
-    .nav-link.active { background: var(--accent); color: var(--bg-deep); font-weight: 600; }
+    /* --- ACTIVE LINK LOGIC --- */
+    .nav-link {
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 1.2rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.9rem;
+      border-radius: 12px;
+      transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: 5px;
+      border-left: 4px solid transparent;
+    }
 
-    /* --- API CONTENT --- */
+    .nav-link.active {
+      background: var(--accent-glow) !important;
+      border-left: 4px solid var(--accent) !important;
+      color: var(--accent) !important;
+      font-weight: 600;
+    }
+
+    .nav-link:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+    }
+
+    /* --- API MAIN CONTENT --- */
     .main-content {
       margin-left: 280px;
       flex: 1;
-      padding: 4rem;
+      padding: 5rem;
+      max-width: 1100px;
     }
 
-    .doc-header { margin-bottom: 3rem; }
-    h1 { font-family: 'Outfit', sans-serif; font-size: 2.8rem; margin-bottom: 1rem; }
+    .doc-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border-glass); padding-bottom: 2rem; }
+    h1 { font-family: 'Outfit', sans-serif; font-size: 3rem; margin-bottom: 1rem; letter-spacing: -1px; }
 
     .api-card {
       background: var(--card-glass);
       border: 1px solid var(--border-glass);
-      padding: 2.5rem;
-      border-radius: 24px;
+      padding: 3rem;
+      border-radius: 32px;
+      margin-bottom: 3rem;
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+    }
+
+    .api-card:hover { border-color: rgba(56, 189, 248, 0.4); }
+
+    /* Method Badges */
+    .method {
+      display: inline-block;
+      padding: 6px 16px;
+      font-weight: 800;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .get { background: rgba(16, 185, 129, 0.1); color: var(--method-get); border: 1px solid var(--method-get); }
+    .post { background: rgba(168, 85, 247, 0.1); color: var(--method-post); border: 1px solid var(--method-post); }
+
+    h3 { font-family: 'Outfit', sans-serif; font-size: 1.6rem; margin-bottom: 1rem; }
+
+    .endpoint-box {
+      font-family: 'Fira Code', monospace;
+      background: var(--code-bg);
+      padding: 1.2rem 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-glass);
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 2rem;
     }
 
-    .method {
-      display: inline-block;
-      padding: 4px 12px;
-      background: var(--accent);
-      color: var(--bg-deep);
-      font-weight: 800;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      margin-bottom: 1rem;
-    }
+    .copy-btn { color: var(--accent); font-size: 0.75rem; cursor: pointer; font-weight: 600; }
 
-    .endpoint {
-      font-family: 'Fira Code', monospace;
-      color: var(--text-primary);
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      background: var(--code-bg);
-      padding: 10px 15px;
-      border-radius: 8px;
+    /* Syntax Highlighting */
+    .json-response {
+      background: #010409;
+      padding: 2rem;
+      border-radius: 16px;
       border: 1px solid var(--border-glass);
-    }
-
-    code-block {
-      display: block;
-      background: var(--code-bg);
-      padding: 1.5rem;
-      border-radius: 12px;
       font-family: 'Fira Code', monospace;
-      font-size: 0.9rem;
-      color: #7dd3fc;
-      margin-top: 1.5rem;
-      border: 1px solid var(--border-glass);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #94a3b8;
       overflow-x: auto;
     }
 
+    .key { color: #7dd3fc; } /* JSON Key */
+    .val { color: #facc15; } /* JSON String */
+    .num { color: #f472b6; } /* JSON Number */
+
     @media (max-width: 900px) {
-      .sidebar { width: 70px; padding: 1rem 0.5rem; }
+      .sidebar { width: 80px; padding: 1.5rem 0.5rem; }
       .nav-label, .nav-link span { display: none; }
-      .main-content { margin-left: 70px; padding: 1.5rem; }
+      .main-content { margin-left: 80px; padding: 2rem; }
     }
   </style>
 </head>
@@ -117,35 +156,49 @@
 
   <main class="main-content">
     <div class="doc-header">
-      <p style="color: var(--accent); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px;">DEVELOPER PORTAL</p>
+      <span style="color: var(--accent); font-weight: 800; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;">v1.0.4 - Developer Access</span>
       <h1>API Documentation</h1>
-      <p style="color: var(--text-dim);">Integrate Fuadsoft solutions into your application with our robust API endpoints.</p>
+      <p style="color: var(--text-dim); font-size: 1.1rem; max-width: 700px;">
+        Fuadsoft APIs enable researchers and developers to programmatically access PhD-core analytics and automated deployment workflows.
+      </p>
     </div>
 
     <div class="api-card">
-      <span class="method">GET</span>
-      <h3>Fetch User Analytics</h3>
-      <p style="margin: 10px 0; color: var(--text-dim);">Returns a summary of activity for a specific project.</p>
+      <span class="method get">GET</span>
+      <h3>Fetch Research Analytics</h3>
+      <p style="margin-bottom: 1.5rem; color: var(--text-dim); line-height: 1.6;">
+        Retrieves a comprehensive data object containing project-specific performance metrics and system integrity reports.
+      </p>
       
-      <div class="endpoint">https://api.fuadsoft.io/v1/analytics/{project_id}</div>
+      <div class="endpoint-box">
+        <span>https://api.fuadsoft.io/v1/analytics/<span style="color: var(--accent);">{project_id}</span></span>
+        <span class="copy-btn">COPY URL</span>
+      </div>
 
-      <code-block>
+      <div class="json-response">
+<pre>
 {
-  "status": "success",
-  "data": {
-    "requests": 1240,
-    "uptime": "99.9%",
-    "region": "global-east"
+  <span class="key">"status"</span>: <span class="val">"success"</span>,
+  <span class="key">"timestamp"</span>: <span class="num">1712534400</span>,
+  <span class="key">"data"</span>: {
+    <span class="key">"requests"</span>: <span class="num">1240</span>,
+    <span class="key">"integrity"</span>: <span class="val">"99.9%"</span>,
+    <span class="key">"region"</span>: <span class="val">"global-east"</span>
   }
-}
-      </code-block>
+}</pre>
+      </div>
     </div>
 
-    <div class="api-card">
-      <span class="method" style="background: #a855f7; color: white;">POST</span>
-      <h3>Create New Deployment</h3>
-      <p style="margin: 10px 0; color: var(--text-dim);">Trigger a new software deployment to the production server.</p>
-      <div class="endpoint">https://api.fuadsoft.io/v1/deploy</div>
+    <div class="api-card" style="border-left: 4px solid var(--method-post);">
+      <span class="method post">POST</span>
+      <h3>Trigger Deployment</h3>
+      <p style="margin-bottom: 1.5rem; color: var(--text-dim); line-height: 1.6;">
+        Initiates an automated CI/CD pipeline for the specified research environment. Requires a valid PhD-Core Auth Token.
+      </p>
+      <div class="endpoint-box">
+        <span>https://api.fuadsoft.io/v1/deploy</span>
+        <span class="copy-btn">COPY URL</span>
+      </div>
     </div>
 
   </main>
