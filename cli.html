@@ -10,100 +10,218 @@
   <style>
     :root {
       --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.15);
       --bg-deep: #020617;
       --sidebar-bg: #0f172a;
-      --card-glass: rgba(30, 41, 59, 0.4);
+      --card-glass: rgba(15, 23, 42, 0.7);
       --border-glass: rgba(255, 255, 255, 0.08);
       --text-primary: #f1f5f9;
       --text-dim: #94a3b8;
     }
 
+    /* --- RESET & GLOBAL --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-deep);
-      background-image: radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.05) 0, transparent 40%);
+      background-image: 
+        radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.08) 0, transparent 40%),
+        radial-gradient(at 0% 100%, rgba(129, 140, 248, 0.05) 0, transparent 40%);
       color: var(--text-primary);
       display: flex;
       min-height: 100vh;
     }
 
-    /* --- SIDEBAR --- */
+    /* --- SIDEBAR BASE --- */
     .sidebar {
       width: 280px;
       background: var(--sidebar-bg);
       border-right: 1px solid var(--border-glass);
-      display: flex;
-      flex-direction: column;
       position: fixed;
       height: 100vh;
       overflow-y: auto;
-      padding: 1.5rem;
+      padding: 2rem 1.5rem;
       z-index: 1000;
+      backdrop-filter: blur(15px);
     }
 
-    .logo-area { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; padding-bottom: 2rem; color: var(--accent); }
-    .nav-group { margin-bottom: 1.5rem; }
-    .nav-label { font-size: 0.7rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
-    .nav-link { display: flex; align-items: center; padding: 0.7rem 1rem; color: var(--text-dim); text-decoration: none; font-size: 0.9rem; border-radius: 10px; transition: 0.3s; }
-    .nav-link:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); }
-    .nav-link.active { background: var(--accent); color: var(--bg-deep); font-weight: 600; }
+    /* --- ACTIVE LINK STYLING --- */
+    .nav-link {
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 1.2rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.9rem;
+      border-radius: 12px;
+      transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: 5px;
+      border-left: 4px solid transparent;
+    }
+
+    .nav-link.active {
+      background: var(--accent-glow) !important;
+      border-left: 4px solid var(--accent) !important;
+      color: var(--accent) !important;
+      font-weight: 600;
+      box-shadow: inset 10px 0 20px rgba(56, 189, 248, 0.05);
+    }
+
+    .nav-link:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      transform: translateX(5px);
+    }
 
     /* --- TEAMS CONTENT --- */
     .main-content {
       margin-left: 280px;
       flex: 1;
-      padding: 4rem;
+      padding: 5rem 4rem;
+      max-width: 1300px;
     }
 
-    .header-section { margin-bottom: 4rem; }
-    h1 { font-family: 'Outfit', sans-serif; font-size: 3rem; margin-bottom: 1rem; }
+    .header-section { 
+      margin-bottom: 5rem;
+      animation: fadeIn 0.8s ease-out;
+    }
 
+    h1 { 
+      font-family: 'Outfit', sans-serif; 
+      font-size: 3.5rem; 
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
+    }
+
+    /* --- TEAM GRID --- */
     .team-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
     }
 
     .team-card {
       background: var(--card-glass);
       border: 1px solid var(--border-glass);
-      padding: 3rem 2rem;
-      border-radius: 30px;
+      padding: 4rem 2rem;
+      border-radius: 40px;
       text-align: center;
-      transition: 0.4s;
-      backdrop-filter: blur(10px);
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      backdrop-filter: blur(20px);
       position: relative;
+      overflow: hidden;
     }
 
     .team-card:hover {
       border-color: var(--accent);
-      transform: translateY(-10px);
-      background: rgba(30, 41, 59, 0.6);
+      transform: translateY(-15px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    }
+
+    /* Decorative Circle behind Avatar */
+    .team-card::before {
+      content: "";
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 150px;
+      background: var(--accent);
+      filter: blur(80px);
+      opacity: 0.1;
+      transition: 0.5s;
+    }
+
+    .team-card:hover::before {
+      opacity: 0.2;
+      width: 200px;
+    }
+
+    .avatar-wrapper {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 2rem auto;
+      position: relative;
+      z-index: 2;
     }
 
     .avatar {
-      width: 100px;
-      height: 100px;
-      background: linear-gradient(45deg, var(--accent), #818cf8);
-      border-radius: 50%;
-      margin: 0 auto 1.5rem auto;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--sidebar-bg), #1e293b);
+      border: 2px solid var(--border-glass);
+      border-radius: 35% 65% 60% 40% / 45% 45% 55% 55%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.5rem;
-      box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
+      font-size: 3rem;
+      transition: 0.5s;
+      animation: morphing 6s infinite ease-in-out;
     }
 
-    h3 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 0.3rem; }
-    .role { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; display: block; }
-    .bio { color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
+    .team-card:hover .avatar {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px var(--accent-glow);
+    }
+
+    h3 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff; }
+    .role { 
+      color: var(--accent); 
+      font-size: 0.8rem; 
+      font-weight: 800; 
+      text-transform: uppercase; 
+      letter-spacing: 2px; 
+      margin-bottom: 1.5rem; 
+      display: block; 
+    }
+    
+    .bio { 
+      color: var(--text-dim); 
+      font-size: 1rem; 
+      line-height: 1.7; 
+      margin-bottom: 2rem;
+    }
+
+    .social-dots {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--border-glass);
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .team-card:hover .dot {
+      background: var(--accent);
+    }
+
+    /* --- ANIMATIONS --- */
+    @keyframes morphing {
+      0% { border-radius: 35% 65% 60% 40% / 45% 45% 55% 55%; }
+      50% { border-radius: 60% 40% 45% 55% / 35% 65% 60% 40%; }
+      100% { border-radius: 35% 65% 60% 40% / 45% 45% 55% 55%; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     @media (max-width: 900px) {
-      .sidebar { width: 70px; padding: 1rem 0.5rem; }
+      .sidebar { width: 85px; padding: 1.5rem 0.5rem; }
       .nav-label, .nav-link span { display: none; }
-      .main-content { margin-left: 70px; padding: 1.5rem; }
+      .main-content { margin-left: 85px; padding: 2rem; }
+      h1 { font-size: 2.6rem; }
     }
   </style>
 </head>
@@ -113,31 +231,48 @@
 
   <main class="main-content">
     <div class="header-section">
-      <p style="color: var(--accent); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px;">HUMAN CAPITAL</p>
-      <h1>Expert Team</h1>
-      <p style="color: var(--text-dim); max-width: 600px;">Meet the architects and engineers behind Fuadsoft's PhD-level infrastructure.</p>
+      <span style="color: var(--accent); font-weight: 800; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase;">PhD Research Group</span>
+      <h1>Elite Engineering<br>Experts</h1>
+      <p style="color: var(--text-dim); max-width: 650px; font-size: 1.1rem; margin-top: 15px;">
+        Fuadsoft is powered by a multidisciplinary team of architects, data scientists, and security researchers.
+      </p>
     </div>
 
     <div class="team-grid">
       <div class="team-card">
-        <div class="avatar">👨‍💻</div>
+        <div class="avatar-wrapper">
+          <div class="avatar">👨‍💻</div>
+        </div>
         <h3>Fuad Mohamed</h3>
         <span class="role">Chief Architect</span>
-        <p class="bio">Visionary lead specialized in scalable systems and PhD-level software architecture.</p>
+        <p class="bio">Lead researcher in cloud-native scalability and PhD-level system optimization.</p>
+        <div class="social-dots">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
       </div>
 
       <div class="team-card">
-        <div class="avatar">👩‍🔬</div>
+        <div class="avatar-wrapper">
+          <div class="avatar">👩‍🔬</div>
+        </div>
         <h3>Sarah Chen</h3>
         <span class="role">Data Scientist</span>
-        <p class="bio">Expert in advanced analytics, predictive modeling, and AI integration systems.</p>
+        <p class="bio">Expert in predictive neural networks and advanced mathematical data modeling.</p>
+        <div class="social-dots">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
       </div>
 
       <div class="team-card">
-        <div class="avatar">🛡️</div>
+        <div class="avatar-wrapper">
+          <div class="avatar">🛡️</div>
+        </div>
         <h3>Alex Rivera</h3>
         <span class="role">Security Lead</span>
-        <p class="bio">Focused on end-to-end encryption and enterprise-level cybersecurity protocols.</p>
+        <p class="bio">Specialized in quantum-resistant encryption and architectural vulnerability research.</p>
+        <div class="social-dots">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
       </div>
     </div>
   </main>
