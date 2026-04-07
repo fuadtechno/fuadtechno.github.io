@@ -1,85 +1,170 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fuadsoft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Fuadsoft Support</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --accent: #38bdf8;
+      --bg-deep: #020617;
+      --sidebar-bg: #0f172a;
+      --card-glass: rgba(30, 41, 59, 0.4);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --text-primary: #f1f5f9;
+      --text-dim: #94a3b8;
+      --input-bg: rgba(15, 23, 42, 0.6);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      margin: 0;
-      font-family: Arial;
-      background: #0b1220;
-      color: white;
-    }
-
-    /* NAVBAR */
-    .navbar {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-deep);
+      background-image: radial-gradient(circle at 0% 100%, rgba(56, 189, 248, 0.07), transparent 40%);
+      color: var(--text-primary);
       display: flex;
-      justify-content: space-between;
-      padding: 15px 20px;
-      background: #020617;
+      min-height: 100vh;
     }
 
-    .logo {
-      font-weight: bold;
-      font-size: 20px;
+    /* --- SIDEBAR --- */
+    .sidebar {
+      width: 280px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border-glass);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 1.5rem;
+      z-index: 1000;
     }
 
-    .menu a {
-      margin: 0 10px;
-      color: #94a3b8;
-      text-decoration: none;
+    .logo-area { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; padding-bottom: 2rem; color: var(--accent); }
+    .nav-group { margin-bottom: 1.5rem; }
+    .nav-label { font-size: 0.7rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+    .nav-link { display: flex; align-items: center; padding: 0.7rem 1rem; color: var(--text-dim); text-decoration: none; font-size: 0.9rem; border-radius: 10px; transition: 0.3s; }
+    .nav-link:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); }
+    .nav-link.active { background: var(--accent); color: var(--bg-deep); font-weight: 600; }
+
+    /* --- CONTACT CONTENT --- */
+    .main-content {
+      margin-left: 280px;
+      flex: 1;
+      padding: 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .menu a:hover {
-      color: #38bdf8;
+    .contact-wrapper {
+      max-width: 1000px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 3rem;
+      background: var(--card-glass);
+      border: 1px solid var(--border-glass);
+      padding: 3.5rem;
+      border-radius: 40px;
+      backdrop-filter: blur(20px);
     }
 
-    /* CONTENT */
-    .container {
-      padding: 30px;
+    .info-side h1 { font-family: 'Outfit', sans-serif; font-size: 2.8rem; margin-bottom: 1rem; line-height: 1.1; }
+    .info-side p { color: var(--text-dim); margin-bottom: 2.5rem; font-size: 1.05rem; }
+
+    .contact-method { margin-bottom: 1.5rem; }
+    .method-label { color: var(--accent); font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+    .method-value { font-size: 1.1rem; margin-top: 4px; }
+
+    /* FORM */
+    .form-side form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .input-box { display: flex; flex-direction: column; gap: 8px; }
+    .input-box label { font-size: 0.85rem; color: var(--text-dim); }
+    
+    input, textarea {
+      background: var(--input-bg);
+      border: 1px solid var(--border-glass);
+      padding: 1rem;
+      border-radius: 12px;
+      color: white;
+      outline: none;
+      transition: 0.3s;
     }
 
-    .box {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 10px;
+    input:focus, textarea:focus { border-color: var(--accent); background: rgba(56, 189, 248, 0.05); }
+
+    .submit-btn {
+      background: var(--accent);
+      color: var(--bg-deep);
+      padding: 1rem;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
     }
 
-    a {
-      color: #38bdf8;
+    .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(56, 189, 248, 0.4); }
+
+    @media (max-width: 1024px) {
+      .contact-wrapper { grid-template-columns: 1fr; padding: 2rem; }
+      .sidebar { width: 70px; padding: 1rem 0.5rem; }
+      .nav-label, .nav-link span { display: none; }
+      .main-content { margin-left: 70px; padding: 2rem; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="logo">
-      <a href="index.html" style="color:white;text-decoration:none;">Fuadsoft</a>
-    </div>
+  <aside id="sidebar-container" class="sidebar"></aside>
 
-    <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="analytics.html">Analytics</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
+  <main class="main-content">
+    <div class="contact-wrapper">
+      
+      <div class="info-side">
+        <h1>Get in <br> Touch.</h1>
+        <p>Expert support for your PhD-level technical inquiries.</p>
+        
+        <div class="contact-method">
+          <div class="method-label">Direct Email</div>
+          <div class="method-value">support@fuadsoft.io</div>
+        </div>
 
-  <!-- CONTENT -->
-  <div class="container">
-    <div class="box">
-      <h1>Contact Us</h1>
-      <p>This is Contact Us page</p>
+        <div class="contact-method">
+          <div class="method-label">Global Office</div>
+          <div class="method-value">Innovation Way, Tech District</div>
+        </div>
+      </div>
 
-      <a href="index.html">⬅ Back Home</a>
+      <div class="form-side">
+        <form>
+          <div class="input-box">
+            <label>Name</label>
+            <input type="text" placeholder="Your full name">
+          </div>
+          <div class="input-box">
+            <label>Email</label>
+            <input type="email" placeholder="your@email.com">
+          </div>
+          <div class="input-box">
+            <label>Message</label>
+            <textarea rows="4" placeholder="How can we help?"></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Discovery Request</button>
+        </form>
+      </div>
+
     </div>
-  </div>
+  </main>
+
+  <script src="sidebar.js"></script>
 
 </body>
 </html>
