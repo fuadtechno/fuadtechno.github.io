@@ -10,140 +10,207 @@
   <style>
     :root {
       --accent: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.3);
+      --accent-glow: rgba(56, 189, 248, 0.15);
       --bg-deep: #020617;
       --sidebar-bg: #0f172a;
-      --card-glass: rgba(15, 23, 42, 0.8);
+      --card-glass: rgba(15, 23, 42, 0.7);
       --border-glass: rgba(255, 255, 255, 0.08);
       --text-primary: #f1f5f9;
       --text-dim: #94a3b8;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+    /* --- RESET & GLOBAL --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-deep);
       background-image: 
-        radial-gradient(at 0% 0%, hsla(217, 100%, 10%, 1) 0, transparent 50%), 
+        radial-gradient(at 0% 0%, hsla(217, 100%, 12%, 1) 0, transparent 50%), 
         radial-gradient(at 100% 100%, hsla(200, 100%, 10%, 1) 0, transparent 50%);
       color: var(--text-primary);
-      display: flex; /* Sidebar fi Content cinaa fi cinaa akka ta'uuf */
+      display: flex;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* --- SIDEBAR STYLES (Required for sidebar.js) --- */
+    /* --- SIDEBAR BASE STYLES --- */
     .sidebar {
       width: 280px;
       background: var(--sidebar-bg);
       border-right: 1px solid var(--border-glass);
-      display: flex;
-      flex-direction: column;
       position: fixed;
       height: 100vh;
       overflow-y: auto;
-      padding: 1.5rem;
+      padding: 2rem 1.5rem;
       z-index: 1000;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(15px);
+      transition: all 0.4s ease;
     }
 
-    /* Koodii kanaan dura 'sidebar.js' keessatti ijaarameef style-onni kun barbaachisoo dha */
-    .logo-area {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 800;
-      padding-bottom: 2rem;
-      color: var(--accent);
-      text-transform: uppercase;
-    }
-
-    .nav-group { margin-bottom: 1.5rem; }
-    .nav-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-
+    /* --- NAV LINK ANIMATIONS --- */
     .nav-link {
       display: flex;
       align-items: center;
-      padding: 0.7rem 1rem;
+      padding: 0.9rem 1.2rem;
       color: var(--text-dim);
       text-decoration: none;
       font-size: 0.9rem;
-      border-radius: 10px;
-      transition: 0.3s;
-    }
-
-    .nav-link:hover {
-      background: rgba(56, 189, 248, 0.1);
-      color: var(--accent);
+      border-radius: 12px;
+      transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: 8px;
+      border-left: 4px solid transparent;
     }
 
     .nav-link.active {
-      background: var(--accent);
-      color: var(--bg-deep);
-      font-weight: 600;
+      background: var(--accent-glow) !important;
+      border-left: 4px solid var(--accent) !important;
+      color: var(--accent) !important;
+      box-shadow: inset 10px 0 20px rgba(56, 189, 248, 0.05);
     }
 
-    /* --- MAIN CONTENT AREA --- */
+    .nav-link:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.03);
+      transform: translateX(5px);
+      color: var(--text-primary);
+    }
+
+    /* --- MAIN CONTENT LAYOUT --- */
     .main-content {
-      margin-left: 280px; /* Sidebar-aaf iddoo dhiisuu */
+      margin-left: 280px;
       flex: 1;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 3rem;
+      padding: 5rem 2rem;
     }
 
-    .about-box {
-      background: var(--card-glass);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--border-glass);
-      padding: 4rem;
-      border-radius: 32px;
-      max-width: 850px;
+    /* --- ABOUT CARD --- */
+    .about-container {
+      max-width: 900px;
       width: 100%;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-      animation: fadeIn 0.8s ease-out;
+      position: relative;
+    }
+
+    .about-card {
+      background: var(--card-glass);
+      backdrop-filter: blur(25px);
+      border: 1px solid var(--border-glass);
+      padding: 4.5rem;
+      border-radius: 40px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+      position: relative;
+      overflow: hidden;
+      animation: slideUpFade 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Decorative element inside card */
+    .about-card::before {
+      content: "";
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 150px;
+      height: 150px;
+      background: var(--accent);
+      filter: blur(100px);
+      opacity: 0.15;
+    }
+
+    .label-tag {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 0.7rem;
+      margin-bottom: 1.5rem;
+      display: block;
     }
 
     h1 {
       font-family: 'Outfit', sans-serif;
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.1;
-      background: linear-gradient(to right, #fff, #94a3b8);
+      font-size: 3.8rem;
+      margin-bottom: 2rem;
+      line-height: 1;
+      background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    p {
-      font-size: 1.15rem;
+    .description {
+      font-size: 1.2rem;
       color: var(--text-dim);
-      margin-bottom: 2rem;
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* --- FEATURE GRID --- */
+    .vision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
     }
 
-    /* Mobile Responsive */
+    .vision-item {
+      background: rgba(255,255,255,0.02);
+      padding: 1.5rem;
+      border-radius: 20px;
+      border: 1px solid var(--border-glass);
+    }
+
+    .vision-item h3 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .quote-section {
+      background: linear-gradient(90deg, var(--accent-glow), transparent);
+      border-left: 5px solid var(--accent);
+      padding: 2rem;
+      border-radius: 0 25px 25px 0;
+      font-style: italic;
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      margin-top: 1rem;
+    }
+
+    .back-btn {
+      margin-top: 3.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      color: var(--accent);
+      gap: 18px;
+    }
+
+    /* --- ANIMATIONS --- */
+    @keyframes slideUpFade {
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 1024px) {
+      .main-content { margin-left: 280px; padding: 3rem 1.5rem; }
+      h1 { font-size: 3rem; }
+    }
+
     @media (max-width: 900px) {
-      .sidebar { width: 70px; padding: 1rem 0.5rem; }
+      .sidebar { width: 80px; padding: 1.5rem 0.5rem; }
       .nav-label, .nav-link span { display: none; }
-      .main-content { margin-left: 70px; padding: 1.5rem; }
-      h1 { font-size: 2rem; }
+      .main-content { margin-left: 80px; }
+      .about-card { padding: 2.5rem; }
+      .vision-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -152,23 +219,34 @@
   <aside id="sidebar-container" class="sidebar"></aside>
 
   <main class="main-content">
-    <div class="about-box">
-      <span style="text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 700; font-size: 0.8rem;">Our Vision & Legacy</span>
-      <h1>PhD Level <br><span style="color: var(--text-primary); -webkit-text-fill-color: var(--text-primary);">Engineering Excellence</span></h1>
-      
-      <p>
-        Fuadsoft isn't just a platform; it's a hub of innovation where complex problems meet elegant, simplified solutions. 
-        Our methodology is rooted in academic precision and industry-leading performance.
-      </p>
+    <div class="about-container">
+      <div class="about-card">
+        <span class="label-tag">Our Vision & Legacy</span>
+        <h1>PhD Level<br>Engineering</h1>
+        
+        <p class="description">
+          Fuadsoft is a global innovation nexus where complex computational challenges meet research-driven solutions. 
+          Founded on the principles of <strong>Academic Precision</strong> and <strong>Architectural Integrity</strong>, we redefine the digital landscape.
+        </p>
 
-      <p style="font-size: 1rem; border-left: 3px solid var(--accent); padding-left: 20px; font-style: italic;">
-        "We don't just build websites; we engineer digital ecosystems that stand the test of time."
-      </p>
-      
-      <div style="margin-top: 30px;">
-         <a href="index.html" style="color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
-           &larr; Return to Central Hub
-         </a>
+        <div class="vision-grid">
+          <div class="vision-item">
+            <h3>Precision</h3>
+            <p style="font-size: 0.9rem;">Every line of code is optimized for maximum performance and security.</p>
+          </div>
+          <div class="vision-item">
+            <h3>Innovation</h3>
+            <p style="font-size: 0.9rem;">Bridging the gap between PhD research and commercial software scalability.</p>
+          </div>
+        </div>
+
+        <div class="quote-section">
+          "We don't just build websites; we engineer digital ecosystems that stand the test of time."
+        </div>
+
+        <a href="index.html" class="back-btn">
+          <span>&larr;</span> BACK TO CENTRAL HUB
+        </a>
       </div>
     </div>
   </main>
