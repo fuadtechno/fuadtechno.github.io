@@ -1,85 +1,160 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fuadsoft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team | Fuadsoft Collaboration</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --accent: #38bdf8;
+      --bg-deep: #020617;
+      --sidebar-bg: #0f172a;
+      --card-glass: rgba(30, 41, 59, 0.4);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --text-primary: #f1f5f9;
+      --text-dim: #94a3b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      margin: 0;
-      font-family: Arial;
-      background: #0b1220;
-      color: white;
-    }
-
-    /* NAVBAR */
-    .navbar {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-deep);
+      color: var(--text-primary);
       display: flex;
-      justify-content: space-between;
-      padding: 15px 20px;
-      background: #020617;
+      min-height: 100vh;
     }
 
-    .logo {
-      font-weight: bold;
-      font-size: 20px;
+    /* --- SIDEBAR --- */
+    .sidebar {
+      width: 280px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border-glass);
+      position: fixed;
+      height: 100vh;
+      padding: 1.5rem;
+      z-index: 1000;
     }
 
-    .menu a {
-      margin: 0 10px;
-      color: #94a3b8;
+    /* --- TEAM CONTENT --- */
+    .main-content {
+      margin-left: 280px;
+      flex: 1;
+      padding: 4rem;
+    }
+
+    .header-section { margin-bottom: 3.5rem; }
+    .header-section h1 { font-family: 'Outfit', sans-serif; font-size: 2.8rem; }
+    .header-section p { color: var(--text-dim); font-size: 1.1rem; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .member-card {
+      background: var(--card-glass);
+      border: 1px solid var(--border-glass);
+      border-radius: 30px;
+      padding: 2.5rem;
+      text-align: center;
+      transition: 0.4s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .member-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-10px);
+      background: rgba(30, 41, 59, 0.7);
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, var(--accent), #818cf8);
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--bg-deep);
+    }
+
+    .member-name { font-family: 'Outfit', sans-serif; font-size: 1.3rem; margin-bottom: 5px; }
+    .member-role { color: var(--accent); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+    
+    .social-links {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-links a {
+      color: var(--text-dim);
       text-decoration: none;
+      font-size: 0.9rem;
+      transition: 0.3s;
     }
 
-    .menu a:hover {
-      color: #38bdf8;
-    }
+    .social-links a:hover { color: var(--accent); }
 
-    /* CONTENT */
-    .container {
-      padding: 30px;
-    }
-
-    .box {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 10px;
-    }
-
-    a {
-      color: #38bdf8;
+    @media (max-width: 900px) {
+      .sidebar { width: 70px; padding: 1rem 0.5rem; }
+      .main-content { margin-left: 70px; padding: 2rem; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="logo">
-      <a href="index.html" style="color:white;text-decoration:none;">Fuadsoft</a>
+  <aside id="sidebar-container" class="sidebar"></aside>
+
+  <main class="main-content">
+    <div class="header-section">
+      <h1>The Core Team</h1>
+      <p>Fuadsoft R&D - Engineering the future of intelligent systems.</p>
     </div>
 
-    <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="analytics.html">Analytics</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
+    <div class="team-grid">
+      <div class="member-card">
+        <div class="avatar">FA</div>
+        <h3 class="member-name">Fuad Aliyi</h3>
+        <p class="member-role">PhD Candidate / Founder</p>
+        <div class="social-links">
+          <a href="#">LinkedIn</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
 
-  <!-- CONTENT -->
-  <div class="container">
-    <div class="box">
-      <h1>PAGE NAME</h1>
-      <p>This is PAGE NAME page</p>
+      <div class="member-card">
+        <div class="avatar">JS</div>
+        <h3 class="member-name">James Sterling</h3>
+        <p class="member-role">Senior Systems Architect</p>
+        <div class="social-links">
+          <a href="#">Portfolio</a>
+          <a href="#">Twitter</a>
+        </div>
+      </div>
 
-      <a href="index.html">⬅ Back Home</a>
+      <div class="member-card">
+        <div class="avatar">LY</div>
+        <h3 class="member-name">Lina Yang</h3>
+        <p class="member-role">Data Science Lead</p>
+        <div class="social-links">
+          <a href="#">LinkedIn</a>
+          <a href="#">Papers</a>
+        </div>
+      </div>
     </div>
-  </div>
+  </main>
+
+  <script src="sidebar.js"></script>
 
 </body>
 </html>
