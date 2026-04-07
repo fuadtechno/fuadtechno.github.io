@@ -32,7 +32,9 @@
       color: var(--text-primary);
       display: flex;
       min-height: 100vh;
-      overflow: hidden;
+      /* overflow: hidden;  <-- KANA BALLEESSEERA AKKA SCROLL TA'UUF */
+      overflow-x: hidden;
+      overflow-y: auto; 
     }
 
     /* --- SIDEBAR BASE --- */
@@ -45,6 +47,7 @@
       padding: 2rem 1.5rem;
       z-index: 1000;
       backdrop-filter: blur(15px);
+      overflow-y: auto; /* Sidebar keessis yoo dheerate scroll ni ta'a */
     }
 
     /* --- MAIN HERO CONTENT --- */
@@ -52,10 +55,12 @@
       margin-left: 280px;
       flex: 1;
       display: flex;
+      flex-direction: column; /* Akka content-ni gadi fageenyaan deemuuf */
       align-items: center;
       justify-content: center;
       padding: 4rem;
       position: relative;
+      min-height: 100vh; /* Scroll bar akka mul'atuuf murteessaadha */
     }
 
     /* Central Ambient Glow */
@@ -68,6 +73,9 @@
       opacity: 0.08;
       z-index: -1;
       animation: pulseGlow 8s infinite alternate;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .hero-card {
@@ -82,6 +90,7 @@
       text-align: center;
       position: relative;
       animation: heroEnter 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+      margin-bottom: 50px; /* Gadi bu'uuf margin dabalata */
     }
 
     /* Top glowing badge */
@@ -161,6 +170,15 @@
       border-color: var(--accent);
     }
 
+    /* SCROLLBAR CUSTOM STYLING */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-deep); }
+    ::-webkit-scrollbar-thumb { 
+      background: rgba(56, 189, 248, 0.2); 
+      border-radius: 10px; 
+    }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
     /* --- ANIMATIONS --- */
     @keyframes heroEnter {
       from { opacity: 0; transform: translateY(60px) scale(0.95); }
@@ -192,7 +210,7 @@
       
       <p class="tagline">
         The definitive global platform for breakthrough innovation. 
-        Engineered with PhD-level structural integrity to empower the next generation of digital architects.
+        Engineered with structural integrity to empower the next generation of digital architects.
       </p>
 
       <div class="cta-group">
@@ -200,6 +218,8 @@
         <a href="about.html" class="btn-secondary">Technical Specs</a>
       </div>
     </div>
+
+    <div style="height: 300px; width: 100%;"></div>
   </main>
 
   <script src="sidebar.js"></script>
