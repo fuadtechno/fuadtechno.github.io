@@ -1,85 +1,154 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fuadsoft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community | Fuadsoft Network</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      background: #0b1220;
-      color: white;
+    :root {
+      --accent: #38bdf8;
+      --bg-deep: #020617;
+      --sidebar-bg: #0f172a;
+      --card-glass: rgba(30, 41, 59, 0.4);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --text-primary: #f1f5f9;
+      --text-dim: #94a3b8;
     }
 
-    /* NAVBAR */
-    .navbar {
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-deep);
+      background-image: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.08), transparent 40%);
+      color: var(--text-primary);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* --- SIDEBAR --- */
+    .sidebar {
+      width: 280px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border-glass);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 1.5rem;
+      z-index: 1000;
+    }
+
+    .logo-area { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; padding-bottom: 2rem; color: var(--accent); }
+    .nav-group { margin-bottom: 1.5rem; }
+    .nav-label { font-size: 0.7rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+    .nav-link { display: flex; align-items: center; padding: 0.7rem 1rem; color: var(--text-dim); text-decoration: none; font-size: 0.9rem; border-radius: 10px; transition: 0.3s; }
+    .nav-link:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); }
+    .nav-link.active { background: var(--accent); color: var(--bg-deep); font-weight: 600; }
+
+    /* --- COMMUNITY CONTENT --- */
+    .main-content {
+      margin-left: 280px;
+      flex: 1;
+      padding: 4rem;
+    }
+
+    .header-section { margin-bottom: 4rem; text-align: left; }
+    h1 { font-family: 'Outfit', sans-serif; font-size: 3rem; margin-bottom: 1rem; }
+
+    .forum-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-width: 900px;
+    }
+
+    .forum-item {
+      background: var(--card-glass);
+      border: 1px solid var(--border-glass);
+      padding: 1.5rem 2rem;
+      border-radius: 20px;
       display: flex;
       justify-content: space-between;
-      padding: 15px 20px;
-      background: #020617;
+      align-items: center;
+      transition: 0.3s ease;
+      backdrop-filter: blur(10px);
     }
 
-    .logo {
-      font-weight: bold;
-      font-size: 20px;
+    .forum-item:hover {
+      border-color: var(--accent);
+      transform: translateX(10px);
+      background: rgba(30, 41, 59, 0.6);
     }
 
-    .menu a {
-      margin: 0 10px;
-      color: #94a3b8;
-      text-decoration: none;
-    }
+    .forum-info h3 { font-family: 'Outfit', sans-serif; margin-bottom: 0.3rem; }
+    .forum-info p { color: var(--text-dim); font-size: 0.9rem; }
 
-    .menu a:hover {
-      color: #38bdf8;
-    }
+    .stats { text-align: right; }
+    .stat-num { display: block; font-weight: 800; color: var(--accent); font-size: 1.1rem; }
+    .stat-label { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; }
 
-    /* CONTENT */
-    .container {
-      padding: 30px;
-    }
-
-    .box {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 10px;
-    }
-
-    a {
-      color: #38bdf8;
+    @media (max-width: 900px) {
+      .sidebar { width: 70px; padding: 1rem 0.5rem; }
+      .nav-label, .nav-link span { display: none; }
+      .main-content { margin-left: 70px; padding: 1.5rem; }
+      .forum-item { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .stats { text-align: left; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="logo">
-      <a href="index.html" style="color:white;text-decoration:none;">Fuadsoft</a>
+  <aside id="sidebar-container" class="sidebar"></aside>
+
+  <main class="main-content">
+    <div class="header-section">
+      <p style="color: var(--accent); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px;">GLOBAL NETWORK</p>
+      <h1>Community Hub</h1>
+      <p style="color: var(--text-dim);">Connect with thousands of developers and engineers in the Fuadsoft ecosystem.</p>
     </div>
 
-    <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="analytics.html">Analytics</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
+    <div class="forum-grid">
+      <div class="forum-item">
+        <div class="forum-info">
+          <h3>General Discussion</h3>
+          <p>Talk about software architecture and industry trends.</p>
+        </div>
+        <div class="stats">
+          <span class="stat-num">12.4K</span>
+          <span class="stat-label">Topics</span>
+        </div>
+      </div>
 
-  <!-- CONTENT -->
-  <div class="container">
-    <div class="box">
-      <h1>Community</h1>
-      <p>This is Community page</p>
+      <div class="forum-item">
+        <div class="forum-info">
+          <h3>Showcase & Feedback</h3>
+          <p>Share your projects and get PhD-level peer reviews.</p>
+        </div>
+        <div class="stats">
+          <span class="stat-num">8.1K</span>
+          <span class="stat-label">Projects</span>
+        </div>
+      </div>
 
-      <a href="index.html">⬅ Back Home</a>
+      <div class="forum-item">
+        <div class="forum-info">
+          <h3>Bug Reports & Support</h3>
+          <p>Technical troubleshooting for Fuadsoft SDKs and APIs.</p>
+        </div>
+        <div class="stats">
+          <span class="stat-num">2.5K</span>
+          <span class="stat-label">Resolved</span>
+        </div>
+      </div>
     </div>
-  </div>
+  </main>
+
+  <script src="sidebar.js"></script>
 
 </body>
 </html>
