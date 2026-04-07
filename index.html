@@ -2,83 +2,198 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fuadsoft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fuadsoft | Engineering the Future</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
-    body {
+    :root {
+      --accent: #38bdf8;
+      --bg-deep: #020617;
+      --sidebar-bg: #0f172a;
+      --card-glass: rgba(30, 41, 59, 0.4);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --text-primary: #f1f5f9;
+      --text-dim: #94a3b8;
+    }
+
+    * {
       margin: 0;
-      font-family: Arial;
-      background: #0b1220;
-      color: white;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    /* NAVBAR */
-    .navbar {
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-deep);
+      /* Futuristic Grid Background */
+      background-image: 
+        linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      color: var(--text-primary);
       display: flex;
-      justify-content: space-between;
-      padding: 15px 20px;
-      background: #020617;
+      min-height: 100vh;
     }
 
-    .logo {
-      font-weight: bold;
-      font-size: 20px;
+    /* --- SIDEBAR BASE STYLES --- */
+    .sidebar {
+      width: 280px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border-glass);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 1.5rem;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
     }
 
-    .menu a {
-      margin: 0 10px;
-      color: #94a3b8;
+    /* Styles for sidebar.js injected content */
+    .logo-area { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; padding-bottom: 2rem; color: var(--accent); letter-spacing: -1px; }
+    .nav-group { margin-bottom: 1.5rem; }
+    .nav-label { font-size: 0.7rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 0.5rem; display: block; }
+    .nav-link { display: flex; align-items: center; padding: 0.75rem 1rem; color: var(--text-dim); text-decoration: none; font-size: 0.9rem; border-radius: 10px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .nav-link:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); padding-left: 1.25rem; }
+    .nav-link.active { background: var(--accent); color: var(--bg-deep); font-weight: 600; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4); }
+
+    /* --- MAIN HERO CONTENT --- */
+    .main-content {
+      margin-left: 280px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem;
+      position: relative;
+    }
+
+    /* Glow effect behind content */
+    .main-content::before {
+      content: "";
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: var(--accent);
+      filter: blur(150px);
+      opacity: 0.05;
+      z-index: -1;
+    }
+
+    .hero-card {
+      background: var(--card-glass);
+      backdrop-filter: blur(25px);
+      border: 1px solid var(--border-glass);
+      padding: 5rem;
+      border-radius: 40px;
+      max-width: 1000px;
+      width: 100%;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      text-align: center;
+      animation: slideUp 1s ease-out;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      line-height: 1;
+      background: linear-gradient(to bottom, #fff 40%, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      color: var(--text-dim);
+      margin-bottom: 3rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg-deep);
+      padding: 1rem 2.5rem;
+      border-radius: 15px;
       text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: 0.3s;
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
     }
 
-    .menu a:hover {
-      color: #38bdf8;
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(56, 189, 248, 0.5);
+      filter: brightness(1.1);
     }
 
-    /* CONTENT */
-    .container {
-      padding: 30px;
+    .btn-secondary {
+      border: 1px solid var(--border-glass);
+      color: var(--text-primary);
+      padding: 1rem 2.5rem;
+      border-radius: 15px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
     }
 
-    .box {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 10px;
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--text-dim);
     }
 
-    a {
-      color: #38bdf8;
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar { width: 80px; padding: 1.5rem 0.5rem; }
+      .nav-label, .nav-link span { display: none; }
+      .main-content { margin-left: 80px; padding: 2rem; }
+      h1 { font-size: 2.8rem; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="logo">
-      <a href="index.html" style="color:white;text-decoration:none;">Fuadsoft</a>
-    </div>
+  <aside id="sidebar-container" class="sidebar"></aside>
 
-    <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="analytics.html">Analytics</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
+  <main class="main-content">
+    <div class="hero-card">
+      <div style="margin-bottom: 1.5rem;">
+        <span style="background: rgba(56, 189, 248, 0.1); color: var(--accent); padding: 8px 16px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(56, 189, 248, 0.2);">
+          VERSION 3.0 ULTRA PRO
+        </span>
+      </div>
+      
+      <h1>Fuadsoft <br>Global Platform</h1>
+      
+      <p class="tagline">
+        The ultimate ecosystem for developers, businesses, and innovators. 
+        Engineered with PhD-level precision to deliver high-performance digital experiences.
+      </p>
 
-  <!-- CONTENT -->
-  <div class="container">
-    <div class="box">
-      <h1>Home</h1>
-      <p>This is PAGE Home page</p>
-
-      <a href="index.html">⬅ Back Home</a>
+      <div class="cta-group">
+        <a href="dashboard.html" class="btn-primary">Get Started</a>
+        <a href="about.html" class="btn-secondary">Learn More</a>
+      </div>
     </div>
-  </div>
+  </main>
+
+  <script src="sidebar.js"></script>
 
 </body>
 </html>
