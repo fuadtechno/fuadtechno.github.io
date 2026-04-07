@@ -10,20 +10,24 @@
   <style>
     :root {
       --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.15);
       --bg-deep: #020617;
       --sidebar-bg: #0f172a;
-      --card-glass: rgba(30, 41, 59, 0.4);
+      --card-glass: rgba(15, 23, 42, 0.6);
       --border-glass: rgba(255, 255, 255, 0.08);
       --text-primary: #f1f5f9;
       --text-dim: #94a3b8;
     }
 
+    /* --- RESET & GLOBAL --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-deep);
-      background-image: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.03), transparent 70%);
+      background-image: 
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.05), transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.05), transparent 40%);
       color: var(--text-primary);
       display: flex;
       min-height: 100vh;
@@ -36,93 +40,144 @@
       border-right: 1px solid var(--border-glass);
       position: fixed;
       height: 100vh;
-      padding: 1.5rem;
+      padding: 2rem 1.5rem;
       z-index: 1000;
+      backdrop-filter: blur(15px);
     }
 
-    /* --- LANGUAGE CONTENT --- */
+    /* --- MAIN CONTENT --- */
     .main-content {
       margin-left: 280px;
       flex: 1;
-      padding: 4rem;
+      padding: 5rem 4rem;
+      max-width: 1200px;
+      animation: fadeIn 0.8s ease-out;
     }
 
-    .settings-header { margin-bottom: 3rem; }
-    .settings-header h1 { font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 0.5rem; }
-    .settings-header p { color: var(--text-dim); }
+    .settings-header { margin-bottom: 4rem; }
+    
+    .settings-header h1 { 
+      font-family: 'Outfit', sans-serif; 
+      font-size: 2.8rem; 
+      letter-spacing: -1px;
+      background: linear-gradient(to right, #fff, var(--text-dim));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
+    .settings-header p { 
+      color: var(--text-dim); 
+      font-size: 1.1rem; 
+      margin-top: 10px;
+    }
+
+    /* --- LANGUAGE GRID --- */
     .lang-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
       margin-top: 2rem;
     }
 
     .lang-option {
       background: var(--card-glass);
       border: 1px solid var(--border-glass);
-      padding: 1.5rem;
-      border-radius: 20px;
+      padding: 2rem;
+      border-radius: 28px;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 15px;
-      transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      gap: 20px;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
     }
 
     .lang-option:hover {
       border-color: var(--accent);
+      transform: translateY(-8px);
       background: rgba(56, 189, 248, 0.05);
-      transform: translateY(-3px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     }
 
+    /* Selection Indicator */
     .lang-option.active {
       border-color: var(--accent);
-      background: rgba(56, 189, 248, 0.1);
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
+      background: linear-gradient(145deg, rgba(56, 189, 248, 0.15), rgba(15, 23, 42, 0.6));
+      box-shadow: 0 0 30px var(--accent-glow);
+    }
+
+    .lang-option.active::after {
+      content: "✓";
+      position: absolute;
+      top: 15px; right: 20px;
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 1.2rem;
     }
 
     .flag-icon {
-      font-size: 1.5rem;
-      background: rgba(255,255,255,0.05);
-      width: 45px;
-      height: 45px;
+      font-size: 1.8rem;
+      background: rgba(255,255,255,0.03);
+      width: 60px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 12px;
+      border-radius: 18px;
+      border: 1px solid var(--border-glass);
     }
 
-    .lang-info h4 { font-family: 'Outfit', sans-serif; font-size: 1.1rem; }
-    .lang-info span { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; }
+    .lang-info h4 { font-family: 'Outfit', sans-serif; font-size: 1.25rem; margin-bottom: 4px; }
+    .lang-info span { 
+      font-size: 0.7rem; 
+      color: var(--accent); 
+      text-transform: uppercase; 
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
 
+    /* --- SAVE SECTION --- */
     .save-section {
-      margin-top: 4rem;
-      padding-top: 2rem;
+      margin-top: 5rem;
+      padding-top: 2.5rem;
       border-top: 1px solid var(--border-glass);
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+      align-items: center;
     }
 
+    .status-msg { color: var(--text-dim); font-size: 0.9rem; font-style: italic; }
+
     .btn-save {
-      padding: 1rem 2.5rem;
+      padding: 1.2rem 3rem;
       background: var(--accent);
       color: var(--bg-deep);
       border: none;
-      border-radius: 12px;
-      font-weight: 700;
+      border-radius: 18px;
+      font-weight: 800;
+      font-size: 1rem;
       cursor: pointer;
-      transition: 0.3s;
+      transition: 0.4s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
     }
 
     .btn-save:hover {
-      box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
-      transform: scale(1.02);
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(56, 189, 248, 0.5);
+      filter: brightness(1.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 900px) {
-      .sidebar { width: 70px; padding: 1rem 0.5rem; }
-      .main-content { margin-left: 70px; padding: 2rem; }
+      .sidebar { width: 85px; padding: 1.5rem 0.5rem; }
+      .main-content { margin-left: 85px; padding: 2rem; }
     }
   </style>
 </head>
@@ -132,8 +187,8 @@
 
   <main class="main-content">
     <div class="settings-header">
-      <h1>Language Settings</h1>
-      <p>Configure the interface language for Fuadsoft PhD-Core infrastructure.</p>
+      <h1>Language Engine</h1>
+      <p>Synchronizing Fuadsoft core modules with regional linguistic protocols.</p>
     </div>
 
     <div class="lang-grid">
@@ -141,7 +196,7 @@
         <div class="flag-icon">🌳</div>
         <div class="lang-info">
           <h4>Afaan Oromoo</h4>
-          <span>Ethiopia / Regional</span>
+          <span>Regional / Ethiopia</span>
         </div>
       </div>
 
@@ -149,7 +204,7 @@
         <div class="flag-icon">🇺🇸</div>
         <div class="lang-info">
           <h4>English (US)</h4>
-          <span>Default / Global</span>
+          <span>Global / Default</span>
         </div>
       </div>
 
@@ -157,7 +212,7 @@
         <div class="flag-icon">🇪🇹</div>
         <div class="lang-info">
           <h4>Amharic</h4>
-          <span>Ethiopia / National</span>
+          <span>National / Ethiopia</span>
         </div>
       </div>
 
@@ -165,13 +220,14 @@
         <div class="flag-icon">🇦🇪</div>
         <div class="lang-info">
           <h4>Arabic</h4>
-          <span>Middle East</span>
+          <span>Middle East / MENA</span>
         </div>
       </div>
     </div>
 
     <div class="save-section">
-      <button class="btn-save">Apply Configuration</button>
+      <div class="status-msg">Translation sync: 100% complete</div>
+      <button class="btn-save">Apply Localization</button>
     </div>
   </main>
 
