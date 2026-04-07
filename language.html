@@ -1,85 +1,181 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fuadsoft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Settings | Fuadsoft Localization</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --accent: #38bdf8;
+      --bg-deep: #020617;
+      --sidebar-bg: #0f172a;
+      --card-glass: rgba(30, 41, 59, 0.4);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --text-primary: #f1f5f9;
+      --text-dim: #94a3b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      margin: 0;
-      font-family: Arial;
-      background: #0b1220;
-      color: white;
-    }
-
-    /* NAVBAR */
-    .navbar {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-deep);
+      background-image: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.03), transparent 70%);
+      color: var(--text-primary);
       display: flex;
-      justify-content: space-between;
-      padding: 15px 20px;
-      background: #020617;
+      min-height: 100vh;
     }
 
-    .logo {
-      font-weight: bold;
-      font-size: 20px;
+    /* --- SIDEBAR --- */
+    .sidebar {
+      width: 280px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border-glass);
+      position: fixed;
+      height: 100vh;
+      padding: 1.5rem;
+      z-index: 1000;
     }
 
-    .menu a {
-      margin: 0 10px;
-      color: #94a3b8;
-      text-decoration: none;
+    /* --- LANGUAGE CONTENT --- */
+    .main-content {
+      margin-left: 280px;
+      flex: 1;
+      padding: 4rem;
     }
 
-    .menu a:hover {
-      color: #38bdf8;
+    .settings-header { margin-bottom: 3rem; }
+    .settings-header h1 { font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .settings-header p { color: var(--text-dim); }
+
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
 
-    /* CONTENT */
-    .container {
-      padding: 30px;
+    .lang-option {
+      background: var(--card-glass);
+      border: 1px solid var(--border-glass);
+      padding: 1.5rem;
+      border-radius: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .box {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 10px;
+    .lang-option:hover {
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.05);
+      transform: translateY(-3px);
     }
 
-    a {
-      color: #38bdf8;
+    .lang-option.active {
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
+    }
+
+    .flag-icon {
+      font-size: 1.5rem;
+      background: rgba(255,255,255,0.05);
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+    }
+
+    .lang-info h4 { font-family: 'Outfit', sans-serif; font-size: 1.1rem; }
+    .lang-info span { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; }
+
+    .save-section {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-glass);
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-save {
+      padding: 1rem 2.5rem;
+      background: var(--accent);
+      color: var(--bg-deep);
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-save:hover {
+      box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 900px) {
+      .sidebar { width: 70px; padding: 1rem 0.5rem; }
+      .main-content { margin-left: 70px; padding: 2rem; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="logo">
-      <a href="index.html" style="color:white;text-decoration:none;">Fuadsoft</a>
-    </div>
+  <aside id="sidebar-container" class="sidebar"></aside>
 
-    <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="analytics.html">Analytics</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
-
-  <!-- CONTENT -->
-  <div class="container">
-    <div class="box">
+  <main class="main-content">
+    <div class="settings-header">
       <h1>Language Settings</h1>
-      
-
-      <a href="index.html">⬅ Back Home</a>
+      <p>Configure the interface language for Fuadsoft PhD-Core infrastructure.</p>
     </div>
-  </div>
+
+    <div class="lang-grid">
+      <div class="lang-option">
+        <div class="flag-icon">🌳</div>
+        <div class="lang-info">
+          <h4>Afaan Oromoo</h4>
+          <span>Ethiopia / Regional</span>
+        </div>
+      </div>
+
+      <div class="lang-option active">
+        <div class="flag-icon">🇺🇸</div>
+        <div class="lang-info">
+          <h4>English (US)</h4>
+          <span>Default / Global</span>
+        </div>
+      </div>
+
+      <div class="lang-option">
+        <div class="flag-icon">🇪🇹</div>
+        <div class="lang-info">
+          <h4>Amharic</h4>
+          <span>Ethiopia / National</span>
+        </div>
+      </div>
+
+      <div class="lang-option">
+        <div class="flag-icon">🇦🇪</div>
+        <div class="lang-info">
+          <h4>Arabic</h4>
+          <span>Middle East</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="save-section">
+      <button class="btn-save">Apply Configuration</button>
+    </div>
+  </main>
+
+  <script src="sidebar.js"></script>
 
 </body>
 </html>
