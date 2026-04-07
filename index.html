@@ -2,231 +2,83 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Fuadsoft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modern Dashboard</title>
+
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #020617);
-      color: #e2e8f0;
+      font-family: Arial;
+      background: #0b1220;
+      color: white;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 30px 20px;
-    }
-
-    .topbar {
+    /* NAVBAR */
+    .navbar {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 40px;
+      padding: 15px 20px;
+      background: #020617;
     }
 
-    .topbar h2 {
-      font-size: 24px;
-      font-weight: 600;
+    .logo {
+      font-weight: bold;
+      font-size: 20px;
     }
 
-    .profile {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: #1e293b;
-      padding: 6px 12px;
-      border-radius: 999px;
+    .menu a {
+      margin: 0 10px;
+      color: #94a3b8;
+      text-decoration: none;
     }
 
-    .profile img {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    @media (max-width: 768px) {
-      .topbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (min-width: 769px) and (max-width: 1024px) {
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    .card {
-      background: rgba(30, 41, 59, 0.8);
-      backdrop-filter: blur(10px);
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-    }
-
-    .card h3 {
-      margin-bottom: 12px;
-      font-size: 18px;
-      border-bottom: 1px solid #334155;
-      padding-bottom: 6px;
-    }
-
-    .card ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .card ul li {
-      padding: 6px 0;
-      cursor: pointer;
-      transition: color 0.2s ease;
-    }
-
-    .card ul li:hover {
+    .menu a:hover {
       color: #38bdf8;
     }
 
-    .settings label {
-      font-size: 13px;
-      color: #94a3b8;
+    /* CONTENT */
+    .container {
+      padding: 30px;
     }
 
-    .settings select {
-      width: 100%;
-      padding: 8px;
-      margin: 8px 0 12px;
-      border-radius: 8px;
-      background: #020617;
-      color: white;
-      border: 1px solid #334155;
+    .box {
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 10px;
     }
 
-    .subscribe {
-      margin-top: 40px;
-      text-align: center;
-    }
-
-    .subscribe button {
-      padding: 12px 30px;
-      background: linear-gradient(135deg, #3b82f6, #06b6d4);
-      color: white;
-      border: none;
-      border-radius: 999px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-    .subscribe button:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
+    a {
+      color: #38bdf8;
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
 
-    <div class="topbar">
-      <h2>Fuadsoft</h2>
-      <div class="profile">
-        <img src="https://via.placeholder.com/40" alt="user">
-        <span>Fuad</span>
-      </div>
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="logo">
+      <a href="index.html" style="color:white;text-decoration:none;">Fuadsoft</a>
     </div>
 
-    <div class="grid">
-
-      <div class="card">
-        <h3>Platform</h3>
-        <ul>
-          <li>Dashboard</li>
-          <li>Analytics</li>
-          <li>Projects</li>
-          <li>Teams</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Developers</h3>
-        <ul>
-          <li>API Docs</li>
-          <li>SDKs</li>
-          <li>CLI</li>
-          <li>Status</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Company</h3>
-        <ul>
-          <li>About</li>
-          <li>Careers</li>
-          <li>Press</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Support</h3>
-        <ul>
-          <li>Help</li>
-          <li>Contact</li>
-          <li>Community</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Legal</h3>
-        <ul>
-          <li>Privacy</li>
-          <li>Terms</li>
-        </ul>
-      </div>
-
-      <div class="card settings">
-        <h3>Settings</h3>
-        <label>Language</label>
-        <select>
-          <option>English</option>
-        </select>
-        <label>Currency</label>
-        <select>
-          <option>USD</option>
-        </select>
-      </div>
-
+    <div class="menu">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="analytics.html">Analytics</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
     </div>
-
-    <div class="subscribe">
-      <button>Subscribe</button>
-    </div>
-
   </div>
-  <script>
-    // Dynamic name change
-    const name = prompt("Enter your name:");
-    if (name) {
-      document.querySelector(".profile span").textContent = name;
-    }
-  </script>
+
+  <!-- CONTENT -->
+  <div class="container">
+    <div class="box">
+      <h1>PAGE NAME</h1>
+      <p>This is PAGE NAME page</p>
+
+      <a href="index.html">⬅ Back Home</a>
+    </div>
+  </div>
+
 </body>
 </html>
