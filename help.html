@@ -10,125 +10,189 @@
   <style>
     :root {
       --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.15);
       --bg-deep: #020617;
       --sidebar-bg: #0f172a;
-      --card-glass: rgba(30, 41, 59, 0.4);
+      --card-glass: rgba(15, 23, 42, 0.6);
       --border-glass: rgba(255, 255, 255, 0.08);
       --text-primary: #f1f5f9;
       --text-dim: #94a3b8;
     }
 
+    /* --- RESET & GLOBAL --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-deep);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.1), transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(129, 140, 248, 0.05), transparent 40%);
       color: var(--text-primary);
       display: flex;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* --- SIDEBAR --- */
+    /* --- SIDEBAR BASE --- */
     .sidebar {
       width: 280px;
       background: var(--sidebar-bg);
       border-right: 1px solid var(--border-glass);
       position: fixed;
       height: 100vh;
-      padding: 1.5rem;
+      overflow-y: auto;
+      padding: 2rem 1.5rem;
       z-index: 1000;
+      backdrop-filter: blur(15px);
     }
 
     /* --- HELP CONTENT --- */
     .main-content {
       margin-left: 280px;
       flex: 1;
-      padding: 4rem;
+      padding: 5rem 4rem;
+      max-width: 1400px;
+      animation: fadeIn 0.8s ease-out;
     }
 
     .help-hero {
       text-align: center;
-      margin-bottom: 4rem;
+      margin-bottom: 5rem;
+    }
+
+    .help-hero span {
+      color: var(--accent);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 0.75rem;
+      margin-bottom: 15px;
+      display: block;
     }
 
     .help-hero h1 {
       font-family: 'Outfit', sans-serif;
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
+      font-size: 3.5rem;
+      margin-bottom: 2rem;
+      letter-spacing: -1.5px;
+      background: linear-gradient(to bottom, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
+    /* SEARCH ENGINE UI */
     .search-box {
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
       position: relative;
     }
 
     .search-box input {
       width: 100%;
-      padding: 1.2rem 1.5rem;
+      padding: 1.5rem 2rem;
       background: var(--card-glass);
       border: 1px solid var(--border-glass);
-      border-radius: 15px;
+      border-radius: 20px;
       color: white;
-      font-size: 1rem;
+      font-size: 1.1rem;
       outline: none;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(20px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     }
 
     .search-box input:focus {
       border-color: var(--accent);
+      background: rgba(15, 23, 42, 0.8);
+      box-shadow: 0 0 30px var(--accent-glow);
+      transform: scale(1.02);
     }
 
-    /* HELP TOPICS */
+    /* HELP TOPICS GRID */
     .help-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
     }
 
     .help-card {
       background: var(--card-glass);
       border: 1px solid var(--border-glass);
-      padding: 2.5rem;
-      border-radius: 25px;
-      transition: 0.3s;
+      padding: 3rem 2.5rem;
+      border-radius: 32px;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
       text-decoration: none;
       color: inherit;
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .help-card::after {
+      content: "Explore →";
+      position: absolute;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: 0.3s;
     }
 
     .help-card:hover {
       border-color: var(--accent);
-      transform: translateY(-5px);
-      background: rgba(30, 41, 59, 0.6);
+      transform: translateY(-10px);
+      background: rgba(30, 41, 59, 0.7);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .help-card:hover::after {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .icon-circle {
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       background: rgba(56, 189, 248, 0.1);
-      border-radius: 12px;
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       color: var(--accent);
-      font-size: 1.5rem;
+      font-size: 1.8rem;
+      border: 1px solid rgba(56, 189, 248, 0.15);
     }
 
     .help-card h3 {
       font-family: 'Outfit', sans-serif;
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+      color: #fff;
     }
 
     .help-card p {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: var(--text-dim);
-      line-height: 1.6;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    /* --- ANIMATION --- */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 900px) {
-      .sidebar { width: 70px; padding: 1rem 0.5rem; }
-      .main-content { margin-left: 70px; padding: 2rem; }
+      .sidebar { width: 85px; padding: 1.5rem 0.5rem; }
+      .main-content { margin-left: 85px; padding: 2rem; }
+      .help-hero h1 { font-size: 2.5rem; }
     }
   </style>
 </head>
@@ -138,9 +202,10 @@
 
   <main class="main-content">
     <div class="help-hero">
-      <h1>How can we help?</h1>
+      <span>Knowledge Base</span>
+      <h1>How can we assist you?</h1>
       <div class="search-box">
-        <input type="text" placeholder="Search for documentation, guides, and more...">
+        <input type="text" placeholder="Search for documentation, system guides, or PhD insights...">
       </div>
     </div>
 
@@ -148,25 +213,25 @@
       <a href="#" class="help-card">
         <div class="icon-circle">📖</div>
         <h3>Documentation</h3>
-        <p>In-depth guides on PhD-level software architecture and API integration.</p>
+        <p>In-depth structural guides on software architecture, API protocols, and Fuadsoft ecosystem integration.</p>
       </a>
 
       <a href="#" class="help-card">
         <div class="icon-circle">⚡</div>
         <h3>Quick Start</h3>
-        <p>Get your Fuadsoft environment up and running in under 5 minutes.</p>
+        <p>Accelerate your workflow. Get your environment synchronized and running in under 5 minutes.</p>
       </a>
 
       <a href="#" class="help-card">
         <div class="icon-circle">🛠️</div>
         <h3>Troubleshooting</h3>
-        <p>Solutions for common technical issues and system debugging.</p>
+        <p>Identify and resolve technical bottlenecks. Comprehensive debugging guides for complex system errors.</p>
       </a>
 
       <a href="#" class="help-card">
         <div class="icon-circle">💬</div>
-        <h3>Community Support</h3>
-        <p>Connect with other researchers and developers in our forum.</p>
+        <h3>Network Support</h3>
+        <p>Collaborate with global researchers and engineers to solve high-level technical challenges.</p>
       </a>
     </div>
   </main>
