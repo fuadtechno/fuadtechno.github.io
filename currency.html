@@ -10,35 +10,41 @@
   <style>
     :root {
       --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.15);
       --bg-deep: #020617;
       --sidebar-bg: #0f172a;
-      --card-glass: rgba(30, 41, 59, 0.4);
+      --card-glass: rgba(15, 23, 42, 0.6);
       --border-glass: rgba(255, 255, 255, 0.08);
       --text-primary: #f1f5f9;
       --text-dim: #94a3b8;
-      --input-bg: rgba(15, 23, 42, 0.8);
+      --input-bg: rgba(1, 4, 9, 0.5);
     }
 
+    /* --- RESET & GLOBAL --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-deep);
-      background-image: radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.05), transparent 40%);
+      background-image: 
+        radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.1), transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(129, 140, 248, 0.05), transparent 50%);
       color: var(--text-primary);
       display: flex;
       min-height: 100vh;
     }
 
-    /* --- SIDEBAR --- */
+    /* --- SIDEBAR BASE --- */
     .sidebar {
       width: 280px;
       background: var(--sidebar-bg);
       border-right: 1px solid var(--border-glass);
       position: fixed;
       height: 100vh;
-      padding: 1.5rem;
+      overflow-y: auto;
+      padding: 2rem 1.5rem;
       z-index: 1000;
+      backdrop-filter: blur(15px);
     }
 
     /* --- MAIN CONTENT --- */
@@ -49,69 +55,128 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.8s ease-out;
     }
 
     .converter-card {
-      max-width: 500px;
+      max-width: 550px;
       width: 100%;
       background: var(--card-glass);
       border: 1px solid var(--border-glass);
-      padding: 3rem;
-      border-radius: 35px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      padding: 3.5rem;
+      border-radius: 40px;
+      backdrop-filter: blur(25px);
+      box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.7);
+      position: relative;
     }
 
-    h1 { font-family: 'Outfit', sans-serif; font-size: 2.2rem; margin-bottom: 0.5rem; text-align: center; }
-    .subtitle { color: var(--text-dim); text-align: center; margin-bottom: 2.5rem; font-size: 0.9rem; }
+    /* Top decorative glow */
+    .converter-card::before {
+      content: "";
+      position: absolute;
+      top: -2px; left: 50%; transform: translateX(-50%);
+      width: 40%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
 
-    .input-group { margin-bottom: 1.5rem; }
-    .input-group label { display: block; font-size: 0.8rem; color: var(--text-dim); margin-bottom: 8px; text-transform: uppercase; font-weight: 700; }
+    h1 { 
+      font-family: 'Outfit', sans-serif; 
+      font-size: 2.5rem; 
+      margin-bottom: 0.8rem; 
+      text-align: center;
+      background: linear-gradient(to bottom, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle { color: var(--text-dim); text-align: center; margin-bottom: 3rem; font-size: 1rem; }
+
+    .input-group { margin-bottom: 1.8rem; }
+    .input-group label { 
+      display: block; 
+      font-size: 0.75rem; 
+      color: var(--accent); 
+      margin-bottom: 10px; 
+      text-transform: uppercase; 
+      font-weight: 800;
+      letter-spacing: 1.5px;
+    }
 
     input, select {
       width: 100%;
       background: var(--input-bg);
       border: 1px solid var(--border-glass);
-      padding: 1.2rem;
-      border-radius: 15px;
+      padding: 1.3rem;
+      border-radius: 18px;
       color: white;
       font-size: 1.1rem;
       outline: none;
-      transition: 0.3s;
+      transition: 0.4s;
     }
 
-    input:focus, select:focus { border-color: var(--accent); }
+    input:focus, select:focus { 
+      border-color: var(--accent); 
+      background: rgba(56, 189, 248, 0.05);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
 
     .swap-btn {
-      display: block;
-      margin: 1rem auto;
-      background: rgba(56, 189, 248, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: -0.5rem auto 1.5rem auto;
+      background: var(--sidebar-bg);
       border: 1px solid var(--border-glass);
       color: var(--accent);
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
       cursor: pointer;
-      font-size: 1.2rem;
-      transition: 0.3s;
+      font-size: 1.4rem;
+      transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 5;
     }
 
-    .swap-btn:hover { transform: rotate(180deg); background: var(--accent); color: var(--bg-deep); }
+    .swap-btn:hover { 
+      transform: rotate(180deg) scale(1.1); 
+      background: var(--accent); 
+      color: var(--bg-deep);
+      box-shadow: 0 0 30px var(--accent-glow);
+    }
 
     .result-area {
-      margin-top: 2rem;
-      padding: 1.5rem;
-      background: rgba(56, 189, 248, 0.05);
-      border-radius: 15px;
+      margin-top: 2.5rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), transparent);
+      border-radius: 24px;
       text-align: center;
-      border: 1px dashed var(--border-glass);
+      border: 1px solid rgba(56, 189, 248, 0.15);
     }
 
-    .result-val { font-size: 1.8rem; font-weight: 800; color: var(--accent); font-family: 'Outfit'; }
+    .result-val { 
+      font-size: 2.2rem; 
+      font-weight: 800; 
+      color: #fff; 
+      font-family: 'Outfit';
+      text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    }
+
+    .currency-label {
+      color: var(--accent);
+      font-size: 1rem;
+      margin-left: 8px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
 
     @media (max-width: 900px) {
-      .sidebar { width: 70px; padding: 1rem 0.5rem; }
-      .main-content { margin-left: 70px; padding: 2rem; }
+      .sidebar { width: 85px; padding: 1.5rem 0.5rem; }
+      .main-content { margin-left: 85px; padding: 2rem; }
+      .converter-card { padding: 2.5rem 1.5rem; }
     }
   </style>
 </head>
@@ -121,37 +186,39 @@
 
   <main class="main-content">
     <div class="converter-card">
-      <h1>Currency Converter</h1>
-      <p class="subtitle">Global exchange rates updated in real-time.</p>
+      <h1>Currency Engine</h1>
+      <p class="subtitle">PhD-level algorithmic exchange rates.</p>
 
       <div class="input-group">
-        <label>Amount</label>
-        <input type="number" value="1.00">
+        <label>Transaction Amount</label>
+        <input type="number" value="100.00" step="0.01">
       </div>
 
       <div class="input-group">
-        <label>From</label>
+        <label>Origin Currency</label>
         <select>
-          <option>USD - US Dollar</option>
-          <option>ETB - Ethiopian Birr</option>
-          <option>EUR - Euro</option>
+          <option>USD - United States Dollar</option>
+          <option selected>ETB - Ethiopian Birr</option>
+          <option>EUR - European Union Euro</option>
+          <option>GBP - British Pound</option>
         </select>
       </div>
 
-      <button class="swap-btn">⇅</button>
+      <button class="swap-btn" title="Swap Currencies">⇄</button>
 
       <div class="input-group">
-        <label>To</label>
+        <label>Destination Currency</label>
         <select>
+          <option selected>USD - United States Dollar</option>
           <option>ETB - Ethiopian Birr</option>
-          <option>USD - US Dollar</option>
-          <option>EUR - Euro</option>
+          <option>EUR - European Union Euro</option>
+          <option>GBP - British Pound</option>
         </select>
       </div>
 
       <div class="result-area">
-        <p style="color: var(--text-dim); font-size: 0.8rem; margin-bottom: 5px;">Converted Amount</p>
-        <div class="result-val">124.50 ETB</div>
+        <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Market Value</p>
+        <div class="result-val">1.82<span class="currency-label">USD</span></div>
       </div>
     </div>
   </main>
