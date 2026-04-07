@@ -1,85 +1,140 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fuadsoft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service | Fuadsoft Governance</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --accent: #38bdf8;
+      --bg-deep: #020617;
+      --sidebar-bg: #0f172a;
+      --card-glass: rgba(30, 41, 59, 0.4);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --text-primary: #f1f5f9;
+      --text-dim: #94a3b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      margin: 0;
-      font-family: Arial;
-      background: #0b1220;
-      color: white;
-    }
-
-    /* NAVBAR */
-    .navbar {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-deep);
+      color: var(--text-primary);
       display: flex;
-      justify-content: space-between;
-      padding: 15px 20px;
-      background: #020617;
+      min-height: 100vh;
     }
 
-    .logo {
-      font-weight: bold;
-      font-size: 20px;
+    /* --- SIDEBAR --- */
+    .sidebar {
+      width: 280px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border-glass);
+      position: fixed;
+      height: 100vh;
+      padding: 1.5rem;
+      z-index: 1000;
     }
 
-    .menu a {
-      margin: 0 10px;
-      color: #94a3b8;
+    /* Active Link for Terms */
+    .nav-link.active {
+      background: rgba(56, 189, 248, 0.1) !important;
+      border-left: 4px solid var(--accent) !important;
+      color: var(--accent) !important;
+    }
+
+    /* --- CONTENT --- */
+    .main-content {
+      margin-left: 280px;
+      flex: 1;
+      padding: 4rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .terms-box {
+      max-width: 850px;
+      background: var(--card-glass);
+      border: 1px solid var(--border-glass);
+      padding: 4rem;
+      border-radius: 40px;
+      backdrop-filter: blur(20px);
+    }
+
+    .terms-box h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.8rem;
+      margin-bottom: 2rem;
+      background: linear-gradient(to right, #fff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section { margin-bottom: 2.5rem; }
+    .section h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .section p {
+      color: var(--text-dim);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: var(--accent);
       text-decoration: none;
+      font-weight: 600;
     }
 
-    .menu a:hover {
-      color: #38bdf8;
-    }
-
-    /* CONTENT */
-    .container {
-      padding: 30px;
-    }
-
-    .box {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 10px;
-    }
-
-    a {
-      color: #38bdf8;
+    @media (max-width: 900px) {
+      .sidebar { width: 70px; }
+      .main-content { margin-left: 70px; padding: 2rem; }
+      .terms-box { padding: 2rem; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="logo">
-      <a href="index.html" style="color:white;text-decoration:none;">Fuadsoft</a>
-    </div>
+  <aside id="sidebar-container" class="sidebar"></aside>
 
-    <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="analytics.html">Analytics</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
+  <main class="main-content">
+    <div class="terms-box">
+      <h1>Terms of Service</h1>
 
-  <!-- CONTENT -->
-  <div class="container">
-    <div class="box">
-      <h1>Terms & Conditions</h1>
-      
+      <div class="section">
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing Fuadsoft PhD-Core, you agree to comply with our research ethics and data governance protocols. These terms govern all software and research data hosted under the Fuadsoft domain.</p>
+      </div>
 
-      <a href="index.html">⬅ Back Home</a>
+      <div class="section">
+        <h2>2. Intellectual Property</h2>
+        <p>All algorithms, research findings, and software code provided on this platform are the property of Fuad Aliyi and Fuadsoft. Unauthorized reproduction of PhD research materials is strictly prohibited.</p>
+      </div>
+
+      <div class="section">
+        <h2>3. User Responsibility</h2>
+        <p>Users are responsible for maintaining the confidentiality of their credentials and for all activities that occur under their PhD-Core account.</p>
+      </div>
+
+      <div class="section">
+        <h2>4. Limitation of Liability</h2>
+        <p>Fuadsoft is a research-driven platform. While we strive for 100% accuracy in our analytics, results should be cross-verified within institutional frameworks.</p>
+      </div>
+
+      <a href="index.html" class="back-link">⬅ Return Home</a>
     </div>
-  </div>
+  </main>
+
+  <script src="sidebar.js"></script>
 
 </body>
 </html>
