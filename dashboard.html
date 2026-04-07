@@ -10,120 +10,174 @@
   <style>
     :root {
       --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.15);
       --bg-deep: #020617;
       --sidebar-bg: #0f172a;
-      --card-glass: rgba(30, 41, 59, 0.4);
+      --card-glass: rgba(15, 23, 42, 0.6);
       --border-glass: rgba(255, 255, 255, 0.08);
       --text-primary: #f1f5f9;
       --text-dim: #94a3b8;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* --- RESET & GLOBAL --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-deep);
-      background-image: radial-gradient(circle at 50% -20%, #1e293b, #020617);
+      background-image: 
+        radial-gradient(circle at 50% -20%, #1e293b, #020617),
+        radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.05), transparent 40%);
       color: var(--text-primary);
       display: flex;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* --- SIDEBAR BASE STYLES --- */
+    /* --- SIDEBAR BASE --- */
     .sidebar {
       width: 280px;
       background: var(--sidebar-bg);
       border-right: 1px solid var(--border-glass);
-      display: flex;
-      flex-direction: column;
       position: fixed;
       height: 100vh;
       overflow-y: auto;
-      padding: 1.5rem;
+      padding: 2rem 1.5rem;
       z-index: 1000;
+      backdrop-filter: blur(15px);
     }
 
-    /* Styles for sidebar.js */
-    .logo-area { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; padding-bottom: 2rem; color: var(--accent); }
-    .nav-group { margin-bottom: 1.5rem; }
-    .nav-label { font-size: 0.7rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
-    .nav-link { display: flex; align-items: center; padding: 0.75rem 1rem; color: var(--text-dim); text-decoration: none; font-size: 0.9rem; border-radius: 12px; transition: 0.3s; }
-    .nav-link:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); }
-    .nav-link.active { background: var(--accent); color: var(--bg-deep); font-weight: 600; box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3); }
+    /* --- ACTIVE LINK STYLING (For sidebar.js) --- */
+    .nav-link {
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 1.2rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.9rem;
+      border-radius: 12px;
+      transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: 5px;
+      border-left: 4px solid transparent;
+    }
 
-    /* --- MAIN DASHBOARD CONTENT --- */
+    .nav-link.active {
+      background: var(--accent-glow) !important;
+      border-left: 4px solid var(--accent) !important;
+      color: var(--accent) !important;
+      font-weight: 600;
+      box-shadow: inset 10px 0 20px rgba(56, 189, 248, 0.05);
+    }
+
+    /* --- MAIN DASHBOARD --- */
     .main-content {
       margin-left: 280px;
       flex: 1;
-      padding: 3rem;
+      padding: 5rem 4rem;
+      max-width: 1400px;
+      animation: fadeIn 0.8s ease-out;
     }
 
-    .welcome-header {
-      margin-bottom: 3rem;
+    .welcome-header { margin-bottom: 4rem; }
+    
+    h1 { 
+      font-family: 'Outfit', sans-serif; 
+      font-size: 3rem; 
+      letter-spacing: -1px;
+      background: linear-gradient(to bottom, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .welcome-header h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 2.5rem;
-    }
-
-    /* DASHBOARD WIDGETS */
+    /* --- GRID --- */
     .grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
     }
 
     .dashboard-card {
       background: var(--card-glass);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(20px);
       border: 1px solid var(--border-glass);
-      padding: 2rem;
-      border-radius: 24px;
-      transition: transform 0.3s ease;
+      padding: 2.5rem;
+      border-radius: 32px;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
     }
 
     .dashboard-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px);
       border-color: var(--accent);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     }
 
     .card-icon {
-      width: 45px;
-      height: 45px;
+      width: 54px;
+      height: 54px;
       background: rgba(56, 189, 248, 0.1);
-      border-radius: 12px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--accent);
-      margin-bottom: 1.5rem;
-      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+      border: 1px solid rgba(56, 189, 248, 0.2);
     }
 
-    h3 { font-family: 'Outfit', sans-serif; margin-bottom: 0.8rem; font-size: 1.3rem; }
-    .card-desc { color: var(--text-dim); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem; }
+    h3 { font-family: 'Outfit', sans-serif; margin-bottom: 1rem; font-size: 1.5rem; color: #fff; }
+    .card-desc { color: var(--text-dim); font-size: 1rem; line-height: 1.6; margin-bottom: 2rem; }
+
+    /* PERFORMANCE BAR */
+    .progress-wrapper {
+      height: 8px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #818cf8);
+      border-radius: 20px;
+      box-shadow: 0 0 15px var(--accent-glow);
+      animation: loadBar 2s ease-out forwards;
+    }
 
     .action-btn {
       color: var(--accent);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.9rem;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: 0.3s;
     }
 
-    .action-btn:hover { text-decoration: underline; }
+    .action-btn:hover { gap: 15px; filter: brightness(1.2); }
+
+    /* --- ANIMATIONS --- */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes loadBar {
+      from { width: 0; }
+      to { width: 92%; }
+    }
 
     @media (max-width: 900px) {
-      .sidebar { width: 70px; padding: 1rem 0.5rem; }
+      .sidebar { width: 85px; padding: 1.5rem 0.5rem; }
       .nav-label, .nav-link span { display: none; }
-      .main-content { margin-left: 70px; padding: 1.5rem; }
+      .main-content { margin-left: 85px; padding: 2rem; }
+      h1 { font-size: 2.2rem; }
     }
   </style>
 </head>
@@ -133,37 +187,36 @@
 
   <main class="main-content">
     <div class="welcome-header">
-      <p style="color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; margin-bottom: 0.5rem;">System Operational</p>
+      <span style="color: var(--accent); font-weight: 800; text-transform: uppercase; letter-spacing: 3px; font-size: 0.75rem; margin-bottom: 10px; display: block;">System Core Operational</span>
       <h1>Executive Dashboard</h1>
-      <p style="color: var(--text-dim);">Manage your projects and monitor real-time performance.</p>
+      <p style="color: var(--text-dim); font-size: 1.1rem; margin-top: 10px;">PhD-level interface for monitoring real-time ecosystem performance.</p>
     </div>
 
     <div class="grid-container">
       <div class="dashboard-card">
         <div class="card-icon">📁</div>
         <h3>Active Projects</h3>
-        <p class="card-desc">You have 12 active projects this week. 4 are nearing completion.</p>
-        <a href="projects.html" class="action-btn">View Projects &rarr;</a>
+        <p class="card-desc">You are currently managing 12 research-led projects. 4 modules are pending final peer review.</p>
+        <a href="projects.html" class="action-btn">Open Workspace &rarr;</a>
       </div>
 
       <div class="dashboard-card">
         <div class="card-icon">⚡</div>
-        <h3>System Performance</h3>
-        <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-bottom: 10px;">
-           <div style="width: 92%; height: 100%; background: var(--accent); border-radius: 10px;"></div>
+        <h3>System Integrity</h3>
+        <div class="progress-wrapper">
+           <div class="progress-fill"></div>
         </div>
-        <p class="card-desc">System health is at <strong>92%</strong>. No critical errors detected.</p>
-        <a href="status.html" class="action-btn">Check Status &rarr;</a>
+        <p class="card-desc">Computational health is at <strong>92%</strong>. Optimization protocols are running smoothly.</p>
+        <a href="status.html" class="action-btn">View Telemetry &rarr;</a>
       </div>
 
       <div class="dashboard-card">
         <div class="card-icon">👥</div>
-        <h3>Team Collaboration</h3>
-        <p class="card-desc">5 team members are currently online and working on Sprint 4.</p>
-        <a href="teams.html" class="action-btn">Manage Team &rarr;</a>
+        <h3>Collaborators</h3>
+        <p class="card-desc">5 senior engineers are active. Sprint 4 deployment is scheduled for 04:00 UTC.</p>
+        <a href="teams.html" class="action-btn">Network Access &rarr;</a>
       </div>
     </div>
-
   </main>
 
   <script src="sidebar.js"></script>
