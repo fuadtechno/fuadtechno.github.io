@@ -10,94 +10,194 @@
   <style>
     :root {
       --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.15);
       --bg-deep: #020617;
       --sidebar-bg: #0f172a;
-      --card-glass: rgba(30, 41, 59, 0.4);
+      --card-glass: rgba(15, 23, 42, 0.6);
       --border-glass: rgba(255, 255, 255, 0.08);
       --text-primary: #f1f5f9;
       --text-dim: #94a3b8;
     }
 
+    /* --- RESET & GLOBAL --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-deep);
-      background-image: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.08), transparent 40%);
+      background-image: 
+        radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.1), transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(129, 140, 248, 0.05), transparent 50%);
       color: var(--text-primary);
       display: flex;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* --- SIDEBAR --- */
+    /* --- SIDEBAR BASE --- */
     .sidebar {
       width: 280px;
       background: var(--sidebar-bg);
       border-right: 1px solid var(--border-glass);
-      display: flex;
-      flex-direction: column;
       position: fixed;
       height: 100vh;
       overflow-y: auto;
-      padding: 1.5rem;
+      padding: 2rem 1.5rem;
       z-index: 1000;
+      backdrop-filter: blur(15px);
     }
 
-    .logo-area { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; padding-bottom: 2rem; color: var(--accent); }
-    .nav-group { margin-bottom: 1.5rem; }
-    .nav-label { font-size: 0.7rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
-    .nav-link { display: flex; align-items: center; padding: 0.7rem 1rem; color: var(--text-dim); text-decoration: none; font-size: 0.9rem; border-radius: 10px; transition: 0.3s; }
-    .nav-link:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); }
-    .nav-link.active { background: var(--accent); color: var(--bg-deep); font-weight: 600; }
+    /* --- ACTIVE LINK STYLING --- */
+    .nav-link {
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 1.2rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.9rem;
+      border-radius: 12px;
+      transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: 5px;
+      border-left: 4px solid transparent;
+    }
 
-    /* --- COMMUNITY CONTENT --- */
+    .nav-link.active {
+      background: var(--accent-glow) !important;
+      border-left: 4px solid var(--accent) !important;
+      color: var(--accent) !important;
+      font-weight: 600;
+      box-shadow: inset 10px 0 20px rgba(56, 189, 248, 0.05);
+    }
+
+    .nav-link:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      transform: translateX(5px);
+    }
+
+    /* --- MAIN CONTENT --- */
     .main-content {
       margin-left: 280px;
       flex: 1;
-      padding: 4rem;
+      padding: 5rem 4rem;
+      max-width: 1200px;
     }
 
-    .header-section { margin-bottom: 4rem; text-align: left; }
-    h1 { font-family: 'Outfit', sans-serif; font-size: 3rem; margin-bottom: 1rem; }
+    .header-section { 
+      margin-bottom: 4rem; 
+      animation: fadeIn 0.8s ease-out;
+    }
 
+    h1 { 
+      font-family: 'Outfit', sans-serif; 
+      font-size: 3.5rem; 
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #fff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
+    }
+
+    /* --- FORUM GRID --- */
     .forum-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 1.5rem;
-      max-width: 900px;
+      animation: fadeInUp 1s ease-out;
     }
 
     .forum-item {
       background: var(--card-glass);
       border: 1px solid var(--border-glass);
-      padding: 1.5rem 2rem;
-      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      border-radius: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: 0.3s ease;
-      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .forum-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 4px;
+      background: var(--accent);
+      opacity: 0;
+      transition: 0.3s;
     }
 
     .forum-item:hover {
-      border-color: var(--accent);
-      transform: translateX(10px);
-      background: rgba(30, 41, 59, 0.6);
+      border-color: rgba(56, 189, 248, 0.3);
+      transform: translateX(15px);
+      background: rgba(30, 41, 59, 0.7);
+      box-shadow: -20px 20px 40px rgba(0,0,0,0.3);
     }
 
-    .forum-info h3 { font-family: 'Outfit', sans-serif; margin-bottom: 0.3rem; }
-    .forum-info p { color: var(--text-dim); font-size: 0.9rem; }
+    .forum-item:hover::before {
+      opacity: 1;
+    }
 
-    .stats { text-align: right; }
-    .stat-num { display: block; font-weight: 800; color: var(--accent); font-size: 1.1rem; }
-    .stat-label { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; }
+    .forum-info h3 { 
+      font-family: 'Outfit', sans-serif; 
+      font-size: 1.4rem; 
+      margin-bottom: 0.5rem; 
+      color: #fff;
+    }
+
+    .forum-info p { 
+      color: var(--text-dim); 
+      font-size: 1rem; 
+      max-width: 500px;
+      line-height: 1.5;
+    }
+
+    .stats { 
+      text-align: right; 
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1rem 1.5rem;
+      border-radius: 16px;
+      border: 1px solid var(--border-glass);
+    }
+
+    .stat-num { 
+      display: block; 
+      font-weight: 800; 
+      color: var(--accent); 
+      font-size: 1.3rem; 
+      font-family: 'Outfit';
+    }
+
+    .stat-label { 
+      font-size: 0.7rem; 
+      color: var(--text-dim); 
+      text-transform: uppercase; 
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    /* --- ANIMATIONS --- */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     @media (max-width: 900px) {
-      .sidebar { width: 70px; padding: 1rem 0.5rem; }
+      .sidebar { width: 85px; padding: 1.5rem 0.5rem; }
       .nav-label, .nav-link span { display: none; }
-      .main-content { margin-left: 70px; padding: 1.5rem; }
-      .forum-item { flex-direction: column; align-items: flex-start; gap: 1rem; }
-      .stats { text-align: left; }
+      .main-content { margin-left: 85px; padding: 2rem; }
+      .forum-item { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .stats { text-align: left; width: 100%; }
+      h1 { font-size: 2.5rem; }
     }
   </style>
 </head>
@@ -107,42 +207,44 @@
 
   <main class="main-content">
     <div class="header-section">
-      <p style="color: var(--accent); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px;">GLOBAL NETWORK</p>
+      <p style="color: var(--accent); font-weight: 800; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;">Collective Intelligence</p>
       <h1>Community Hub</h1>
-      <p style="color: var(--text-dim);">Connect with thousands of developers and engineers in the Fuadsoft ecosystem.</p>
+      <p style="color: var(--text-dim); font-size: 1.1rem; max-width: 650px;">
+        Collaborate with a global network of researchers and developers pushing the boundaries of the Fuadsoft ecosystem.
+      </p>
     </div>
 
     <div class="forum-grid">
       <div class="forum-item">
         <div class="forum-info">
           <h3>General Discussion</h3>
-          <p>Talk about software architecture and industry trends.</p>
+          <p>Deep dives into software architecture, scalable systems, and PhD-core research trends.</p>
         </div>
         <div class="stats">
           <span class="stat-num">12.4K</span>
-          <span class="stat-label">Topics</span>
+          <span class="stat-label">Scientific Topics</span>
         </div>
       </div>
 
       <div class="forum-item">
         <div class="forum-info">
           <h3>Showcase & Feedback</h3>
-          <p>Share your projects and get PhD-level peer reviews.</p>
+          <p>Deploy your prototypes and receive rigorous peer-reviews from senior architects.</p>
         </div>
         <div class="stats">
           <span class="stat-num">8.1K</span>
-          <span class="stat-label">Projects</span>
+          <span class="stat-label">Innovations</span>
         </div>
       </div>
 
       <div class="forum-item">
         <div class="forum-info">
-          <h3>Bug Reports & Support</h3>
-          <p>Technical troubleshooting for Fuadsoft SDKs and APIs.</p>
+          <h3>Bug Reports & SDK Support</h3>
+          <p>High-priority technical troubleshooting for Fuadsoft APIs and integration protocols.</p>
         </div>
         <div class="stats">
           <span class="stat-num">2.5K</span>
-          <span class="stat-label">Resolved</span>
+          <span class="stat-label">Verified Fixes</span>
         </div>
       </div>
     </div>
