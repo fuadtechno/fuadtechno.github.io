@@ -1,85 +1,152 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fuadsoft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | Fuadsoft Governance</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --accent: #38bdf8;
+      --bg-deep: #020617;
+      --sidebar-bg: #0f172a;
+      --card-glass: rgba(30, 41, 59, 0.4);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --text-primary: #f1f5f9;
+      --text-dim: #94a3b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      margin: 0;
-      font-family: Arial;
-      background: #0b1220;
-      color: white;
-    }
-
-    /* NAVBAR */
-    .navbar {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-deep);
+      background-image: radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.03), transparent 50%);
+      color: var(--text-primary);
       display: flex;
-      justify-content: space-between;
-      padding: 15px 20px;
-      background: #020617;
+      min-height: 100vh;
     }
 
-    .logo {
-      font-weight: bold;
-      font-size: 20px;
+    /* --- SIDEBAR --- */
+    .sidebar {
+      width: 280px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border-glass);
+      position: fixed;
+      height: 100vh;
+      padding: 1.5rem;
+      z-index: 1000;
     }
 
-    .menu a {
-      margin: 0 10px;
-      color: #94a3b8;
+    /* --- PRIVACY CONTENT --- */
+    .main-content {
+      margin-left: 280px;
+      flex: 1;
+      padding: 4rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .policy-box {
+      max-width: 850px;
+      background: var(--card-glass);
+      border: 1px solid var(--border-glass);
+      padding: 4rem;
+      border-radius: 40px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .policy-box h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, #fff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .last-update {
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 3rem;
+      display: block;
+    }
+
+    .section { margin-bottom: 2.5rem; }
+    .section h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .section p {
+      color: var(--text-dim);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .compliance-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(34, 197, 94, 0.1);
+      color: #4ade80;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: var(--accent);
       text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
     }
 
-    .menu a:hover {
-      color: #38bdf8;
-    }
+    .back-link:hover { opacity: 0.7; }
 
-    /* CONTENT */
-    .container {
-      padding: 30px;
-    }
-
-    .box {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 10px;
-    }
-
-    a {
-      color: #38bdf8;
+    @media (max-width: 900px) {
+      .sidebar { width: 70px; padding: 1rem 0.5rem; }
+      .main-content { margin-left: 70px; padding: 2rem; }
+      .policy-box { padding: 2rem; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="logo">
-      <a href="index.html" style="color:white;text-decoration:none;">Fuadsoft</a>
-    </div>
+  <aside id="sidebar-container" class="sidebar"></aside>
 
-    <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="analytics.html">Analytics</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
-
-  <!-- CONTENT -->
-  <div class="container">
-    <div class="box">
+  <main class="main-content">
+    <div class="policy-box">
+      <div class="compliance-badge">🛡️ Global Data Protection Standard</div>
       <h1>Privacy Policy</h1>
-      
+      <span class="last-update">Effective: April 08, 2026</span>
 
-      <a href="index.html">⬅ Back Home</a>
-    </div>
-  </div>
+      <div class="section">
+        <h2>1. Data Governance</h2>
+        <p>At Fuadsoft, we operate on a "Privacy-by-Design" principle. For a researcher and PhD candidate like Fuad Aliyi, protecting intellectual property is paramount. We ensure all research data is siloed and encrypted using AES-256 standards.</p>
+      </div>
 
-</body>
-</html>
+      <div class="section">
+        <h2>2. Information Collection</h2>
+        <p>Our systems only collect essential telemetry data to optimize the Fuadsoft PhD-Core performance. We do not track personal identities beyond what is necessary for institutional authentication.</p>
+      </div>
+
+      <div class="section">
+        <h2>3. Data Sovereignty</h2>
+        <p>You retain full ownership of any algorithms, datasets, or documentation uploaded to the Fuadsoft cloud infrastructure. We provide tools for immediate data deletion and portability.</p>
+      </div>
+
+      <div class="section">
+        <h2>4
