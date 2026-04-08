@@ -3,52 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fuadsoft | Network Control</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@700&display=swap" rel="stylesheet">
+    <title>Fuadsoft | Advanced Network Research</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --accent: #38bdf8;
-            --bg-deep: #020617;
-            --card-bg: #0f172a;
+            --bg: #020617;
+            --glass: rgba(15, 23, 42, 0.8);
+            --border: rgba(255, 255, 255, 0.1);
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            margin: 0;
             font-family: 'Inter', sans-serif;
-            background: var(--bg-deep);
-            color: white;
+            background: var(--bg);
+            color: #f1f5f9;
             display: flex;
+            line-height: 1.7;
         }
-        #sidebar-container { width: 280px; height: 100vh; position: fixed; }
-        main {
-            margin-left: 280px;
-            padding: 50px;
-            width: 100%;
+        #sidebar-container { width: 280px; height: 100vh; position: fixed; border-right: 1px solid var(--border); }
+        main { margin-left: 280px; padding: 60px; width: 100%; }
+
+        .edu-section { margin-bottom: 100px; animation: fadeIn 1s ease-in-out; }
+        .module-tag { color: var(--accent); font-weight: 800; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; }
+        h2 { font-family: 'Outfit', sans-serif; font-size: 3rem; margin: 15px 0; background: linear-gradient(to right, #fff, #64748b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .phd-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 45px;
+            border-radius: 35px;
+            margin-top: 35px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-        .status-header {
-            display: flex;
+
+        .math-box {
+            background: #000;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent);
+            margin: 25px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .resource-link {
+            display: inline-flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 40px;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            border: 1px solid var(--accent);
+            transition: 0.3s;
         }
-        .status-dot {
-            width: 12px;
-            height: 12px;
-            background: #22c55e;
-            border-radius: 50%;
-            box-shadow: 0 0 15px #22c55e;
-        }
-        .network-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        .stat-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        h1 { font-family: 'Outfit', sans-serif; font-size: 2.5rem; }
+        .resource-link:hover { background: var(--accent); color: var(--bg); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -56,28 +68,51 @@
     <div id="sidebar-container"></div>
 
     <main>
-        <div class="status-header">
-            <div class="status-dot"></div>
-            <h1>Network Infrastructure</h1>
-        </div>
+        <section class="edu-section">
+            <div class="module-tag">Module 01: Information Theory</div>
+            <h2>Network Topology Efficiency</h2>
+            <p>Sadarkaa PhD irratti, "Network Topology"n Fuadsoft akka <em>Graph Theory</em> tti ilaalama. Nodes sirna kanaa walitti hidhamiinsa <strong>Mesh-Grid</strong> qabu, kunis gufuu malee odeeffannoo dabarsuuf gargaara.</p>
+            
+            <div class="phd-card">
+                <h3>Shannon Capacity Theorem</h3>
+                <p>Saffisni networkii (Throughput) hamma "Noise" fi "Bandwidth" jiru irratti hundaa'a:</p>
+                <div class="math-box">C = B log₂(1 + S/N)</div>
+                <p>Barumsa bal'aa waa'ee Network Transmission argachuuf:</p>
+                <a href="https://www.w3schools.com/cybersecurity/cybersecurity_networks.php" target="_blank" class="resource-link">
+                    LEARN MORE AT W3SCHOOLS →
+                </a>
+            </div>
+        </section>
 
-        <div class="network-grid">
-            <div class="stat-card">
-                <h3 style="color: var(--accent);">Latency</h3>
-                <p style="font-size: 2rem; font-weight: 800;">24ms</p>
-                <span style="color: #22c55e;">● Optimal Performance</span>
+        <section class="edu-section">
+            <div class="module-tag">Module 02: Cryptographic Systems</div>
+            <h2>Quantum-Resistant Security</h2>
+            <p>Fuadsoft nageenya odeeffannoo eeguuf <strong>AES-256-GCM</strong> fayyadama. Kun iccitii "End-to-End Encryption" PhD-level ti. Barumsi kun kallaattii nageenya digitalii (Cybersecurity) irratti xiyyeeffata.</p>
+            
+            <div class="phd-card">
+                <h3>Advanced Security Protocol</h3>
+                <p>Odeeffannoon tokko "Encapsulate" yeroo ta'u, <em>Hashing Algorithms</em> fayyadamee sirrummaa isaa mirkaneessa.</p>
+                <div class="math-box">Hash(Message + Salt) = Secure_Token</div>
+                <p>Waa'ee Cybersecurity caalaatti barachuuf:</p>
+                <a href="https://www.w3schools.com/cybersecurity/" target="_blank" class="resource-link">
+                    EXPLORE SECURITY SPECS →
+                </a>
             </div>
-            <div class="stat-card">
-                <h3 style="color: var(--accent);">Active Nodes</h3>
-                <p style="font-size: 2rem; font-weight: 800;">12/12</p>
-                <span style="color: #22c55e;">● All Systems Online</span>
+        </section>
+
+        <section class="edu-section">
+            <div class="module-tag">Module 03: System Abstraction</div>
+            <h2>OSI Layer 7 Optimization</h2>
+            <p>Sirni Fuadsoft "Application Layer" (Layer 7) irratti <strong>gRPC</strong> fi <strong>HTTP/3</strong> fayyadamuun saffisa dabala. Kunis "Payload" xiqqaachisuun deebii saffisaa (latency) fida.</p>
+            
+            <div class="phd-card">
+                <h3>Protocol Architecture</h3>
+                <p>Dizaayiniin kun "Decoupled Architecture" irratti hundaa'a, kunis yoo kutaaleen tokko tokko badan (Fail) sirni hundi akka hin dhaabbanne taasisa.</p>
+                <a href="https://www.w3schools.com/xml/xml_http.asp" target="_blank" class="resource-link">
+                    TECHNICAL DOCUMENTATION →
+                </a>
             </div>
-            <div class="stat-card">
-                <h3 style="color: var(--accent);">Security</h3>
-                <p style="font-size: 2rem; font-weight: 800;">Encrypted</p>
-                <span style="color: #38bdf8;">● AES-256 Active</span>
-            </div>
-        </div>
+        </section>
     </main>
 
     <script src="sidebar.js"></script>
