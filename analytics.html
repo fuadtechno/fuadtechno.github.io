@@ -20,7 +20,6 @@
       --success: #10b981;
     }
 
-    /* --- RESET & GLOBAL --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -43,33 +42,6 @@
       padding: 1.5rem;
       z-index: 1000;
       backdrop-filter: blur(10px);
-    }
-
-    /* --- ACTIVE LINK STYLE --- */
-    .nav-link {
-      display: flex;
-      align-items: center;
-      padding: 0.8rem 1.2rem;
-      color: var(--text-dim);
-      text-decoration: none;
-      font-size: 0.9rem;
-      border-radius: 12px;
-      transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      margin-bottom: 5px;
-      border-left: 4px solid transparent;
-    }
-
-    /* Linkii fuula Analytics irratti "Active" akka ta'u taasisa */
-    .nav-link.active {
-      background: var(--accent-glow) !important;
-      border-left: 4px solid var(--accent) !important;
-      color: var(--accent) !important;
-      font-weight: 600;
-    }
-
-    .nav-link:hover:not(.active) {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-primary);
     }
 
     /* --- MAIN CONTENT --- */
@@ -140,20 +112,30 @@
 
     .chart-info { text-align: center; z-index: 1; }
     .chart-info p { color: var(--text-dim); font-size: 1rem; }
-    .chart-badge { 
+    
+    /* --- ENHANCED BADGE LINK --- */
+    .chart-link { 
       background: var(--accent); 
       color: var(--bg-deep); 
-      padding: 5px 15px; 
+      padding: 12px 25px; 
       border-radius: 50px; 
-      font-size: 0.75rem; 
+      font-size: 0.8rem; 
       font-weight: 800; 
-      margin-top: 15px; 
+      margin-top: 20px; 
       display: inline-block;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .chart-link:hover {
+      background: #fff;
+      transform: scale(1.1);
+      box-shadow: 0 0 25px var(--accent);
     }
 
     @media (max-width: 900px) {
       .sidebar { width: 80px; padding: 1.5rem 0.5rem; }
-      .nav-label, .nav-link span { display: none; }
       .main-content { margin-left: 80px; padding: 2rem; }
     }
   </style>
@@ -190,9 +172,12 @@
 
     <div class="chart-container">
       <div class="chart-info">
-        <p style="font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 5px;">Data Visualization Engine</p>
+        <p style="font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 8px;">Data Visualization Engine</p>
         <p>Advanced PhD analytics integration pending API handshake.</p>
-        <div class="chart-badge">READY FOR DEPLOYMENT</div>
+        
+        <a href="https://www.w3schools.com/graphics/canvas_intro.asp" target="_blank" class="chart-link">
+            Ready for Deployment — Access Specs
+        </a>
       </div>
     </div>
 
