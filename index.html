@@ -30,9 +30,9 @@
       background-size: 60px 60px;
       color: var(--text-primary);
       display: flex;
+      flex-direction: column; /* Changed to column for proper footer placement */
       min-height: 100vh;
       overflow-x: hidden;
-      overflow-y: auto; 
     }
 
     .sidebar {
@@ -55,7 +55,6 @@
       align-items: center;
       padding: 4rem;
       position: relative;
-      min-height: 100vh;
     }
 
     .main-content::before {
@@ -157,7 +156,6 @@
       backdrop-filter: blur(5px);
     }
 
-    /* --- COLLABORATOR CARD STYLE --- */
     .collaborator-section {
       width: 100%;
       max-width: 1100px;
@@ -174,7 +172,6 @@
       border-radius: 35px;
       width: 100%;
       max-width: 480px;
-      text-align: left;
       transition: 0.4s ease;
     }
 
@@ -196,7 +193,89 @@
       margin-top: 30px;
     }
 
-    /* Animations */
+    /* --- FOOTER STYLES --- */
+    .site-footer {
+      margin-left: 280px;
+      background: var(--sidebar-bg);
+      border-top: 1px solid var(--border-glass);
+      padding: 60px 40px 30px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-grid {
+      max-width: 1100px;
+      margin: 0 auto 50px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+    }
+
+    .footer-brand h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+
+    .footer-brand p {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .footer-column h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-primary);
+      margin-bottom: 25px;
+    }
+
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 12px; }
+    .footer-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+    .footer-links a:hover { color: var(--accent); padding-left: 5px; }
+
+    .metadata-card {
+      background: rgba(255,255,255,0.03);
+      padding: 20px;
+      border-radius: 18px;
+      border: 1px solid var(--border-glass);
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-top: 30px;
+      border-top: 1px solid var(--border-glass);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+    }
+
+    .status-indicator { display: flex; align-items: center; gap: 10px; }
+    .pulse-dot {
+      width: 8px; height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #10b981;
+      animation: statusPulse 2s infinite;
+    }
+
+    @keyframes statusPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.2); }
+    }
+
     @keyframes heroEnter {
       from { opacity: 0; transform: translateY(60px) scale(0.95); }
       to { opacity: 1; transform: translateY(0) scale(1); }
@@ -208,7 +287,8 @@
 
     @media (max-width: 1024px) {
       .sidebar { width: 85px; }
-      .main-content { margin-left: 85px; padding: 2rem; }
+      .main-content, .site-footer { margin-left: 85px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
       h1 { font-size: 3.2rem; }
     }
   </style>
@@ -246,8 +326,60 @@
         </div>
     </section>
 
-    <div style="height: 300px; width: 100%;"></div>
+    <div style="height: 150px; width: 100%;"></div>
   </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Fuadsoft™</h3>
+        <p>Architecting the digital frontier with high-integrity systems and neural-interface design. Built for the next epoch of engineering.</p>
+      </div>
+      
+      <div class="footer-column">
+        <h4>Platform</h4>
+        <ul class="footer-links">
+          <li><a href="#">Core Engine</a></li>
+          <li><a href="#">API Documentation</a></li>
+          <li><a href="#">Security Audit</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="#">Whitepapers</a></li>
+          <li><a href="#">Network Status</a></li>
+          <li><a href="#">Technical Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Metadata</h4>
+        <div class="metadata-card">
+          <p style="font-size: 0.75rem; color: var(--accent); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">Lead Architect</p>
+          <p style="font-family: 'Outfit'; font-size: 1.1rem; color: #fff;">Godhi as Jaaltti</p>
+          <p style="font-size: 0.7rem; margin-top: 10px; opacity: 0.6;">Core ID: FS-8802-PHD</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="status-indicator">
+        <div class="pulse-dot"></div>
+        <span>Network: Stable (0.4ms)</span>
+      </div>
+
+      <div class="copyright">
+        &copy; 2026 Fuadsoft Infrastructure. Developed by <strong>Godhi as Jaaltti</strong>. All Rights Reserved.
+      </div>
+
+      <div style="display: flex; gap: 20px;">
+        <a href="#" style="color: inherit; text-decoration: none;">Privacy</a>
+        <a href="#" style="color: inherit; text-decoration: none;">Legal</a>
+      </div>
+    </div>
+  </footer>
 
   <script src="sidebar.js"></script>
 
