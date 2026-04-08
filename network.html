@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuadsoft | Network Control</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #38bdf8;
+            --bg-deep: #020617;
+            --card-bg: #0f172a;
+        }
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-deep);
+            color: white;
+            display: flex;
+        }
+        #sidebar-container { width: 280px; height: 100vh; position: fixed; }
+        main {
+            margin-left: 280px;
+            padding: 50px;
+            width: 100%;
+        }
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #22c55e;
+        }
+        .network-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .stat-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.5rem; }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar-container"></div>
+
+    <main>
+        <div class="status-header">
+            <div class="status-dot"></div>
+            <h1>Network Infrastructure</h1>
+        </div>
+
+        <div class="network-grid">
+            <div class="stat-card">
+                <h3 style="color: var(--accent);">Latency</h3>
+                <p style="font-size: 2rem; font-weight: 800;">24ms</p>
+                <span style="color: #22c55e;">● Optimal Performance</span>
+            </div>
+            <div class="stat-card">
+                <h3 style="color: var(--accent);">Active Nodes</h3>
+                <p style="font-size: 2rem; font-weight: 800;">12/12</p>
+                <span style="color: #22c55e;">● All Systems Online</span>
+            </div>
+            <div class="stat-card">
+                <h3 style="color: var(--accent);">Security</h3>
+                <p style="font-size: 2rem; font-weight: 800;">Encrypted</p>
+                <span style="color: #38bdf8;">● AES-256 Active</span>
+            </div>
+        </div>
+    </main>
+
+    <script src="sidebar.js"></script>
+</body>
+</html>
