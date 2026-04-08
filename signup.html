@@ -3,45 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up | Join Fuadsoft Infrastructure</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <title>W3 Register | Join Fuadsoft</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Login irra jiru asittis ni hojjeta, 'Sign Up' qofaaf fooyya'e */
+    :root { --bg: #020617; --accent: #38bdf8; --card-bg: rgba(15, 23, 42, 0.8); --border: rgba(255, 255, 255, 0.1); --text: #f1f5f9; }
+    body { margin: 0; font-family: 'Outfit', sans-serif; background-color: var(--bg); color: var(--text); display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .login-box { width: 450px; padding: 3rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px; text-align: center; backdrop-filter: blur(20px); }
+    .w3-logo { font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 2rem; display: block; }
+    .input-group { text-align: left; margin-bottom: 1rem; }
+    label { font-size: 0.65rem; color: var(--accent); letter-spacing: 1px; display: block; margin-bottom: 5px; }
+    input { width: 100%; padding: 10px 14px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 10px; color: white; outline: none; box-sizing: border-box; }
+    .btn-login { width: 100%; padding: 14px; background: var(--accent); border: none; border-radius: 12px; color: #020617; font-weight: 800; cursor: pointer; margin-top: 1rem; }
+  </style>
 </head>
-<body class="auth-container">
+<body>
 
-  <div class="auth-card" style="max-width: 500px;">
-    <div class="badge">New Node Registration</div>
-    <h2 style="font-family: 'Outfit'; font-size: 2.5rem; margin-bottom: 10px;">Join the Network</h2>
-    <p style="color: var(--text-dim); margin-bottom: 2rem;">Initialize your profile within the Fuadsoft ecosystem.</p>
+  <div class="login-box">
+    <span class="w3-logo">// NODE_INIT</span>
+    <h2>New Registration</h2>
+    <p>Deploy your architect profile to the network.</p>
 
-    <form action="billing.html">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-        <div style="text-align: left;">
-          <label style="font-size: 0.7rem; color: var(--accent);">FIRST NAME</label>
-          <input type="text" placeholder="Godhi" required>
+    <form action="login.html">
+      <div style="display: flex; gap: 10px;">
+        <div class="input-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Godhi as Jaaltti" required>
         </div>
-        <div style="text-align: left;">
-          <label style="font-size: 0.7rem; color: var(--accent);">DESIGNATION</label>
-          <input type="text" placeholder="Lead Architect" required>
+        <div class="input-group">
+          <label>Specialization</label>
+          <input type="text" placeholder="IT Engineer" required>
         </div>
       </div>
 
-      <div style="text-align: left; margin-top: 10px;">
-        <label style="font-size: 0.7rem; color: var(--accent);">SECURE EMAIL</label>
+      <div class="input-group">
+        <label>Network Email</label>
         <input type="email" placeholder="architect@fuadsoft.com" required>
       </div>
 
-      <div style="text-align: left; margin-top: 10px;">
-        <label style="font-size: 0.7rem; color: var(--accent);">CREATE PASSCODE</label>
-        <input type="password" placeholder="Complex sequence" required>
+      <div class="input-group">
+        <label>Access Key</label>
+        <input type="password" placeholder="Min. 8 characters" required>
       </div>
 
-      <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Initialize Deployment</button>
+      <button type="submit" class="btn-login">Deploy Node</button>
     </form>
 
-    <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-dim);">
-      Already a member? <a href="login.html" style="color: var(--accent); text-decoration: none;">Authenticate</a>
-    </p>
+    <div style="margin-top: 1.5rem; font-size: 0.85rem; color: #64748b;">
+      Already in network? <a href="login.html" style="color: var(--accent); text-decoration: none;">Authenticate</a>
+    </div>
   </div>
 
 </body>
